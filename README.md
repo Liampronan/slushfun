@@ -1,6 +1,6 @@
 slushfun
 ========
 
-Angular App using Delivery.com API
+Angular App using Delivery.com API + firebase.
 Mobile using ionic framework
 

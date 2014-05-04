@@ -2,13 +2,14 @@ angular.module('SlushFunApp')
   .controller('DeliveryCtrl', ['$scope', 'deliveryDataService',
     function($scope, $deliveryDataService){
       //testing so auto-populating these vars TODO: change b4 live
-      $scope.searchAddress ="108 richmond";
-      $scope.searchZip = "02109";
+      $scope.searchAddress ="1 west";
+      $scope.searchZip = "10004";
+
 
       $scope.searchDeliveries = function(){
-        var searchAddressZip = $scope.searchAddress.replace(/\s+/g, '') + $scope.searchZip.trim();
-        console.log(searchAddressZip);
-        data = getNearbyDeliveries(searchAddressZip, "W");
+        var searchAddressZip = formatSearchAddressZip($scope.searchAddress, $scope.searchZip);
+        var searchMerchantType = formatMerchantType($scope.searchMerchantType);
+        data = getNearbyDeliveries(searchAddressZip, searchMerchantType);
       }
 
       function getNearbyDeliveries(searchAddressZip, searchMerchantType){
@@ -20,6 +21,20 @@ angular.module('SlushFunApp')
           .error(function (error) {
             console.log("error:" + error);
         })
+      }
+
+      function formatSearchAddressZip(searchAddress, searchZip){
+        return searchAddress.replace(/\s+/g, '') + searchZip.trim();
+      }
+
+      function formatMerchantType(searchMerchantType){
+        if (searchMerchantType === 'food') {
+          return ['R', 'C', 'I', 'U'];
+        } else if (searchMerchantType === 'booze') {
+          return 'W';
+        }
+        //food and booze
+        return ['R', 'C', 'I', 'U', 'W'];
       }
     }
   ]);

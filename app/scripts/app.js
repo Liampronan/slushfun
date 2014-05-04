@@ -31,6 +31,10 @@
         templateUrl: 'views/deliveries.html',
         controller: 'DeliveryCtrl'
       });
+//      .state('deliveries.nearMe'),{
+//        url: "nearMe",
+//        templateUrl:
+//      });
     })
   .constant('FBURL', 'https://slushfun.firebaseio.com/');
 

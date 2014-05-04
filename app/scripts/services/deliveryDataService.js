@@ -9,11 +9,12 @@ angular.module('SlushFunApp')
     var port = ":443";
 
     this.getDeliveryPlaces = function(searchAddress, searchMerchantType){
-      var merchantType = "";
-      if (searchMerchantType){
-        merchantType = "&merchant_type=" + searchMerchantType;
-      };
-      return $http.get(baseUrl + merchantType + '&address=' + searchAddress +  port);
+      var merchantTypeParam = formatMerchantTypeParam(searchMerchantType);
+      console.log(merchantTypeParam);
+      console.log(baseUrl + merchantTypeParam+ '&address=' + searchAddress +  port);
+      return $http.get(baseUrl + merchantTypeParam+ '&address=' + searchAddress +  port);
     }
+
+
 
   }]);

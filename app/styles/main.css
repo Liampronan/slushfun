@@ -34,3 +34,24 @@ body {
 
 .orange {
   color: #eea236; }
+
+label.label-fix {
+  display: block;
+  padding-left: 20px;
+  text-indent: -15px;
+  line-height: 18px;
+  cursor: pointer; }
+
+input.label-fix {
+  width: 13px;
+  height: 13px;
+  padding: 0;
+  margin: 0;
+  vertical-align: bottom;
+  position: relative;
+  top: -1px;
+  *overflow: hidden;
+  cursor: pointer; }
+
+.search-options {
+  margin-bottom: 20px; }
