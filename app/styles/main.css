@@ -1,0 +1,36 @@
+@import url(bootsrap.css);
+html, body {
+  margin: 20px;
+  background-color: #2b3e50; }
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #2b3e50; }
+
+.drink {
+  background-image: url("../images/glyphicons_000_glass.png");
+  height: 23px;
+  width: 25px;
+  margin-top: 6px;
+  color: white; }
+
+.navbar-brand {
+  padding-right: 0px; }
+
+.hero-unit {
+  margin: 50px auto 0 auto;
+  width: 600px;
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 30px;
+  background-color: #2b3e50;
+  border-radius: 6px;
+  padding: 60px; }
+
+.hero-unit h1 {
+  font-size: 60px;
+  line-height: 1;
+  letter-spacing: -1px; }
+
+.orange {
+  color: #eea236; }
