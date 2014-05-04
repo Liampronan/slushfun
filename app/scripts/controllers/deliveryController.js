@@ -6,21 +6,23 @@ angular.module('SlushFunApp')
       $scope.searchZip = "10004";
 
 
+
       $scope.searchDeliveries = function(){
         var searchAddressZip = formatSearchAddressZip($scope.searchAddress, $scope.searchZip);
         var searchMerchantType = formatMerchantType($scope.searchMerchantType);
-        data = getNearbyDeliveries(searchAddressZip, searchMerchantType);
+        getNearbyDeliveries(searchAddressZip, searchMerchantType)
+          .then(function(result){
+            $scope.searchResults = result.data.merchants;
+            console.log($scope.searchResults);
+            console.log("api results", result.data)
+          }, function(error){
+            //TODO add error handling
+            console.log(error)
+          });
       }
 
       function getNearbyDeliveries(searchAddressZip, searchMerchantType){
-        $deliveryDataService.getDeliveryPlaces(searchAddressZip, searchMerchantType)
-          .success(function (results) {
-            console.log("succes:");
-            console.log(results);
-          })
-          .error(function (error) {
-            console.log("error:" + error);
-        })
+        return $deliveryDataService.getDeliveryPlaces(searchAddressZip, searchMerchantType)
       }
 
       function formatSearchAddressZip(searchAddress, searchZip){
@@ -29,12 +31,14 @@ angular.module('SlushFunApp')
 
       function formatMerchantType(searchMerchantType){
         if (searchMerchantType === 'food') {
-          return ['R', 'C', 'I', 'U'];
+          return 'R';
         } else if (searchMerchantType === 'booze') {
           return 'W';
         }
         //food and booze
-        return ['R', 'C', 'I', 'U', 'W'];
+        return ['R', 'W'];
       }
     }
-  ]);
+  ])
+
+;

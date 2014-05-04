@@ -8,6 +8,8 @@ angular.module('SlushFunApp')
       "NWUxNmJiNGIyMWMxNDE1YjRhMjY4OWM3OGUwNGZmOGYw";
     var port = ":443";
 
+    //TODO/leftoff: booze search, food search, all search (diff requests..)
+    //lists all booze types available nearby, then search more by that place../
     this.getDeliveryPlaces = function(searchAddress, searchMerchantType){
       var merchantTypeParam = formatMerchantTypeParam(searchMerchantType);
       console.log(merchantTypeParam);
@@ -15,6 +17,14 @@ angular.module('SlushFunApp')
       return $http.get(baseUrl + merchantTypeParam+ '&address=' + searchAddress +  port);
     }
 
+    function formatMerchantTypeParam(searchMerchantType){
+      var merchantTypeParam = "";
+      if (searchMerchantType){
+        merchantTypeParam = "&merchant_type=" + searchMerchantType;
+      };
+      return merchantTypeParam;
+
+    }
 
 
   }]);

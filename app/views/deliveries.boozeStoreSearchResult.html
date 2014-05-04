@@ -1,0 +1,41 @@
+<div>
+  <h5 class="list-group-item-heading text-center bold">{{searchResult.summary.name}}</h5>
+  <h6 class="text-center smaller-head-text">{{searchResult.location.landmark}}</h6>
+  <div class="text-center">
+    <span class="label label-success" ng-show="searchResult.ordering.is_open">Open</span>
+    <span class="label label-danger" ng-show="!searchResult.ordering.is_open">Closed</span>
+    <span class="label" ng-class="{'label-success': searchResult.summary.overall_rating > 80,
+                                   'label-warning' : searchResult.summary.overall_rating > 60
+                                    && searchResult.summary.overall_rating < 80,
+                                   'label-danger' : searchResult.summary.overall_rating < 60}"
+      ng-show="searchResult.summary.overall_rating">
+    {{searchResult.summary.overall_rating}}/100
+    </span>
+    <span class="label label-info" ng-show="searchResult.summary.overall_rating===0">
+                No Reviews
+            </span>
+    <br/>
+    <span class="label label-success"
+          ng-show="{{searchResult.ordering.delivery_charge===0 && searchResult.ordering.delivery_percent===0}}">
+      No Delivery Fee
+    </span>
+    <span class="label label-warning"
+          ng-show="{{searchResult.ordering.delivery_charge!=0}}">
+      Delivery Fee: ${{searchResult.ordering.delivery_charge}}
+    </span>
+    <span class="label label-warning"
+          ng-show="{{searchResult.ordering.delivery_percent!=0}}">
+      Delivery Fee: {{searchResult.ordering.percent}}%
+    </span>
+    <br/>
+    <span class="label label-success"
+          ng-show="{{searchResult.ordering.minimum===0}}">
+      No Minimum
+    </span>
+    <span class="label label-warning"
+          ng-show="{{searchResult.ordering.minimum!==0}}">
+      Minimum: ${{searchResult.ordering.minimum}}
+    </span>
+
+    </div>
+</div>

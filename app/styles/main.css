@@ -55,3 +55,19 @@ input.label-fix {
 
 .search-options {
   margin-bottom: 20px; }
+
+.bold {
+  font-weight: bold; }
+
+.smaller-head-text {
+  font-size: 11px;
+  margin-top: 0px; }
+
+.label {
+  margin-left: 5px; }
+
+.label-info {
+  background-color: #A2A494; }
+
+h5 {
+  font-size: 14px; }
