@@ -71,3 +71,22 @@ input.label-fix {
 
 h5 {
   font-size: 14px; }
+
+.search-filters {
+  margin-bottom: 20px; }
+
+.filter {
+  margin: 0px;
+  font-size: 11px;
+  margin-top: 5px;
+  text-align: right; }
+
+h3.near-me {
+  margin: 40px 0px 15px; }
+
+.store-search-result a {
+  color: #ebebeb; }
+  .store-search-result a h5 {
+    color: #ebebeb; }
+  .store-search-result a h5:hover {
+    color: #ebebeb; }

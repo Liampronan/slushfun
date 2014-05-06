@@ -1,4 +1,4 @@
-<div class="hero-unit">
+<div class="hero-unit" ng-show="inDelivery">
   <h3 class="text-center">Find Delivery Spots Near You </h3>
   <div class="row form-group">
 
@@ -19,13 +19,13 @@
   <div class="row search-options">
 
     <div class="col-sm-3 col-sm-offset-1">
-      <label class="label-fix"><input type="radio" name="merchantType" value="food"
+      <label class="label-fix"><input type="radio" name="merchantType" value="Food"
                                       class="text-center label-fix" ng-model="searchMerchantType"/>
         Food</label>
     </div>
 
     <div class="col-sm-3 col-sm-offset-1">
-      <label class="label-fix"><input type="radio" name="merchantType" value="booze"
+      <label class="label-fix"><input type="radio" name="merchantType" value="Booze"
                                       class="text-center label-fix" ng-model="searchMerchantType"/>
         Booze</label>
     </div>
@@ -40,29 +40,6 @@
   <div class="text-center">
     <button class="text-center btn btn-warning" ng-click="searchDeliveries()">Search</button>
   </div>
-
-  <div ui-view></div>
-
 </div>
+<div ui-view></div>
 
-<div class="" ng-show="searchResult"
-     ng-repeat="searchResult in searchResults">
-     <span ng-switch on="$index % 3">
-       <span ng-switch-when="0">
-         <div class="row">
-           <div class="col-sm-1"></div>
-           <div class="well col-sm-2 col-sm-offset-1" ng-show="searchResults[$index]"
-                booze-store search-result="searchResults[$index]">
-           </div>
-           <div class="well col-sm-2 col-sm-offset-1" ng-show="searchResults[$index+1]"
-                booze-store search-result="searchResults[$index + 1]">
-           </div>
-           <div class="well col-sm-2 col-sm-offset-1" ng-show="searchResults[$index+2]"
-                booze-store search-result="searchResults[$index+2]">
-           </div>
-         </div>
-       </span>
-       <span ng-switch-when="3">
-       </span>
-     </span>
-</div>

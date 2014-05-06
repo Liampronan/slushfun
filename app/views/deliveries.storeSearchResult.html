@@ -1,10 +1,10 @@
-<div>
-  <h5 class="list-group-item-heading text-center bold">{{searchResult.summary.name}}</h5>
+<div class="store-search-result">
+  <a ui-sref="deliveries.nearMe.details({ storeId: searchResult.id})"><h5 class="list-group-item-heading text-center bold">{{searchResult.summary.name}}</h5></a>
   <h6 class="text-center smaller-head-text">{{searchResult.location.landmark}}</h6>
   <div class="text-center">
     <span class="label label-success" ng-show="searchResult.ordering.is_open">Open</span>
     <span class="label label-danger" ng-show="!searchResult.ordering.is_open">Closed</span>
-    <span class="label" ng-class="{'label-success': searchResult.summary.overall_rating > 80,
+    <span class="label" ng-class="{'label-success': searchResult.summary.overall_rating >= 80,
                                    'label-warning' : searchResult.summary.overall_rating > 60
                                     && searchResult.summary.overall_rating < 80,
                                    'label-danger' : searchResult.summary.overall_rating < 60}"

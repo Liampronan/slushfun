@@ -1,10 +1,20 @@
 angular.module('SlushFunApp')
-  .controller('DeliveryCtrl', ['$scope', 'deliveryDataService',
-    function($scope, $deliveryDataService){
+  .controller('DeliveryCtrl', ['$scope', 'deliveryDataService', '$state',
+    function($scope, $deliveryDataService, $state){
       //testing so auto-populating these vars TODO: change b4 live
       $scope.searchAddress ="1 west";
       $scope.searchZip = "10004";
+      $scope.inDelivery = true;
 
+      // show/hide delivery parent state when entering/leaving parent state
+      $scope.$on('$stateChangeStart',
+        function(evt, toState, toParams, fromState, fromParams) {
+          if (toState.name === "deliveries"){
+            $scope.inDelivery = true;
+          } else if (toState.name === "deliveries.nearMe"){
+            $scope.inDelivery = false;
+          }
+        });
 
 
       $scope.searchDeliveries = function(){
@@ -14,7 +24,8 @@ angular.module('SlushFunApp')
           .then(function(result){
             $scope.searchResults = result.data.merchants;
             console.log($scope.searchResults);
-            console.log("api results", result.data)
+            console.log("api results", result.data);
+            $state.go("deliveries.nearMe");
           }, function(error){
             //TODO add error handling
             console.log(error)
@@ -30,9 +41,9 @@ angular.module('SlushFunApp')
       }
 
       function formatMerchantType(searchMerchantType){
-        if (searchMerchantType === 'food') {
+        if (searchMerchantType === 'Food') {
           return 'R';
-        } else if (searchMerchantType === 'booze') {
+        } else if (searchMerchantType === 'Booze') {
           return 'W';
         }
         //food and booze

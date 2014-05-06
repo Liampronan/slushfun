@@ -14,6 +14,6 @@ angular.module('SlushFunApp')
       },
       restrict: 'A',
       replace: 'true',
-      templateUrl: 'views/deliveries.boozeStoreSearchResult.html'
+      templateUrl: 'views/deliveries.storeSearchResult.html'
     };
   });
