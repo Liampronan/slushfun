@@ -124,3 +124,28 @@ h3.near-me{
     }
   }
 }
+
+h3.details{
+ @extend h3.near-me
+}
+
+.delivery-menu-photo img{
+  height: 200px;
+}
+
+.right-arrow{
+  float:right;
+}
+
+.left-arrow{
+  float:left;
+}
+
+.menu-item{
+  @extend .store-search-result;
+}
+
+button.menu-subcategory{
+  margin: 5px;
+  font-size: 12.5px;
+}

@@ -2,7 +2,7 @@ angular.module('SlushFunApp')
   .controller('SearchResultsCtrl', ['$scope', 'deliveryDataService', '$state',
     function($scope, $deliveryDataService, $state){
       $scope.inSearchResults = true;
-
+      $scope.storeDetails = {};
       $scope.$on('$stateChangeStart',
         function(evt, toState, toParams, fromState, fromParams) {
           if (toState.name === "deliveries.nearMe"){
@@ -14,10 +14,19 @@ angular.module('SlushFunApp')
 
       $scope.$on('$stateChangeStart',
         function(evt, toState, toParams, fromState, fromParams) {
-          console.log(toState);
-          if (toState.name === "deliveries.nearMe.details"){
-            console.log($state)
-            $scope.storeDetails = getStoreDetails($state.params.storeId);
+          if (toState.name === "deliveries.nearMe.details" &&
+              fromState.name === "deliveries.nearMe"){
+            $scope.storeDetails = $scope.getStoreDetails(toParams.storeId);
+            //promise from SearchResultsCtrl
+            $scope.storeDetails
+              .then(function(result){
+                $scope.storeDetails = result.data;
+              }, function(error){
+                console.log(error);
+//        //TODO error handling
+              });
+
+
           }
         });
 
@@ -33,14 +42,12 @@ angular.module('SlushFunApp')
         return merchant.ordering.minimum <= $scope.minOrderMax
       };
 
-      function getStoreDetails(storeId){
-        return $deliveryDataService.getStoreDetails(storeId).
-          then(function(result){
-            return result.data;
-          }, function(error){
-            console.log(error);
-            //TODO error handling
-          })
+      $scope.setStoreSearchResultIndex = function (index) {
+        $scope.searchResultIndex = index;
+      };
+
+      $scope.getStoreDetails = function(storeId){
+        return $deliveryDataService.getStoreDetails(storeId)
       }
 
     }

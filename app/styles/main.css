@@ -81,12 +81,25 @@ h5 {
   margin-top: 5px;
   text-align: right; }
 
-h3.near-me {
+h3.near-me, h3.details {
   margin: 40px 0px 15px; }
 
-.store-search-result a {
+.store-search-result a, .menu-item a {
   color: #ebebeb; }
-  .store-search-result a h5 {
+  .store-search-result a h5, .menu-item a h5 {
     color: #ebebeb; }
-  .store-search-result a h5:hover {
+  .store-search-result a h5:hover, .menu-item a h5:hover {
     color: #ebebeb; }
+
+.delivery-menu-photo img {
+  height: 200px; }
+
+.right-arrow {
+  float: right; }
+
+.left-arrow {
+  float: left; }
+
+button.menu-subcategory {
+  margin: 5px;
+  font-size: 12.5px; }

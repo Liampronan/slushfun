@@ -1,1 +1,72 @@
-{{}}
+<button class="btn btn-warning left-arrow" ng-show="$parent.searchResultIndex > 0"
+  ng-click="prevMerchant($parent.searchResultIndex)">❰ Previous Merchant </button>
+<button class="btn btn-warning right-arrow" ng-show="$parent.searchResultIndex < searchResults.length"
+    ng-click="nextMerchant($parent.searchResultIndex)">
+  Next Merchant ❱
+</button>
+
+<div class="hero-unit">
+  <h3 class="text-center "> {{searchResults[$parent.searchResultIndex].summary.name}}</h3>
+  <h6 class="text-center smaller-head-text">{{searchResults[$parent.searchResultIndex].location.landmark}}</h6>
+  <div class="text-center">
+    <h6 class="text-center bold label"
+        ng-class="{true:'label-success', false:'label-danger'}
+        [searchResults[$parent.searchResultIndex].ordering.is_open]">
+    {{searchResults[$parent.searchResultIndex].ordering.is_open ? "Open" : "Closed"}}
+  </h6></div>
+  <div class="text-center">
+    <span class="label" ng-class="{'label-success':searchResults[$parent.searchResultIndex].summary.overall_rating >= 80,
+                                   'label-warning' : searchResults[$parent.searchResultIndex].summary.overall_rating > 60
+                                    && searchResult.searchResults[$parent.searchResultIndex].overall_rating < 80,
+                                   'label-danger' : searchResults[$parent.searchResultIndex].summary.overall_rating < 60}"
+          ng-show="searchResults[$parent.searchResultIndex].summary.overall_rating">
+    {{searchResults[$parent.searchResultIndex].summary.overall_rating}}/100
+    </span>
+    <span class="label label-info" ng-show="searchResults[$parent.searchResultIndex].summary.overall_rating===0">
+                No Reviews
+            </span>
+    <br/>
+  </div>
+
+</div>
+
+<div class="row menu-item">
+  <span ng-repeat="menuCategory in storeDetails.menu">
+  <div class="col-sm-3 col-sm-offset-2" ng-class="menuCategory.name"
+      ng-show="selectedCategory === menuCategory.name || selectedCategory === undefined"
+      ng-click="">
+    <a href="">
+      <h4 class="text-center" ng-click="setSelected(menuCategory.name)">
+        {{menuCategory.name.replace('amp;', '').replace('&','')}}
+      </h4>
+    </a>
+    <div class="delivery-menu-photo text-center"
+         ng-show="selectedCategory === menuCategory.name || selectedCategory === undefined">
+      <a href="" ng-click="setSelectedCategory(menuCategory.name)">
+        <img ng-src="/app/images/{{formatMenuCategory(menuCategory.name.toLowerCase())}}_stock.jpg" alt=""/>
+      </a>
+    </div>
+  </div>
+
+    <div class="col-sm-3 col-sm-offset-2 text-center" ng-show="selectedCategory === menuCategory.name">
+        <div ng-class="menuCategory.name" ng-repeat="subcategory in menuCategory.children">
+          <div class="col-sm-3 col-sm-offset-1" ng-if="subcategory.name.length < 9">
+            <button class=" btn btn-default menu-subcategory">{{subcategory.name.replace('amp;', '')}}</button>
+          </div>
+          <div class="col-sm-5 col-sm-offset-1" ng-if="subcategory.name.length > 9 && subcategory.name.length < 14 ">
+            <button class="btn btn-default menu-subcategory">{{subcategory.name.replace('amp;', '')}}</button>
+          </div>
+          <div class="col-sm-6" ng-if="subcategory.name.length > 14  && subcategory.name.length > 17">
+            <button class="btn btn-default menu-subcategory">{{subcategory.name.replace('amp;', '')}}</button>
+          </div>
+          <div class="col-sm-12" ng-if="subcategory.name.length > 17">
+            <button class="btn btn-default menu-subcategory">{{subcategory.name.replace('amp;', '')}}</button>
+          </div>
+        </div>
+        <button class="btn btn-primary col-sm-offset-2" ng-click="unsetSelectedCategory()">
+          ← Back to Categories {{selectedCategory}}
+        </button>
+      </div>
+  </span>
+</div>
+
