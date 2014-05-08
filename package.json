@@ -15,6 +15,7 @@
   "main": "web-server.js",
   "devDependencies": {
     "grunt": "^0.4.4",
+    "bower": "0.6.x",
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-coffee": "~0.7.0",
@@ -46,6 +47,6 @@
   },
   "scripts": {
     "test": "grunt test",
-    "postinstall": "./node_modules/bower/bin/bower install"
+    "postinstall": "../node_modules/bower/bin/bower install"
   }
 }
