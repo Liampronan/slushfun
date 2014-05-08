@@ -8,7 +8,7 @@ app.use(express.static(path.join(__dirname, "/app")));
 
 var port = 8000;
 app.listen(process.env.PORT || port, function() {
-  console.log("Listening on " + port);
+  console.log("Listening on " + process.env.PORT || port);
 });
 
 //
