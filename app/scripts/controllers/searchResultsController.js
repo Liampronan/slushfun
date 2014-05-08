@@ -1,8 +1,9 @@
 angular.module('SlushFunApp')
-  .controller('SearchResultsCtrl', ['$scope', 'deliveryDataService', '$state',
-    function($scope, $deliveryDataService, $state){
+  .controller('SearchResultsCtrl', ['$scope', 'deliveryDataService', '$state', 'localStorageService',
+    function($scope, $deliveryDataService, $state, localStorageService){
       $scope.inSearchResults = true;
       $scope.storeDetails = {};
+      localStorageService.add('localStorageKey','Yo teach!');
       $scope.$on('$stateChangeStart',
         function(evt, toState, toParams, fromState, fromParams) {
           if (toState.name === "deliveries.nearMe"){

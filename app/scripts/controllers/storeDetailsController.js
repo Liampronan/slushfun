@@ -1,8 +1,9 @@
 angular.module('SlushFunApp')
-  .controller('StoreDetailsCtrl', ['$scope', 'deliveryDataService', '$state',
-    function($scope, $deliveryDataService, $state){
+  .controller('StoreDetailsCtrl', ['$scope', 'deliveryDataService', '$state', 'localStorageService',
+    function($scope, $deliveryDataService, $state, localStorageService){
       var nextStoreDetails = {};
       var prevStoreDetails = {};
+      console.log(localStorageService.get('localStorageKey'));
       //TODO add in fix for jumping too quickly thru results (fix: make api call if nextStoreDetails not yet loaded..)
 
       $scope.$on('$viewContentLoaded',
@@ -49,9 +50,32 @@ angular.module('SlushFunApp')
           $state.go('deliveries.nearMe.details', {'storeId': $scope.searchResults[$scope.$parent.searchResultIndex].id} )
         }
       }
+
+      $scope.getMenuItems = function (parentMenu, menuItems) {
+        console.log(parentMenu);
+        if (menuItems === undefined) {
+          menuItems = [];
+        }
+        for (child in parentMenu.children){
+          if (parentMenu.children[child].type === 'menu'){
+            $scope.getMenuItems(parentMenu.children[child], menuItems);
+          } else {
+            menuItems.push({
+              name: parentMenu.children[child].name,
+              price:parentMenu.children[child].price,
+              type: parentMenu.children.name
+            });
+          }
+        }
+        $scope.menuItems = menuItems;
+      }
       
       $scope.setSelectedCategory = function (selectedCategory) {
         $scope.selectedCategory = selectedCategory;
+      }
+
+      $scope.setSelectedSubcategory = function (selectedSubcategory) {
+        $scope.selectedSubcategory = selectedSubcategory;
       }
 
       $scope.unsetSelectedCategory = function () {

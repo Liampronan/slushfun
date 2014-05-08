@@ -6,7 +6,9 @@
       'ngResource',
       'ngSanitize',
       'ui.router',
-      'firebase'
+      'firebase',
+      'LocalStorageModule'
+
     ])
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
       $urlRouterProvider.otherwise('/');

@@ -5,7 +5,7 @@
   Next Merchant ❱
 </button>
 
-<div class="hero-unit">
+<div class="hero-unit store-details">
   <h3 class="text-center "> {{searchResults[$parent.searchResultIndex].summary.name}}</h3>
   <h6 class="text-center smaller-head-text">{{searchResults[$parent.searchResultIndex].location.landmark}}</h6>
   <div class="text-center">
@@ -32,41 +32,117 @@
 
 <div class="row menu-item">
   <span ng-repeat="menuCategory in storeDetails.menu">
-  <div class="col-sm-3 col-sm-offset-2" ng-class="menuCategory.name"
-      ng-show="selectedCategory === menuCategory.name || selectedCategory === undefined"
-      ng-click="">
-    <a href="">
+  <div class="col-sm-3 col-sm-offset-1" ng-class="menuCategory.name"
+      ng-show="selectedCategory === menuCategory.name || selectedCategory === undefined">
+    <a href="" ng-click="setSelected(menuCategory.name)">
       <h4 class="text-center" ng-click="setSelected(menuCategory.name)">
         {{menuCategory.name.replace('amp;', '').replace('&','')}}
       </h4>
     </a>
     <div class="delivery-menu-photo text-center"
          ng-show="selectedCategory === menuCategory.name || selectedCategory === undefined">
-      <a href="" ng-click="setSelectedCategory(menuCategory.name)">
+      <a href="" ng-click="setSelectedCategory(menuCategory.name); getMenuItems(menuCategory)">
         <img ng-src="/app/images/{{formatMenuCategory(menuCategory.name.toLowerCase())}}_stock.jpg" alt=""/>
       </a>
     </div>
+    <br/>
+    <div class="text-center">
+      <button class="btn btn-primary" ng-click="unsetSelectedCategory()"
+              ng-show="selectedCategory === menuCategory.name" >
+        ← Back to Categories
+      </button>
+    </div>
   </div>
+    <!--most categories have sub-categories as direct children of their categories-->
+    <!--<div class="col-sm-3 text-center" ng-show="selectedCategory === menuCategory.name"-->
+         <!--ng-if="menuCategory.children[0].type === 'menu'">-->
+      <!--<h5 class="underline bold">{{menuCategory.name}} Types</h5>-->
+      <!--<div ng-class="menuCategory.name" ng-repeat="subcategory in menuCategory.children | limitTo: 5">-->
+        <!--<div class="col-sm-12 ">-->
+          <!--<button class=" btn btn-default menu-subcategory" ng-click="setSelectedSubcategory(subcategory.name)">-->
+            <!--{{subcategory.name.replace('amp;', '')}}-->
+          <!--</button>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="row">-->
+        <!--<div class="col-sm-6">-->
+          <!--<button class="btn btn-primary btn-xs">Prev 5</button>-->
+        <!--</div>-->
+        <!--<div class="col-sm-6">-->
+          <!--<button class="btn btn-primary btn-xs">Next 5</button>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<br/>-->
+    <!--</div>-->
+     <div class="col-sm-5 text-center" ng-show="selectedCategory === menuCategory.name">
+       <h5 class="underline bold text-center" >{{menuCategory.name.replace('amp;', '')}}</h5>
+       <table class="table table-striped">
+         <thead>
+         <!--TODO: add sorting arrows (or hat) here-->
+         <th class="text-center">Name</th>
+         <th class="text-center">Price</th>
+         <th class="text-center">Add to Slush List</th>
+         </thead>
+         <tbody>
+           <tr ng-repeat="menuItem in menuItems | limitTo: 5 | orderBy: menuItemOrder">
+             <td>
+               {{menuItem.name.replace('amp;', '')}}
+             </td>
+             <td>
+               ${{menuItem.price}}
+             </td>
+             <td>
+               <button class="btn btn-success btn-xs">Add</button>
+             </td>
+           </tr>
+         </tbody>
+       </table>
+       <div class="row">
+         <div class="col-sm-6 text-left">
+           <button class="btn btn-primary btn-xs" ng-if="showPrevMenuItems">Prev 5</button>
+         </div>
+         <div class="col-sm-6 text-right">
+           <button class="btn btn-primary btn-xs">Next 5</button>
+         </div>
+       </div>
+       <br/>
+     </div>
 
-    <div class="col-sm-3 col-sm-offset-2 text-center" ng-show="selectedCategory === menuCategory.name">
-        <div ng-class="menuCategory.name" ng-repeat="subcategory in menuCategory.children">
-          <div class="col-sm-3 col-sm-offset-1" ng-if="subcategory.name.length < 9">
-            <button class=" btn btn-default menu-subcategory">{{subcategory.name.replace('amp;', '')}}</button>
-          </div>
-          <div class="col-sm-5 col-sm-offset-1" ng-if="subcategory.name.length > 9 && subcategory.name.length < 14 ">
-            <button class="btn btn-default menu-subcategory">{{subcategory.name.replace('amp;', '')}}</button>
-          </div>
-          <div class="col-sm-6" ng-if="subcategory.name.length > 14  && subcategory.name.length > 17">
-            <button class="btn btn-default menu-subcategory">{{subcategory.name.replace('amp;', '')}}</button>
-          </div>
-          <div class="col-sm-12" ng-if="subcategory.name.length > 17">
-            <button class="btn btn-default menu-subcategory">{{subcategory.name.replace('amp;', '')}}</button>
-          </div>
-        </div>
-        <button class="btn btn-primary col-sm-offset-2" ng-click="unsetSelectedCategory()">
-          ← Back to Categories {{selectedCategory}}
-        </button>
-      </div>
-  </span>
-</div>
+    <!--&lt;!&ndash;some categories have items as direct children of their categories&ndash;&gt;-->
+    <!--<div class="col-sm-5 col-sm-offset-2 text-center" ng-show="selectedCategory === menuCategory.name"-->
+         <!--ng-if="menuCategory.children[0].type === 'item'">-->
+      <!--<h5 class="underline bold text-center" >{{menuCategory.name}} </h5>-->
+      <!--<table class="table table-striped">-->
+        <!--<thead>-->
+          <!--<th class="text-center">Name</th>-->
+          <!--<th class="text-center">Price</th>-->
+          <!--<th class="text-center"></th>-->
+        <!--</thead>-->
+        <!--<tbody>-->
+          <!--<tr ng-repeat="subcategory in menuCategory.children | limitTo: 5">-->
+            <!--<td>-->
+              <!--{{subcategory.name.replace('amp;', '')}}-->
+            <!--</td>-->
+            <!--<td >-->
+              <!--${{subcategory.price}}-->
+            <!--</td>-->
+            <!--<td>-->
+              <!--<button class="btn btn-success btn-xs">Select</button>-->
+            <!--</td>-->
+          <!--</tr>-->
+        <!--</tbody>-->
+      <!--</table>-->
+      <!--<div class="row">-->
+        <!--<div class="col-sm-6 text-left">-->
+          <!--<button class="btn btn-primary btn-xs">Prev 5</button>-->
+        <!--</div>-->
+        <!--<div class="col-sm-6 text-right">-->
+          <!--<button class="btn btn-primary btn-xs">Next 5</button>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<br/>-->
+    <!--</div>-->
+
+  <!--</span>-->
+<!--</div>-->
 
