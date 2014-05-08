@@ -7,7 +7,7 @@ var path = require('path');
 app.use(express.static(path.join(__dirname, "/")));
 
 var port = 8000;
-app.listen(port, function() {
+app.listen(process.env.PORT || port, function() {
   console.log("Listening on " + port);
 });
 
