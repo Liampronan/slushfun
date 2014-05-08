@@ -9,7 +9,6 @@
     "bootstrap-sass": "~2.3.1",
     "es5-shim": "~2.0.8",
     "angular-resource": "~1.2.16",
-//    "angular-cookies": "~1.2.16",
     "angular-sanitize": "~1.2.16",
     "angular-ui-router": "*",
     "sass-bootstrap": "~3.0.2"},
