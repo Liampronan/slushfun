@@ -8,8 +8,7 @@
       'ui.router',
       'firebase',
       'LocalStorageModule'
-
-    ])
+     ])
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
       $urlRouterProvider.otherwise('/');
       $stateProvider
@@ -28,17 +27,17 @@
           templateUrl: 'views/register.html',
           controller: 'AuthCtrl'
         })
-        .state('deliveries', {
-          url: '/deliveries',
+        .state('index.deliveries', {
+          url: 'deliveries',
           templateUrl: 'views/deliveries.html',
           controller: 'DeliveryCtrl'
         })
-        .state('deliveries.nearMe', {
+        .state('index.deliveries.nearMe', {
         url: "/near_me",
         templateUrl: 'views/deliveries.nearMe.html',
         controller: 'SearchResultsCtrl'
       })
-        .state('deliveries.nearMe.details', {
+        .state('index.deliveries.nearMe.details', {
           url: "/:storeId",
           templateUrl: 'views/deliveries.nearMe.details.html',
           controller: 'StoreDetailsCtrl'

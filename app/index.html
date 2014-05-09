@@ -15,20 +15,7 @@
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
 </head>
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-container">
-      <a href="#" class="navbar-brand">SlushFun</a>
-      <span class="glyphicon drink"></span>
 
-      <ul class="nav navbar-nav navbar-right">
-        <li><a ui-sref="deliveries">Find Deliveries</a></li>
-        <li><a href="#">Register</a></li>
-        <li><a href="#">Login</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
 
 <body ng-app="SlushFunApp">
 
@@ -91,6 +78,8 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/services/localStorageService.js"></script>
         <script src="scripts/app.js"></script>
+        <script src="scripts/services/shoppingCartService.js"></script>
+
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/deliveryController.js"></script>
         <script src="scripts/controllers/searchResultsController.js"></script>

@@ -1,13 +1,23 @@
 angular.module('SlushFunApp')
-  .controller('StoreDetailsCtrl', ['$scope', 'deliveryDataService', '$state', 'localStorageService',
-    function($scope, $deliveryDataService, $state, localStorageService){
+  .filter('offset', function () {
+    return function (input, start) {
+      start = parseInt(start, 10);
+      return input.slice(start);
+    };
+  })
+  .controller('StoreDetailsCtrl', ['$scope', 'deliveryDataService', '$state', 'shoppingCartService',
+    function($scope, deliveryDataService, $state, shoppingCartService){
       var nextStoreDetails = {};
       var prevStoreDetails = {};
-      console.log(localStorageService.get('localStorageKey'));
+      $scope.itemsPerPage = 5;
+      $scope.currentPage = 0;
+//      console.log(localStorageService.get('localStorageKey'));
       //TODO add in fix for jumping too quickly thru results (fix: make api call if nextStoreDetails not yet loaded..)
 
       $scope.$on('$viewContentLoaded',
         function(evt, toState, toParams, fromState, fromParams) {
+          //load next store details once page is loaded b/c api is a bit slow, so
+          //want to have next store details available for quick browsing
           nextStoreDetails = $scope.getStoreDetails($scope.searchResults[$scope.$parent.searchResultIndex + 1].id)
             .then(function(result){
               nextStoreDetails = result.data;
@@ -15,7 +25,7 @@ angular.module('SlushFunApp')
             }), function(error){
               console.log(error);
           }
-
+          //see if we need to get the prev store's details (just like above -> for quick browsing)
           if ($scope.$parent.searchResultIndex !== ($scope.$parent.prevStoreIndex + 1)
                 && $scope.$parent.searchResultIndex > 0){
             prevStoreDetails = $scope.getStoreDetails($scope.searchResults[$scope.$parent.searchResultIndex - 1].id)
@@ -26,7 +36,47 @@ angular.module('SlushFunApp')
             }
           }
       });
+      //pagination ish..
+      $scope.range = function () {
+        var rangeSize = 5;
+        var ret = [];
+        var start;
 
+        start = $scope.currentPage;
+        if (start > $scope.pageCount() - rangeSize) {
+          start = $scope.pageCount() - rangeSize + 1;
+        }
+
+        for (var i = start; i < start + rangeSize; i++) {
+          ret.push(i);
+        }
+        return ret;
+      };
+
+      $scope.prevPage = function () {
+        if ($scope.currentPage > 0) {
+          $scope.currentPage--;
+        }
+      };
+
+      $scope.pageCount = function () {
+        return Math.ceil($scope.menuItems.length / $scope.itemsPerPage) - 1;
+      };
+
+      $scope.nextPage = function () {
+        if ($scope.currentPage < $scope.pageCount()) {
+          $scope.currentPage++;
+        }
+      };
+
+      $scope.setPage = function (n) {
+        $scope.currentPage = n;
+      };
+
+      
+      $scope.addToCart = function (menuItemId, storeId) {
+        shoppingCartService.addToCart(menuItemId, storeId)
+      }
 
       $scope.nextMerchant = function () {
         //bad practice to use parent scope here? is it necessary?? REFA
@@ -35,8 +85,8 @@ angular.module('SlushFunApp')
         $scope.$parent.storeDetails = nextStoreDetails;
         $scope.$parent.searchResultIndex++;
         console.log($scope.$parent.searchResultIndex);
-        $state.go('deliveries.nearMe.details', {'storeId': $scope.searchResults[$scope.$parent.searchResultIndex].id} )
-      }
+        $state.go('index.deliveries.nearMe.details', {'storeId': $scope.searchResults[$scope.$parent.searchResultIndex].id} )
+      };
 
       $scope.prevMerchant = function () {
         if ($scope.$parent.searchResultIndex === ($scope.$parent.prevStoreIndex + 1)){
@@ -47,7 +97,7 @@ angular.module('SlushFunApp')
         } else {
           $scope.$parent.storeDetails = prevStoreDetails;
           $scope.$parent.searchResultIndex--;
-          $state.go('deliveries.nearMe.details', {'storeId': $scope.searchResults[$scope.$parent.searchResultIndex].id} )
+          $state.go('index.deliveries.nearMe.details', {'storeId': $scope.searchResults[$scope.$parent.searchResultIndex].id} )
         }
       }
 
@@ -63,7 +113,8 @@ angular.module('SlushFunApp')
             menuItems.push({
               name: parentMenu.children[child].name,
               price:parentMenu.children[child].price,
-              type: parentMenu.children.name
+              type: parentMenu.children.name,
+              id: parentMenu.children[child].id
             });
           }
         }
@@ -80,7 +131,9 @@ angular.module('SlushFunApp')
 
       $scope.unsetSelectedCategory = function () {
         $scope.selectedCategory = undefined;
+        $scope.currentPage = 0;
       }
+
 
       //api returns myriad different categories; hence this ugly switch statement..
       $scope.formatMenuCategory = function (menuCategory) {

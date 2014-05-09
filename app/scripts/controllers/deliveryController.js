@@ -9,9 +9,9 @@ angular.module('SlushFunApp')
       // show/hide delivery parent state when entering/leaving parent state
       $scope.$on('$stateChangeStart',
         function(evt, toState, toParams, fromState, fromParams) {
-          if (toState.name === "deliveries"){
+          if (toState.name === "index.deliveries"){
             $scope.inDelivery = true;
-          } else if (toState.name === "deliveries.nearMe"){
+          } else if (toState.name === "index.deliveries.nearMe"){
             $scope.inDelivery = false;
           }
         });
@@ -25,7 +25,7 @@ angular.module('SlushFunApp')
             $scope.searchResults = result.data.merchants;
             console.log($scope.searchResults);
             console.log("api results", result.data);
-            $state.go("deliveries.nearMe");
+            $state.go("index.deliveries.nearMe");
           }, function(error){
             //TODO add error handling
             console.log(error)

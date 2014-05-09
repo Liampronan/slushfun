@@ -1,4 +1,4 @@
 {
   "firebase": "slushfun",
-  "public": "app/"
+  "public": "./app"
 }

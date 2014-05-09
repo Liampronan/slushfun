@@ -1,12 +1,11 @@
 angular.module('SlushFunApp')
   .controller('SearchResultsCtrl', ['$scope', 'deliveryDataService', '$state', 'localStorageService',
-    function($scope, $deliveryDataService, $state, localStorageService){
+    function($scope, deliveryDataService, $state, localStorageService){
       $scope.inSearchResults = true;
       $scope.storeDetails = {};
-      localStorageService.add('localStorageKey','Yo teach!');
       $scope.$on('$stateChangeStart',
         function(evt, toState, toParams, fromState, fromParams) {
-          if (toState.name === "deliveries.nearMe"){
+          if (toState.name === "index.deliveries.nearMe"){
             $scope.inSearchResults = true;
           } else {
             $scope.inSearchResults = false;
@@ -15,8 +14,8 @@ angular.module('SlushFunApp')
 
       $scope.$on('$stateChangeStart',
         function(evt, toState, toParams, fromState, fromParams) {
-          if (toState.name === "deliveries.nearMe.details" &&
-              fromState.name === "deliveries.nearMe"){
+          if (toState.name === "index.deliveries.nearMe.details" &&
+              fromState.name === "index.deliveries.nearMe"){
             $scope.storeDetails = $scope.getStoreDetails(toParams.storeId);
             //promise from SearchResultsCtrl
             $scope.storeDetails
@@ -24,10 +23,8 @@ angular.module('SlushFunApp')
                 $scope.storeDetails = result.data;
               }, function(error){
                 console.log(error);
-//        //TODO error handling
+//           //TODO error handling
               });
-
-
           }
         });
 
@@ -48,7 +45,7 @@ angular.module('SlushFunApp')
       };
 
       $scope.getStoreDetails = function(storeId){
-        return $deliveryDataService.getStoreDetails(storeId)
+        return deliveryDataService.getStoreDetails(storeId)
       }
 
     }

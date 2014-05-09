@@ -17,14 +17,36 @@
   <div class="text-center">
     <span class="label" ng-class="{'label-success':searchResults[$parent.searchResultIndex].summary.overall_rating >= 80,
                                    'label-warning' : searchResults[$parent.searchResultIndex].summary.overall_rating > 60
-                                    && searchResult.searchResults[$parent.searchResultIndex].overall_rating < 80,
+                                    && searchResults[$parent.searchResultIndex].summary.overall_rating < 80,
                                    'label-danger' : searchResults[$parent.searchResultIndex].summary.overall_rating < 60}"
           ng-show="searchResults[$parent.searchResultIndex].summary.overall_rating">
     {{searchResults[$parent.searchResultIndex].summary.overall_rating}}/100
     </span>
     <span class="label label-info" ng-show="searchResults[$parent.searchResultIndex].summary.overall_rating===0">
                 No Reviews
-            </span>
+    </span>
+    <span class="label label-success"
+          ng-show="{{searchResults[$parent.searchResultIndex].ordering.delivery_charge===0 &&
+          searchResults[$parent.searchResultIndex].ordering.delivery_percent===0}}">
+      No Delivery Fee
+    </span>
+    <span class="label label-warning"
+          ng-show="{{searchResults[$parent.searchResultIndex].ordering.delivery_charge!=0}}">
+      Delivery Fee: ${{searchResults[$parent.searchResultIndex].ordering.delivery_charge}}
+    </span>
+    <span class="label label-warning"
+          ng-show="{{searchResults[$parent.searchResultIndex].ordering.delivery_percent!=0}}">
+      Delivery Fee: {{searchResults[$parent.searchResultIndex].ordering.percent}}%
+    </span>
+    <br/>
+    <span class="label label-success"
+          ng-show="{{searchResults[$parent.searchResultIndex].ordering.minimum===0}}">
+      No Minimum
+    </span>
+    <span class="label label-warning"
+          ng-show="{{searchResults[$parent.searchResultIndex].ordering.minimum!==0}}">
+      Minimum: ${{searchResults[$parent.searchResultIndex].ordering.minimum}}
+    </span>
     <br/>
   </div>
 
@@ -42,7 +64,7 @@
     <div class="delivery-menu-photo text-center"
          ng-show="selectedCategory === menuCategory.name || selectedCategory === undefined">
       <a href="" ng-click="setSelectedCategory(menuCategory.name); getMenuItems(menuCategory)">
-        <img ng-src="/app/images/{{formatMenuCategory(menuCategory.name.toLowerCase())}}_stock.jpg" alt=""/>
+        <img ng-src="/images/{{formatMenuCategory(menuCategory.name.toLowerCase())}}_stock.jpg" alt=""/>
       </a>
     </div>
     <br/>
@@ -53,27 +75,6 @@
       </button>
     </div>
   </div>
-    <!--most categories have sub-categories as direct children of their categories-->
-    <!--<div class="col-sm-3 text-center" ng-show="selectedCategory === menuCategory.name"-->
-         <!--ng-if="menuCategory.children[0].type === 'menu'">-->
-      <!--<h5 class="underline bold">{{menuCategory.name}} Types</h5>-->
-      <!--<div ng-class="menuCategory.name" ng-repeat="subcategory in menuCategory.children | limitTo: 5">-->
-        <!--<div class="col-sm-12 ">-->
-          <!--<button class=" btn btn-default menu-subcategory" ng-click="setSelectedSubcategory(subcategory.name)">-->
-            <!--{{subcategory.name.replace('amp;', '')}}-->
-          <!--</button>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="row">-->
-        <!--<div class="col-sm-6">-->
-          <!--<button class="btn btn-primary btn-xs">Prev 5</button>-->
-        <!--</div>-->
-        <!--<div class="col-sm-6">-->
-          <!--<button class="btn btn-primary btn-xs">Next 5</button>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<br/>-->
-    <!--</div>-->
      <div class="col-sm-5 text-center" ng-show="selectedCategory === menuCategory.name">
        <h5 class="underline bold text-center" >{{menuCategory.name.replace('amp;', '')}}</h5>
        <table class="table table-striped">
@@ -81,10 +82,11 @@
          <!--TODO: add sorting arrows (or hat) here-->
          <th class="text-center">Name</th>
          <th class="text-center">Price</th>
-         <th class="text-center">Add to Slush List</th>
+         <th class="text-center">Cart</th>
          </thead>
          <tbody>
-           <tr ng-repeat="menuItem in menuItems | limitTo: 5 | orderBy: menuItemOrder">
+           <tr ng-repeat="menuItem in menuItems  | offset: currentPage*itemsPerPage | limitTo: itemsPerPage
+           | orderBy: 'name' ">
              <td>
                {{menuItem.name.replace('amp;', '')}}
              </td>
@@ -92,57 +94,28 @@
                ${{menuItem.price}}
              </td>
              <td>
-               <button class="btn btn-success btn-xs">Add</button>
+               <button class="btn btn-success btn-xs"
+                       ng-click="addToCart(menuItem.id, searchResults[$parent.searchResultIndex].id)">
+                 Add
+               </button>
              </td>
            </tr>
          </tbody>
        </table>
        <div class="row">
          <div class="col-sm-6 text-left">
-           <button class="btn btn-primary btn-xs" ng-if="showPrevMenuItems">Prev 5</button>
+           <button class="btn btn-primary btn-xs" ng-if="currentPage > 0" ng-click="prevPage()">
+             Prev 5
+           </button>
          </div>
          <div class="col-sm-6 text-right">
-           <button class="btn btn-primary btn-xs">Next 5</button>
+           <button class="btn btn-primary btn-xs" ng-if="currentPage < menuItems.length / itemsPerPage - 1"
+                   ng-click="nextPage()">Next 5</button>
          </div>
        </div>
        <br/>
      </div>
-
-    <!--&lt;!&ndash;some categories have items as direct children of their categories&ndash;&gt;-->
-    <!--<div class="col-sm-5 col-sm-offset-2 text-center" ng-show="selectedCategory === menuCategory.name"-->
-         <!--ng-if="menuCategory.children[0].type === 'item'">-->
-      <!--<h5 class="underline bold text-center" >{{menuCategory.name}} </h5>-->
-      <!--<table class="table table-striped">-->
-        <!--<thead>-->
-          <!--<th class="text-center">Name</th>-->
-          <!--<th class="text-center">Price</th>-->
-          <!--<th class="text-center"></th>-->
-        <!--</thead>-->
-        <!--<tbody>-->
-          <!--<tr ng-repeat="subcategory in menuCategory.children | limitTo: 5">-->
-            <!--<td>-->
-              <!--{{subcategory.name.replace('amp;', '')}}-->
-            <!--</td>-->
-            <!--<td >-->
-              <!--${{subcategory.price}}-->
-            <!--</td>-->
-            <!--<td>-->
-              <!--<button class="btn btn-success btn-xs">Select</button>-->
-            <!--</td>-->
-          <!--</tr>-->
-        <!--</tbody>-->
-      <!--</table>-->
-      <!--<div class="row">-->
-        <!--<div class="col-sm-6 text-left">-->
-          <!--<button class="btn btn-primary btn-xs">Prev 5</button>-->
-        <!--</div>-->
-        <!--<div class="col-sm-6 text-right">-->
-          <!--<button class="btn btn-primary btn-xs">Next 5</button>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<br/>-->
-    <!--</div>-->
-
-  <!--</span>-->
-<!--</div>-->
-
+    <div class="col-sm-3" ng-show="selectedCategory === menuCategory.name">
+      <input type="text" placeholder="filters and such"/>
+    </div>
+    </div>
