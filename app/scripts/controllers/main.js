@@ -3,10 +3,11 @@
 //noinspection JSUnusedGlobalSymbols
 angular.module('SlushFunApp')
   .controller('MainCtrl', function ($scope, $rootScope, $state, shoppingCartService) {
+//    $scope.cart = shoppingCartService.getCurrentCart;
+
 
     $scope.updateCart = function () {
-      $scope.cart = shoppingCartService.currentCart;
-      $scope.$apply();
+      $scope.cart = shoppingCartService.getCurrentCart();
     };
 
     //REFA: look into better way of managing nav and child views...
@@ -23,9 +24,7 @@ angular.module('SlushFunApp')
       });
     console.log($scope.cart);
 
-    $scope.$watch('$scope.cart', function(newVal, oldVal) {
-      console.log("cart", newVal, oldVal);
-    });
+//    $scope.$watch('cart', $scope.updateCart(), true);
 
 
 

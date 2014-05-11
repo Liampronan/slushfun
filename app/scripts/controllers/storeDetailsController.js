@@ -75,7 +75,8 @@ angular.module('SlushFunApp')
 
       
       $scope.addToCart = function (menuItemId, storeId) {
-        shoppingCartService.addToCart(menuItemId, storeId)
+        shoppingCartService.addToCart(menuItemId, storeId);
+        $scope.updateCart();
       }
 
       $scope.nextMerchant = function () {
