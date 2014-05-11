@@ -23,7 +23,9 @@ angular.module('SlushFunApp')
       });
     console.log($scope.cart);
 
-    $scope.$watch('cart', $scope.updateCart(), true);
+    $scope.$watch('$scope.cart', function(newVal, oldVal) {
+      console.log("cart", newVal, oldVal);
+    });
 
 
 
