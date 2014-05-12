@@ -43,8 +43,8 @@
           controller: 'StoreDetailsCtrl'
         })
 
-    });
-//    .constant('FBURL', 'https://slushfun.firebaseio.com/');
+    })
+    .constant('FBURL', 'https://slushfun.firebaseio.com/');
 
 
 

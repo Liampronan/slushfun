@@ -1,5 +1,5 @@
 angular.module('SlushFunApp')
-  .factory('loginService', function($firebaseSimpleLogin, $rootScope, $location, $timeout) {
+  .factory('loginService', function($firebaseSimpleLogin, $rootScope, $location, User) {
 //    $rootScope.$on('$firebaseSimpleLogin:login', function (e, user) {
 //      $rootScope.user = user;
 //    });
@@ -11,18 +11,45 @@ angular.module('SlushFunApp')
           .then(function(registeredUser) {
             console.log(registeredUser);
               return auth.$login('password', user).then(function(loggedInUser) {
-                console.log('Logged in as: ', loggedInUser.uid);
+                localStorage.setItem('token', loggedInUser.firebaseAuthToken);
+                //create the user in FB /users (already created in simplelogin)
+                User.create(registeredUser);
+                $rootScope.user = {
+                  email: user.email,
+                  userName: user.email.match(/^([^@]*)@/)[1],
+                  id: user.id,
+                  isLoggedIn: true
+                }
               }, function(error) {
                 console.error('Login failed: ', error);
             })
           }
         )},
-      logout: function(){
-//        $rootScope.signedIn = false;
+      login: function (provider, options) {
+        auth.$login(provider, options)
+          .then(function(loggedInUser) {
+            $rootScope.user = {
+              email: user.email,
+              userName: user.email.match(/^([^@]*)@/)[1],
+              id: user.id,
+              isLoggedIn: true
+            }
+            localStorage.setItem('token', loggedInUser.firebaseAuthToken);
+          }, function(error) {
+            console.error('Login failed: ', error);
+          })
+      },
+      isLoggedIn: function () {
+        return auth.user !== null;
+      },
+      logOut: function(){
+        $rootScope.user = {};
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
         return auth.$logout();
       },
-      getUser: function(){
-        return auth.$getCurrentUser().then(function(user){console.log(user)});
+      getCurrentUser: function(){
+        return auth.$getCurrentUser();
       }
     }
   });
