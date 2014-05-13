@@ -20,6 +20,7 @@ angular.module('SlushFunApp')
                   id: user.id,
                   isLoggedIn: true
                 }
+                localStorage.setItem('user', JSON.stringify($rootScope.user));
               }, function(error) {
                 console.error('Login failed: ', error);
             })
@@ -29,12 +30,13 @@ angular.module('SlushFunApp')
         auth.$login(provider, options)
           .then(function(loggedInUser) {
             $rootScope.user = {
-              email: user.email,
-              userName: user.email.match(/^([^@]*)@/)[1],
-              id: user.id,
+              email: loggedInUser.email,
+              userName: loggedInUser.email.match(/^([^@]*)@/)[1],
+              id: loggedInUser.id,
               isLoggedIn: true
             }
             localStorage.setItem('token', loggedInUser.firebaseAuthToken);
+            localStorage.setItem('user', JSON.stringify($rootScope.user));
           }, function(error) {
             console.error('Login failed: ', error);
           })

@@ -3,8 +3,6 @@
 //noinspection JSUnusedGlobalSymbols
 angular.module('SlushFunApp')
   .controller('MainCtrl', function ($scope, $rootScope, $state, shoppingCartService) {
-//    $scope.cart = shoppingCartService.getCurrentCart;
-
 
     $scope.updateCart = function () {
       $scope.cart = shoppingCartService.getCurrentCart();
@@ -14,22 +12,18 @@ angular.module('SlushFunApp')
     $scope.inIndex = true;
     $scope.$on('$stateChangeSuccess',
       function(evt, toState, toParams, fromState, fromParams) {
-        console.log(toState);
         //see if we need to get the prev store's details (just like above -> for quick browsing)
-        if (toState.name === "index.deliveries"){
+        if (toState.name !== "index"){
           $scope.inIndex = false;
-        } if (toState.name === "index"){
+        }
+        if (toState.name === "index"){
           $scope.inIndex = true;
         }
+        $scope.updateCart();
       });
-
-//    $scope.$watch('cart', $scope.updateCart(), true);
-
-
 
     $scope.emptyCart = function () {
       shoppingCartService.emptyCart();
-//      $scope.cart = shoppingCartService.currentCart;
       $scope.updateCart();
     }
   })

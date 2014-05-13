@@ -9,31 +9,32 @@ angular.module('SlushFunApp')
     '$rootScope',
     function AuthCtrl($scope, $location, $firebase, $firebaseSimpleLogin, loginService, fireFactory, $rootScope)
     {
+//      //this should handle reloads.. TODO make sure it does (use firebase auth obj)
+//      $rootScope.$on('$firebaseSimpleLogin:login', function () {
+//        //TODO reditrect to user page
+//        if (!$rootScope.user){
+//          $rootScope.user = JSON.parse(localStorage.getItem('user'));
+//          console.log('getting user from local', $rootScope.user);
+//          if ($rootScope.user){
+//            $location.path('/');
+//          }
+//        };
+//      });
 
-      $scope.$on('$firebaseSimpleLogin:login', function () {
-        //TODO reditrect to user page
+      $rootScope.$on('$stateChangeSuccess',
+        function(evt, toState, toParams, fromState, fromParams) {
+          if (!$rootScope.user){
+            $rootScope.user = JSON.parse(localStorage.getItem('user'));
+            console.log('getting user from local', $rootScope.user);
+          }
+
+        });
+
+
+      //redirect to home after logout
+      $rootScope.$on('$firebaseSimpleLogin:logout', function () {
         $location.path('/');
-
-
       });
-
-      // FirebaseAuth callback
-      $scope.authCallback = function (error, user) {
-        if (error) {
-          console.log('error: ', error.code);
-          /*if (error.code === 'EXPIRED_TOKEN') {
-           $location.path('/');
-           }*/
-        } else if (user) {
-          console.log('Logged In', $scope);
-          // Store the auth token
-          localStorage.setItem('token', user.token);
-        } else {
-          localStorage.clear();
-          $rootScope.isLoggedIn = false;
-          $location.path('/');
-        }
-      };
 
       $rootScope.logOut = function () {
         loginService.logOut();

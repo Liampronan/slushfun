@@ -9,7 +9,7 @@ angular.module('SlushFunApp')
       create: function (authUser) {
         console.log('ref', ref);
         console.log('users', users);
-        users[authUser.uid] = {
+        users[authUser.id] = {
           email: authUser.email,
           test: "hello",
           $priority: authUser.id

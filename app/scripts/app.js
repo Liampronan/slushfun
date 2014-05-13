@@ -36,12 +36,21 @@
         url: "/near_me",
         templateUrl: 'views/deliveries.nearMe.html',
         controller: 'SearchResultsCtrl'
-      })
+        })
         .state('index.deliveries.nearMe.details', {
           url: "/:storeId",
           templateUrl: 'views/deliveries.nearMe.details.html',
           controller: 'StoreDetailsCtrl'
         })
+        .state('index.store', {
+          url: 'store/:storeId',
+          templateUrl: 'views/directStoreDetails.html',
+          //REFA: incorporate this ctrl into above StoreDetails - should
+          //not have 2 for searching vs direct browsing..
+          controller: 'DirectStoreDetailsCtrl'
+
+        })
+
 
     })
     .constant('FBURL', 'https://slushfun.firebaseio.com/');

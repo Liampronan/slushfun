@@ -1,58 +1,18 @@
 angular.module('SlushFunApp')
-  .filter('offset', function () {
-    return function (input, start) {
-      start = parseInt(start, 10);
-      return input.slice(start);
-    };
-  })
-  .controller('StoreDetailsCtrl', ['$scope', 'deliveryDataService', '$state', 'shoppingCartService',
-    function($scope, deliveryDataService, $state, shoppingCartService){
-      var nextStoreDetails = {};
-      var prevStoreDetails = {};
-      $scope.itemsPerPage = 5;
-      $scope.currentPage = 0;
-      console.log("store", $scope.$parent.storeDetails);
-//      console.log(localStorageService.get('localStorageKey'));
-      //TODO add in fix for jumping too quickly thru results (fix: make api call if nextStoreDetails not yet loaded..)
+  .controller('DirectStoreDetailsCtrl', ['$scope', 'deliveryDataService', '$state', 'shoppingCartService',
+    '$stateParams',
+    function ($scope, deliveryDataService, $state, shoppingCartService, $stateParams) {
+      getStoreDetails()
+        .then(function (success) {
+          console.log('suc', success.data);
+          $scope.storeDetails = success.data
+        }, function (error) {
+           console.log(error);
+        });
 
-      $scope.$on('$viewContentLoaded',
-        function(evt, toState, toParams, fromState, fromParams) {
-          //load next store details once page is loaded b/c api is a bit slow, so
-          //want to have next store details available for quick browsing
-          nextStoreDetails = $scope.getStoreDetails($scope.searchResults[$scope.$parent.searchResultIndex + 1].id)
-            .then(function(result){
-              nextStoreDetails = result.data;
-              console.log(nextStoreDetails);
-            }), function(error){
-              console.log(error);
-          }
-          //see if we need to get the prev store's details (just like above -> for quick browsing)
-          if ($scope.$parent.searchResultIndex !== ($scope.$parent.prevStoreIndex + 1)
-                && $scope.$parent.searchResultIndex > 0){
-            prevStoreDetails = $scope.getStoreDetails($scope.searchResults[$scope.$parent.searchResultIndex - 1].id)
-              .then(function(result){
-                prevStoreDetails = result.data;
-              }), function(error){
-              console.log(error);
-            }
-          }
-      });
-      //pagination ish..
-      $scope.range = function () {
-        var rangeSize = 5;
-        var ret = [];
-        var start;
-
-        start = $scope.currentPage;
-        if (start > $scope.pageCount() - rangeSize) {
-          start = $scope.pageCount() - rangeSize + 1;
-        }
-
-        for (var i = start; i < start + rangeSize; i++) {
-          ret.push(i);
-        }
-        return ret;
-      };
+      function getStoreDetails(){
+        return deliveryDataService.getStoreDetails($stateParams.storeId)
+      }
 
       $scope.prevPage = function () {
         if ($scope.currentPage > 0) {
@@ -74,34 +34,12 @@ angular.module('SlushFunApp')
         $scope.currentPage = n;
       };
 
-      
+
       $scope.addToCart = function (menuItemId, storeId, storeName) {
         shoppingCartService.addToCart(menuItemId, storeId, storeName);
         $scope.updateCart();
       }
 
-      $scope.nextMerchant = function () {
-        //bad practice to use parent scope here? is it necessary?? REFA
-        $scope.$parent.prevStoreDetails = $scope.$parent.storeDetails;
-        $scope.$parent.prevStoreIndex = $scope.$parent.searchResultIndex;
-        $scope.$parent.storeDetails = nextStoreDetails;
-        $scope.$parent.searchResultIndex++;
-        console.log($scope.$parent.searchResultIndex);
-        $state.go('index.deliveries.nearMe.details', {'storeId': $scope.searchResults[$scope.$parent.searchResultIndex].id} )
-      };
-
-      $scope.prevMerchant = function () {
-        if ($scope.$parent.searchResultIndex === ($scope.$parent.prevStoreIndex + 1)){
-          $scope.$parent.storeDetails = $scope.$parent.prevStoreDetails;
-          $scope.$parent.searchResultIndex--;
-          console.log($scope.$parent.searchResultIndex);
-          $state.go('deliveries.nearMe.details', {'storeId': $scope.searchResults[$scope.$parent.searchResultIndex].id} )
-        } else {
-          $scope.$parent.storeDetails = prevStoreDetails;
-          $scope.$parent.searchResultIndex--;
-          $state.go('index.deliveries.nearMe.details', {'storeId': $scope.searchResults[$scope.$parent.searchResultIndex].id} )
-        }
-      }
 
       //function to format menuItems - need to go to bottom child of each node
       //to get items (some are 2 deep, others are 3 deep, etc)
@@ -124,7 +62,7 @@ angular.module('SlushFunApp')
         }
         $scope.menuItems = menuItems;
       }
-      
+
       $scope.setSelectedCategory = function (selectedCategory) {
         $scope.selectedCategory = selectedCategory;
       }
@@ -183,4 +121,5 @@ angular.module('SlushFunApp')
         }
       }
 
-    }]);
+    }])
+

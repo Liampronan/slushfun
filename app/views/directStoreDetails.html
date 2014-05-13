@@ -1,12 +1,5 @@
-<button class="btn btn-warning left-arrow" ng-show="$parent.searchResultIndex > 0"
-  ng-click="prevMerchant($parent.searchResultIndex)">❰ Previous Merchant </button>
-<button class="btn btn-warning right-arrow" ng-show="$parent.searchResultIndex < searchResults.length"
-    ng-click="nextMerchant($parent.searchResultIndex)">
-  Next Merchant ❱
-</button>
-
 <div class="hero-unit store-details">
-  <h3 class="text-center "> {{searchResults[$parent.searchResultIndex].summary.name}}</h3>
+  <h3 class="text-center" ng-show="storeDetails"> {{storeDetails}}</h3>
   <h6 class="text-center smaller-head-text">{{searchResults[$parent.searchResultIndex].location.landmark}}</h6>
   <div class="text-center">
     <h6 class="text-center bold label"
@@ -95,7 +88,7 @@
              </td>
              <td>
                <button class="btn btn-success btn-xs"
-                       ng-click="addToCart(searchResults[$parent.searchResultIndex].id, menuItem.id,
+                       ng-click="addToCart(menuItem.id, searchResults[$parent.searchResultIndex].id,
                        searchResults[$parent.searchResultIndex].summary.name)">
                  Add
                </button>
