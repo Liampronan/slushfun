@@ -13,8 +13,12 @@ angular.module('SlushFunApp')
       return $http.get(deilveryBaseUrl + merchantTypeParam+ '&address=' + searchAddress +  port);
     }
 
-    this.getStoreDetails = function (storeId) {
+    this.getStoreMenu = function (storeId) {
       return $http.get(baseUrl + storeId + "/menu")
+    };
+
+    this.getStoreDetails = function (storeId) {
+      return $http.get(baseUrl + storeId)
     };
 
 

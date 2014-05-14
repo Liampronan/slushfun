@@ -19,7 +19,7 @@ angular.module('SlushFunApp')
         function(evt, toState, toParams, fromState, fromParams) {
           //load next store details once page is loaded b/c api is a bit slow, so
           //want to have next store details available for quick browsing
-          nextStoreDetails = $scope.getStoreDetails($scope.searchResults[$scope.$parent.searchResultIndex + 1].id)
+          nextStoreDetails = $scope.getStoreMenu($scope.searchResults[$scope.$parent.searchResultIndex + 1].id)
             .then(function(result){
               nextStoreDetails = result.data;
               console.log(nextStoreDetails);
@@ -29,7 +29,7 @@ angular.module('SlushFunApp')
           //see if we need to get the prev store's details (just like above -> for quick browsing)
           if ($scope.$parent.searchResultIndex !== ($scope.$parent.prevStoreIndex + 1)
                 && $scope.$parent.searchResultIndex > 0){
-            prevStoreDetails = $scope.getStoreDetails($scope.searchResults[$scope.$parent.searchResultIndex - 1].id)
+            prevStoreDetails = $scope.getStoreMenu($scope.searchResults[$scope.$parent.searchResultIndex - 1].id)
               .then(function(result){
                 prevStoreDetails = result.data;
               }), function(error){

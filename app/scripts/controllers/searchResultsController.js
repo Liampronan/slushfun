@@ -16,7 +16,7 @@ angular.module('SlushFunApp')
         function(evt, toState, toParams, fromState, fromParams) {
           if (toState.name === "index.deliveries.nearMe.details" &&
               fromState.name === "index.deliveries.nearMe"){
-            $scope.storeDetails = $scope.getStoreDetails(toParams.storeId);
+            $scope.storeDetails = $scope.getStoreMenu(toParams.storeId);
             //promise from SearchResultsCtrl
             $scope.storeDetails
               .then(function(result){
@@ -44,8 +44,8 @@ angular.module('SlushFunApp')
         $scope.searchResultIndex = index;
       };
 
-      $scope.getStoreDetails = function(storeId){
-        return deliveryDataService.getStoreDetails(storeId)
+      $scope.getStoreMenu = function(storeId){
+        return deliveryDataService.getStoreMenu(storeId)
       }
 
     }
