@@ -9,7 +9,7 @@ angular.module('SlushFunApp')
     };
 
     //REFA: look into better way of managing nav and child views...
-    
+
     $scope.inIndex = true;
     $scope.$on('$stateChangeSuccess',
       function(evt, toState, toParams, fromState, fromParams) {
