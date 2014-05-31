@@ -26,6 +26,7 @@ angular.module('SlushFunApp')
     $scope.emptyCart = function () {
       shoppingCartService.emptyCart();
       $scope.updateCart();
+      //hello
     }
   })
 
