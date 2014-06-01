@@ -48,7 +48,6 @@
           //REFA: incorporate this ctrl into above StoreDetails - should
           //not have 2 for searching vs direct browsing..
           controller: 'DirectStoreDetailsCtrl'
-
         })
 
 

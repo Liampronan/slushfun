@@ -2,8 +2,11 @@
 
 //noinspection JSUnusedGlobalSymbols
 angular.module('SlushFunApp')
-  .controller('MainCtrl', function ($scope, $rootScope, $state, shoppingCartService) {
-
+  .controller('MainCtrl', function ($scope, $rootScope, $state, shoppingCartService, deliveryDataService) {
+    $rootScope.guestToken = $rootScope.guestToken
+      || deliveryDataService.getGuestToken().then(function(success){console.log(success.data["Guest-Token"]);
+                                                    return success.data["Guest-Token"]},
+                                                  function(error){console.log(error)})
     $scope.updateCart = function () {
       $scope.cart = shoppingCartService.getCurrentCart();
     };

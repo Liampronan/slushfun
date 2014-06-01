@@ -4,20 +4,24 @@ angular.module('SlushFunApp')
     function ($scope, deliveryDataService, $state, shoppingCartService, $stateParams) {
       getStoreMenu()
         .then(function (success) {
-          console.log('suc', success.data);
           $scope.storeDetails = success.data
         }, function (error) {
            console.log(error);
         });
 
       getStoreDetails()
-
+        .then(function (success) {
+          console.log('suc', success.data);
+        }, function (error) {
+          console.log('nooo', error);
+        })
 
       function getStoreMenu(){
         return deliveryDataService.getStoreMenu($stateParams.storeId)
       }
 
       function getStoreDetails(){
+        //noinspection JSUnresolvedFunction
         return deliveryDataService.getStoreDetails($stateParams.storeId)
       }
 
