@@ -4,17 +4,27 @@ angular.module('SlushFunApp')
     function ($scope, deliveryDataService, $state, shoppingCartService, $stateParams) {
       getStoreMenu()
         .then(function (success) {
-          $scope.storeDetails = success.data
+          $scope.storeMenu = success.data
         }, function (error) {
            console.log(error);
         });
 
       getStoreDetails()
         .then(function (success) {
-          console.log('suc', success.data);
+          $scope.storeDetails = success.data.merchant;
+          console.log($scope.storeDetails);
+          $scope.lastDeliveryTime = $scope.storeDetails.ordering.availability.last_delivery_time;
+          $scope.nextDeliveryTime = $scope.storeDetails.ordering.availability.next_delivery_time;
+          $scope.isOpenForDelivery = checkIsOpenForDelivery($scope.lastDeliveryTime);
         }, function (error) {
           console.log('nooo', error);
         })
+
+      function checkIsOpenForDelivery(lastDeliveryTime){
+        var now = new Date();
+        var last = new Date(lastDeliveryTime)
+        return last > now;
+      }
 
       function getStoreMenu(){
         return deliveryDataService.getStoreMenu($stateParams.storeId)

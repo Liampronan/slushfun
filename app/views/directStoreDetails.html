@@ -1,52 +1,35 @@
 <div class="hero-unit store-details">
-  <h3 class="text-center" ng-show="storeDetails"> {{storeDetails.name}}</h3>
-  <h6 class="text-center smaller-head-text">{{searchResults[$parent.searchResultIndex].location.landmark}}</h6>
+  <h3 class="text-center" ng-show="storeDetails"> {{storeDetails.summary.name}}</h3>
+  <h6 class="text-center smaller-head-text">{{storeDetails.location.landmark}}</h6>
   <div class="text-center">
-    <h6 class="text-center bold label"
-        ng-class="{true:'label-success', false:'label-danger'}
-        [searchResults[$parent.searchResultIndex].ordering.is_open]">
-    {{searchResults[$parent.searchResultIndex].ordering.is_open ? "Open" : "Closed"}}
-  </h6></div>
+    <h6 class="text-center bold label btn label-success"
+        ng-show="isOpenForDelivery" data-toggle="tooltip" data-placement="right"
+        title="Last Delivery: {{lastDeliveryTime | date: 'shortTime'}}">
+        Open for Delivery
+    </h6>
+   <h6 class="text-center bold label btn label-danger"
+        ng-show="!isOpenForDelivery" data-toggle="tooltip" data-placement="right"
+        title="Next Delivery: {{nextDeliveryTime | date: 'shortTime'}}">
+      Closed for Delivery
+    </h6>
+  </div>
   <div class="text-center">
-    <span class="label" ng-class="{'label-success':searchResults[$parent.searchResultIndex].summary.overall_rating >= 80,
-                                   'label-warning' : searchResults[$parent.searchResultIndex].summary.overall_rating > 60
-                                    && searchResults[$parent.searchResultIndex].summary.overall_rating < 80,
-                                   'label-danger' : searchResults[$parent.searchResultIndex].summary.overall_rating < 60}"
-          ng-show="searchResults[$parent.searchResultIndex].summary.overall_rating">
-    {{searchResults[$parent.searchResultIndex].summary.overall_rating}}/100
+    <span class="label" ng-class="{'label-success':storeDetails.summary.overall_rating >= 80,
+                                   'label-warning' : storeDetails.summary.overall_rating > 60
+                                    && storeDetails.summary.overall_rating < 80,
+                                   'label-danger' : storeDetails.summary.overall_rating < 60}"
+          ng-show="storeDetails.summary.overall_rating">
+    {{storeDetails.summary.overall_rating}}/100
     </span>
-    <span class="label label-info" ng-show="searchResults[$parent.searchResultIndex].summary.overall_rating===0">
+    <span class="label label-info" ng-show="storeDetails.summary.overall_rating===0">
                 No Reviews
     </span>
-    <span class="label label-success"
-          ng-show="{{searchResults[$parent.searchResultIndex].ordering.delivery_charge===0 &&
-          searchResults[$parent.searchResultIndex].ordering.delivery_percent===0}}">
-      No Delivery Fee
-    </span>
-    <span class="label label-warning"
-          ng-show="{{searchResults[$parent.searchResultIndex].ordering.delivery_charge!=0}}">
-      Delivery Fee: ${{searchResults[$parent.searchResultIndex].ordering.delivery_charge}}
-    </span>
-    <span class="label label-warning"
-          ng-show="{{searchResults[$parent.searchResultIndex].ordering.delivery_percent!=0}}">
-      Delivery Fee: {{searchResults[$parent.searchResultIndex].ordering.percent}}%
-    </span>
-    <br/>
-    <span class="label label-success"
-          ng-show="{{searchResults[$parent.searchResultIndex].ordering.minimum===0}}">
-      No Minimum
-    </span>
-    <span class="label label-warning"
-          ng-show="{{searchResults[$parent.searchResultIndex].ordering.minimum!==0}}">
-      Minimum: ${{searchResults[$parent.searchResultIndex].ordering.minimum}}
-    </span>
-    <br/>
   </div>
 
 </div>
 
 <div class="row menu-item">
-  <span ng-repeat="menuCategory in storeDetails.menu">
+  <span ng-repeat="menuCategory in storeMenu.menu">
   <div class="col-sm-3 col-sm-offset-1" ng-class="menuCategory.name"
       ng-show="selectedCategory === menuCategory.name || selectedCategory === undefined">
     <a href="" ng-click="setSelected(menuCategory.name)">
@@ -88,8 +71,8 @@
              </td>
              <td>
                <button class="btn btn-success btn-xs"
-                       ng-click="addToCart(menuItem.id, searchResults[$parent.searchResultIndex].id,
-                       searchResults[$parent.searchResultIndex].summary.name)">
+                       ng-click="addToCart(menuItem.id, storeDetails.id,
+                       storeDetails.summary.name)">
                  Add
                </button>
              </td>

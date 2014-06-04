@@ -22,7 +22,6 @@ angular.module('SlushFunApp')
           nextStoreDetails = $scope.getStoreMenu($scope.searchResults[$scope.$parent.searchResultIndex + 1].id)
             .then(function(result){
               nextStoreDetails = result.data;
-              console.log(nextStoreDetails);
             }), function(error){
               console.log(error);
           }
@@ -75,8 +74,8 @@ angular.module('SlushFunApp')
       };
 
       
-      $scope.addToCart = function (menuItemId, storeId, storeName) {
-        shoppingCartService.addToCart(menuItemId, storeId, storeName);
+      $scope.addToCart = function (menuItemId, storeId, storeName, minOrderAmount) {
+        shoppingCartService.addToCart(menuItemId, storeId, storeName, minOrderAmount);
         $scope.updateCart();
       }
 

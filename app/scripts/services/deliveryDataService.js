@@ -7,7 +7,8 @@ angular.module('SlushFunApp')
     //TODO: REFA baseURL so that it doesn't include merchant
     var guestTokenUrl = "http://cors-anywhere.herokuapp.com/api.delivery.com/customer/auth/guest?" +
       "client_id=NWUxNmJiNGIyMWMxNDE1YjRhMjY4OWM3OGUwNGZmOGYw";
-    var deilveryBaseUrl = baseUrl + "search/delivery?client_id=NWUxNmJiNGIyMWMxNDE1YjRhMjY4OWM3OGUwNGZmOGYw";
+    var clientId = "NWUxNmJiNGIyMWMxNDE1YjRhMjY4OWM3OGUwNGZmOGYw";
+    var deilveryBaseUrl = baseUrl + "search/delivery?client_id=" + clientId;
     var port = ":443";
 
     this.getDeliveryPlaces = function(searchAddress, searchMerchantType){
@@ -21,7 +22,7 @@ angular.module('SlushFunApp')
     };
 
     this.getStoreDetails = function (storeId) {
-      return $http.get(baseUrl + storeId)
+      return $http.get(baseUrl + storeId + "?client_id=" + clientId)
     };
 
     this.getGuestToken = function () {

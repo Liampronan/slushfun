@@ -6,7 +6,7 @@ angular.module('SlushFunApp')
         return localStorageService.get('cart');
       }
 
-      this.addToCart = function (storeId, menuItemId, storeName) {
+      this.addToCart = function (storeId, menuItemId, storeName, minAmount) {
         var currentCart = localStorageService.get('cart');
         var updatedCart;
         this.currentCart = currentCart;
@@ -17,6 +17,7 @@ angular.module('SlushFunApp')
           updatedCart.items = [];
           updatedCart.storeId = storeId;
           updatedCart.storeName = storeName;
+          updatedCart.minAmount = minAmount;
           updatedCart.items.push({
             menuItemId: menuItemId
           })
