@@ -91,6 +91,12 @@ h3.near-me, h3.details {
   .store-search-result a h5:hover, .menu-item a h5:hover {
     color: #ebebeb; }
 
+a {
+  color: #ebebeb; }
+
+a:hover {
+  color: #ebebeb; }
+
 .delivery-menu-photo img {
   height: 200px; }
 

@@ -49,7 +49,16 @@
           //not have 2 for searching vs direct browsing..
           controller: 'DirectStoreDetailsCtrl'
         })
-
+        .state('index.cart', {
+          url: 'cart',
+          templateUrl: 'views/cart.html',
+          controller: 'DirectStoreDetailsCtrl'
+        })
+        .state('index.group_cart', {
+          url: 'group_cart/:groupId',
+          templateUrl: 'views/cart.html',
+          controller: 'DirectStoreDetailsCtrl'
+        })
 
     })
     .constant('FBURL', 'https://slushfun.firebaseio.com/');

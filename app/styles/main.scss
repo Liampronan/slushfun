@@ -125,6 +125,14 @@ h3.near-me{
   }
 }
 
+a{
+  color: #ebebeb;
+}
+
+a:hover{
+  color: #ebebeb;
+}
+
 h3.details{
  @extend h3.near-me
 }
