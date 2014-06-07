@@ -74,8 +74,8 @@
                <!--menuItem.name.replace('amp;', ''), menuItem.price, storeDetails.id,-->
                <!--searchResults[$parent.searchResultIndex].ordering.minimum"-->
                <button class="btn btn-success btn-xs"
-                       ng-click="addToCart(menuItem.id, menuItem.name.replace('amp;', ''), menuItem.price, storeDetails.id,
-                       storeDetails.summary.name)">
+                       ng-click="addToCart(menuItem.id, storeDetails.summary.name, menuItem.name.replace('amp;', ''),
+                       menuItem.price, storeDetails.id, cart)">
                  Add
                </button>
              </td>

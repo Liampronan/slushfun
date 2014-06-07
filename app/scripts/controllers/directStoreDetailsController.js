@@ -3,10 +3,12 @@ angular.module('SlushFunApp')
     '$stateParams',
     function ($scope, deliveryDataService, $state, shoppingCartService, $stateParams) {
       $scope.storeId = $stateParams.storeId;
-
+      $scope.itemsPerPage = 5;
+      $scope.currentPage = 0;
       getStoreMenu()
         .then(function (success) {
           $scope.storeMenu = success.data
+          console.log($scope.storeMenu);
         }, function (error) {
            console.log(error);
         });

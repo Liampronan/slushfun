@@ -1,14 +1,33 @@
 angular.module('SlushFunApp')
   .service('shoppingCartService', ['localStorageService', '$rootScope', 'fireFactory', '$q',
     function (localStorageService, $rootScope, fireFactory, $q) {
-
       this.getCurrentCart = function () {
-        return localStorageService.get('cart');
+        var deferred = $q.defer(),
+          groupNameFirebase = this.getGroupNameFirebaseFromLocalStorage();
+        if (groupNameFirebase){
+          console.log("cart fireB", groupNameFirebase);
+          this.getGroupCartFirebase(groupNameFirebase).then(function(result){
+            deferred.resolve(result);
+          });
+        } else {
+          deferred.resolve({cart: localStorageService.get('cart')});
+        }
+        return deferred.promise
       }
-      this.addToCart = function (menuItemId, storeName, menuItemName, menuItemPrice, storeId, minOrderAmount,
+      this.addToCart = function (menuItemId, storeName, menuItemName, menuItemPrice, storeId, scopeCart, minOrderAmount,
                                  deliveryFee) {
         var currentCart = localStorageService.get('cart');
         var updatedCart;
+        if (scopeCart){
+          if (scopeCart.groupName) {
+            scopeCart.items.push({
+              menuItemId: menuItemId,
+              menuItemName: menuItemName,
+              menuItemPrice: menuItemPrice
+            });
+            return
+          }
+        }
 //        this.currentCart = currentCart;
         //TODO add check that currentstore === storeId
         //TODO add multiple of same item to cart
@@ -49,12 +68,14 @@ angular.module('SlushFunApp')
 
         child.$on('value', function(dataSnapshot) {
           //value is undefined if groupName does not exist on FireB
-          available = dataSnapshot.snapshot.value ? false : true
-          console.log(dataSnapshot);
+          available = dataSnapshot.snapshot.value === null || !dataSnapshot.snapshot.value["groupName"];
           if (available){
             cart["groupName"] = groupName;
-            child.$set({cart: cart}).then(function () {created = true});
-          } else {created = available = false}
+            child.$set(cart).then(function () {created = true});
+            localStorageService.add('firebaseGroupName', formattedGroupName);
+          } else {
+            created = available = false
+          }
           deferred.resolve(available, created);
         });
         return deferred.promise;
@@ -67,9 +88,25 @@ angular.module('SlushFunApp')
             groupCart;
         child.$on('value', function(dataSnapshot) {
           groupCart = dataSnapshot.snapshot.value;
-          deferred.resolve(groupCart);
+          var result = {cart: groupCart, isGroupCart: true, formattedGroupName: formattedGroupName,
+            groupFirebaseRef: child}
+          deferred.resolve(result);
         });
         return deferred.promise
+      }
+
+      this.addGroupCartToLocalStorage = function (groupName) {
+        localStorageService.add('firebaseGroupName', groupName);
+      }
+
+      this.getGroupNameFirebaseFromLocalStorage = function () {
+        return localStorageService.get('firebaseGroupName');
+      }
+
+
+
+      this.removeGroupCartFromLocalStorage = function () {
+        localStorageService.remove('firebaseGroupName');
       }
 
 

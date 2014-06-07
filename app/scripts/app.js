@@ -54,7 +54,7 @@
           templateUrl: 'views/cart.html',
           controller: 'CartCtrl'
         })
-        .state('index.group_cart', {
+        .state('index.groupCart', {
           url: 'group_cart/:groupId',
           templateUrl: 'views/groupCart.html',
           controller: 'GroupCartCtrl'
