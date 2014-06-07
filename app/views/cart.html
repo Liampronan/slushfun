@@ -1,26 +1,35 @@
 <div class="container">
   <div class="hero-unit store-details text-center" ng-hide="groupCart">
     <h3>My Cart for <a ui-sref="index.store({ storeId: cart.storeId})">{{cart.storeName}}</a></h3>
-    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#create-group-order">
+    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#create-group-order"
+            ng-hide="groupCartCreated">
       Create Group Order
     </button>
-  </div>
-  <div class="hero-unit store-details" ng-show="groupCart">
-    <h3 class="text-center">Cart for {{groupCart}}</h3>
+
   </div>
   <div class="col-sm-8 col-sm-offset-2">
-    <table class="table table-striped table-hover text-center">
+    <table class="table table-striped table-hover text-center cart-main">
       <thead>
         <th class="text-center">Item</th>
         <th class="text-center">Price</th>
-        <th class="text-center" ng-show="groupCart">Name</th>
+        <th class="text-center" ng-show="groupCart">Notes/Order by:</th>
       </thead>
       <tbody>
-        <tr ng-repeat="">
-          <td>Test</td>
-          <td>Test 2</td>
+        <tr ng-repeat="item in cart.items">
+          <td>{{item.menuItemName}}</td>
+          <td>${{item.menuItemPrice}}</td>
           <td ng-show="groupCart">Test 2</td>
         </tr>
+      </tbody>
+      <tbody>
+      <tr class="cart-bottom">
+        <td class="text-right cart-bottom"><b>Delivery Fee</b></td>
+        <td class="text-center cart-bottom">${{cart.deliveryFee}}</td>
+      </tr>
+      <tr class="cart-bottom">
+        <td class="cart-bottom text-right"><b>Total</b></td>
+        <td class="text-center cart-bottom">${{cartTotal}}</td>
+      </tr>
       </tbody>
     </table>
   </div>
@@ -38,16 +47,39 @@
         <div class="modal-body text-center">
           This creates a link for your friends so that they can add their orders to your cart.
         </div>
-        <div class="modal-body text-center">
+        <div class="modal-body">
+
+            <div class="col-sm-4 col-sm-offset-4 text-right"><b>Group order name: </b></div>
           <div class="row">
-            <div class="col-sm-4 text-right">Enter group order name: </div>
-            <div class="col-sm-5 text-left"><input type="text" placeholder="e.g., Monday Fun Pizza"/></div>
+            <div class="col-sm-4 col-sm-offset-4"><input  type="text" ng-model="groupName"
+                                                   ng-class="{'error': groupNameExistsFirebase}"
+                                                   placeholder="e.g., Monday Fun Pizza"/>
+            </div>
+            <div class="col-sm-3 col-sm-offset-1 group-created alert-success" ng-show="groupCartCreated">✔ Created!</div>
+          </div>
+          <div class="row">
+            <div class="text-center error" ng-show="groupNameExistsFirebase">
+              Group Name is taken -- try a different one!
+            </div>
+          </div>
+          <div class="row" ng-show="groupCartCreated">
+            <div class="text-center">
+              Your group cart is now available at:
+            </div>
+            <div class="text-center">
+              <a href="{{groupCartURL}}">{{groupCartURL}}</a>
+            </div>
           </div>
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Create Group</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" ng-show="!groupCartCreated"s>Close</button>
+          <button type="button" class="btn btn-success" ng-show="groupCartCreated"
+                  ui-sref="index.group_cart({groupId: formattedGroupName})">Go to group cart </button>
+          <button type="button" class="btn btn-primary" ng-click='createGroupCartFirebase(groupName)'
+                  ng-show="!groupCartCreated">
+            Create Group
+          </button>
         </div>
       </div>
     </div>

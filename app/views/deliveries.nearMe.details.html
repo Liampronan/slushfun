@@ -1,6 +1,6 @@
-<button class="btn btn-warning left-arrow" ng-show="$parent.searchResultIndex > 0"
+<button class="btn btn-primary left-arrow" ng-show="$parent.searchResultIndex > 0"
   ng-click="prevMerchant($parent.searchResultIndex)">❰ Previous Merchant </button>
-<button class="btn btn-warning right-arrow" ng-show="$parent.searchResultIndex < searchResults.length"
+<button class="btn btn-primary right-arrow" ng-show="$parent.searchResultIndex < searchResults.length"
     ng-click="nextMerchant($parent.searchResultIndex)">
   Next Merchant ❱
 </button>
@@ -88,6 +88,7 @@
            <tr ng-repeat="menuItem in menuItems  | offset: currentPage*itemsPerPage | limitTo: itemsPerPage
            | orderBy: 'name' ">
              <td>
+               <!--TODO: REFA this to remove this on results themselves or create filter..-->
                {{menuItem.name.replace('amp;', '')}}
              </td>
              <td>
@@ -95,9 +96,10 @@
              </td>
              <td>
                <button class="btn btn-success btn-xs"
-                       ng-click="addToCart(searchResults[$parent.searchResultIndex].id, menuItem.id,
-                       searchResults[$parent.searchResultIndex].summary.name,
-                       searchResults[$parent.searchResultIndex].ordering.minimum)">
+                       ng-click="addToCart(menuItem.id, searchResults[$parent.searchResultIndex].summary.name,
+                       menuItem.name, menuItem.price, searchResults[$parent.searchResultIndex].id,
+                       searchResults[$parent.searchResultIndex].ordering.minimum,
+                       searchResults[$parent.searchResultIndex].ordering.delivery_charge)">
                  Add
                </button>
              </td>

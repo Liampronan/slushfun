@@ -2,6 +2,8 @@ angular.module('SlushFunApp')
   .controller('DirectStoreDetailsCtrl', ['$scope', 'deliveryDataService', '$state', 'shoppingCartService',
     '$stateParams',
     function ($scope, deliveryDataService, $state, shoppingCartService, $stateParams) {
+      $scope.storeId = $stateParams.storeId;
+
       getStoreMenu()
         .then(function (success) {
           $scope.storeMenu = success.data
@@ -56,8 +58,8 @@ angular.module('SlushFunApp')
       };
 
 
-      $scope.addToCart = function (menuItemId, storeId, storeName) {
-        shoppingCartService.addToCart(menuItemId, storeId, storeName);
+      $scope.addToCart = function (menuItemId, storeName,menuItemName, menuItemPrice, storeId, minOrderAmount) {
+        shoppingCartService.addToCart(menuItemId, storeName, menuItemName, menuItemPrice, storeId,  minOrderAmount);
         $scope.updateCart();
       }
 

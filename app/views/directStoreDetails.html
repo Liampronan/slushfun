@@ -64,14 +64,17 @@
            <tr ng-repeat="menuItem in menuItems  | offset: currentPage*itemsPerPage | limitTo: itemsPerPage
            | orderBy: 'name' ">
              <td>
+               <!--TODO REFA this to remove this on results themselves or create filter..-->
                {{menuItem.name.replace('amp;', '')}}
              </td>
              <td>
                ${{menuItem.price}}
              </td>
              <td>
+               <!--menuItem.name.replace('amp;', ''), menuItem.price, storeDetails.id,-->
+               <!--searchResults[$parent.searchResultIndex].ordering.minimum"-->
                <button class="btn btn-success btn-xs"
-                       ng-click="addToCart(menuItem.id, storeDetails.id,
+                       ng-click="addToCart(menuItem.id, menuItem.name.replace('amp;', ''), menuItem.price, storeDetails.id,
                        storeDetails.summary.name)">
                  Add
                </button>

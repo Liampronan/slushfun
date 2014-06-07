@@ -52,12 +52,12 @@
         .state('index.cart', {
           url: 'cart',
           templateUrl: 'views/cart.html',
-          controller: 'DirectStoreDetailsCtrl'
+          controller: 'CartCtrl'
         })
         .state('index.group_cart', {
           url: 'group_cart/:groupId',
-          templateUrl: 'views/cart.html',
-          controller: 'DirectStoreDetailsCtrl'
+          templateUrl: 'views/groupCart.html',
+          controller: 'GroupCartCtrl'
         })
 
     })

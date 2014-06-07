@@ -1,6 +1,8 @@
 angular.module('SlushFunApp')
   .filter('offset', function () {
     return function (input, start) {
+      //return if filter is called before data is loaded - prevents console errors
+      if (!input) {return}
       start = parseInt(start, 10);
       return input.slice(start);
     };
@@ -12,8 +14,8 @@ angular.module('SlushFunApp')
       $scope.itemsPerPage = 5;
       $scope.currentPage = 0;
       console.log("store", $scope.$parent.storeDetails);
-//      console.log(localStorageService.get('localStorageKey'));
       //TODO add in fix for jumping too quickly thru results (fix: make api call if nextStoreDetails not yet loaded..)
+      // potential fix: disable next button while loading...
 
       $scope.$on('$viewContentLoaded',
         function(evt, toState, toParams, fromState, fromParams) {
@@ -36,6 +38,7 @@ angular.module('SlushFunApp')
             }
           }
       });
+
       //pagination ish..
       $scope.range = function () {
         var rangeSize = 5;
@@ -74,9 +77,12 @@ angular.module('SlushFunApp')
       };
 
       
-      $scope.addToCart = function (menuItemId, storeId, storeName, minOrderAmount) {
-        shoppingCartService.addToCart(menuItemId, storeId, storeName, minOrderAmount);
-        $scope.updateCart();
+      $scope.addToCart = function (menuItemId, storeName, menuItemName, menuItemPrice, storeId, minOrderAmount,
+                                   deliveryFee)
+      {
+          shoppingCartService.addToCart(menuItemId, storeName, menuItemName, menuItemPrice, storeId, minOrderAmount,
+                                        deliveryFee);
+          $scope.updateCart();
       }
 
       $scope.nextMerchant = function () {
@@ -105,7 +111,6 @@ angular.module('SlushFunApp')
       //function to format menuItems - need to go to bottom child of each node
       //to get items (some are 2 deep, others are 3 deep, etc)
       $scope.getMenuItems = function (parentMenu, menuItems) {
-        console.log(parentMenu);
         if (menuItems === undefined) {
           menuItems = [];
         }

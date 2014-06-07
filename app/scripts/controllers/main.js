@@ -2,13 +2,28 @@
 
 //noinspection JSUnusedGlobalSymbols
 angular.module('SlushFunApp')
-  .controller('MainCtrl', function ($scope, $rootScope, $state, shoppingCartService, deliveryDataService) {
-    $rootScope.guestToken = $rootScope.guestToken
-      || deliveryDataService.getGuestToken().then(function(success){console.log(success.data["Guest-Token"]);
-                                                    return success.data["Guest-Token"]},
-                                                  function(error){console.log(error)})
-    $scope.updateCart = function () {
-      $scope.cart = shoppingCartService.getCurrentCart();
+  .controller('MainCtrl', function ($scope, $rootScope, $state, shoppingCartService, $q) {
+//TODO: remove if not needed...
+//    $rootScope.guestToken = $rootScope.guestToken
+//      || deliveryDataService.getGuestToken().then(function(success){console.log(success.data["Guest-Token"]);
+//                                                    return success.data["Guest-Token"]},
+//                                                  function(error){console.log(error)})
+    //TODO: REFA so not returning a promise or a cart...
+    $scope.updateCart = function (groupNameFirebase) {
+
+      var deferred = $q.defer();
+      if (groupNameFirebase){
+        console.log("hello");
+        shoppingCartService.getGroupCartFirebase(groupNameFirebase).then(function(cart){
+          $scope.cart = cart.cart;
+          $scope.groupName = cart.groupName;
+          deferred.resolve();
+        });
+      }else{
+        $scope.cart = shoppingCartService.getCurrentCart();
+        return $scope.cart
+      }
+      return deferred.promise
     };
 
     //REFA: look into better way of managing nav and child views...
@@ -23,7 +38,9 @@ angular.module('SlushFunApp')
         if (toState.name === "index"){
           $scope.inIndex = true;
         }
-        $scope.updateCart();
+        if (toState.name !== 'index.group_cart'){
+          $scope.updateCart();
+        }
       });
 
     $scope.emptyCart = function () {
@@ -32,13 +49,14 @@ angular.module('SlushFunApp')
     }
   })
 
-  .factory('fireFactory', [
-    function fireFactory() {
+  .factory('fireFactory', ['$firebase',
+    function fireFactory($firebase) {
       return {
         firebaseRef: function(path) {
           var baseUrl = 'https://slushfun.firebaseio.com/';
           path = (path !== '') ?  baseUrl + '/' + path : baseUrl;
-          return new Firebase(path);
+          var ref = new Firebase(path);
+          return $firebase(ref)
         }
       };
     }])

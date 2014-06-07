@@ -161,12 +161,39 @@ button.menu-subcategory{
 .underline{
   text-decoration: underline;
 }
+
 .hero-unit.store-details{
   padding-bottom: 20px;
   padding-top: 0px;
 }
-//
-//.both-arrow{
-//  background: url("../images/sort_both.png") no-repeat center center;
-//  width: 100%;
-//}
+
+table{
+  & cart-main{
+    border-bottom: 1px solid #ebebeb;
+    margin-bottom: 0px;
+  }
+
+  & tr.cart-bottom td {
+    background-color: $background-color !important;
+  }
+}
+
+div.error{
+  color: #F20539;
+}
+
+input.error{
+  border: 1px solid #F20539;
+}
+
+.group-created{
+  font-size: 12.5px;
+  border-radius: 5px;
+  margin-top: 3px;
+}
+
+button.radius{
+  border-radius: 5px;
+}
+
+
