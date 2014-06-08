@@ -8,12 +8,16 @@
     "jquery": "2.1.0",
     "bootstrap-sass": "~2.3.1",
     "es5-shim": "~2.0.8",
-    "angular-resource": "0.1.1",
-    "angular-sanitize": "0.0.1",
-    "angular-ui-router": "*"
+    "angular-resource": "latest",
+    "angular-sanitize": "latest",
+    "angular-ui-router": "*",
+    "oauth-ng": "~0.2.0-beta.2"
   },
   "devDependencies": {
     "angular-mocks": "~1.0.7",
     "angular-scenario": "~1.0.7"
+  },
+  "resolutions": {
+    "angular": "1.2.17"
   }
 }

@@ -5,6 +5,18 @@ var express = require("express"),
 var path = require('path');
 
 app.use(express.static(path.join(__dirname, "/app")));
+//app.use("/js", express.static(__dirname + "/app/js"));
+app.use("/scripts", express.static(__dirname + "/app/scripts"));
+//app.use("/img", express.static(__dirname + "/app/img"));
+//app.use("/styles", express.static(__dirname + "/app/styles"));
+app.use("/views", express.static(__dirname + "/app/views"));
+app.use("/bower_components", express.static(__dirname + "/app/bower_components"));
+
+console.log(__dirname + "/app/bower_components");
+app.all('/*', function(req, res, next) {
+  // Just send the index.html for other files to support HTML5Mode
+  res.sendfile('/app/index.html', { root: __dirname });
+});
 
 var port = 8000;
 app.listen(process.env.PORT || port, function() {

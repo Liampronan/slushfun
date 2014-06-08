@@ -68,6 +68,7 @@ angular.module('SlushFunApp')
       $scope.cart = result.cart;
       $scope.isGroupCart = result.isGroupCart;
       $scope.formattedGroupName = result.formattedGroupName;
+      $scope.cartTotal = getCartTotal($scope.cart.items);
       $scope.groupFirebaseRef = result.groupFirebaseRef;
       $scope.groupFirebaseRef.$bind($scope, "cart");
     }
