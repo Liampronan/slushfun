@@ -15,7 +15,7 @@ body {
   color: white; }
 
 .navbar-brand {
-  padding-right: 0px; }
+  padding-right: 10px; }
 
 .hero-unit {
   margin: 50px auto 0 auto;
@@ -138,4 +138,7 @@ button.radius {
   border-radius: 5px; }
 
 div.checkout {
+  margin-bottom: 10px; }
+
+div.notes {
   margin-bottom: 10px; }

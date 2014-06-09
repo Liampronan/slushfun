@@ -3,11 +3,6 @@
 //noinspection JSUnusedGlobalSymbols
 angular.module('SlushFunApp')
   .controller('MainCtrl', function ($scope, $rootScope, $state, shoppingCartService, $q) {
-//TODO: remove if not needed...
-//    $rootScope.guestToken = $rootScope.guestToken
-//      || deliveryDataService.getGuestToken().then(function(success){console.log(success.data["Guest-Token"]);
-//                                                    return success.data["Guest-Token"]},
-//                                                  function(error){console.log(error)})
     //TODO: REFA so not returning a promise or a cart...
     $scope.updateCart = function (groupNameFirebase) {
       var deferred = $q.defer();

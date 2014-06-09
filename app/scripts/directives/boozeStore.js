@@ -14,7 +14,7 @@ angular.module('SlushFunApp')
       },
       restrict: 'A',
       replace: 'true',
-      templateUrl: 'views/deliveries.storeSearchResult.html',
+      templateUrl: '/views/deliveries.storeSearchResult.html',
 
     };
   });

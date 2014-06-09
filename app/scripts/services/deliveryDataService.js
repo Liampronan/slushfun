@@ -16,6 +16,7 @@ angular.module('SlushFunApp')
     var port = ":443";
     var _this = this;
 
+
     this.getDeliveryPlaces = function(searchAddress, searchMerchantType){
       var merchantTypeParam = formatMerchantTypeParam(searchMerchantType);
       console.log(deilveryBaseUrl + merchantTypeParam+ '&address=' + searchAddress +  port);
@@ -46,6 +47,14 @@ angular.module('SlushFunApp')
       return localStorageService.get('APIAccessToken');
     }
 
+    this.storeDeliveryAPICartLocalStorage = function(APICart){
+      localStorageService.add('APICart', APICart);
+    }
+
+    this.getDeliveryAPICartLocalStorage = function(){
+      return localStorageService.get('APICart');
+    }
+
     this.getAPIToken = function (APIUserCode) {
       var deferred = $q.defer();
 
@@ -67,20 +76,109 @@ angular.module('SlushFunApp')
       return localStorageService.get('APIUsercode')
     }
 
-    this.getCreditCards = function () {
+    this.getCreditCardsAPI = function () {
+      var deferred = $q.defer();
       var access_token = _this.getAPIAccessTokenFromLocalStorage();
       $http({
-        url: 'http://cors-anywhere.herokuapp.com/sandbox.delivery.com/customer/cc?token=' + access_token,
+        url: 'http://cors-anywhere.herokuapp.com/sandbox.delivery.com/customer/cc',
         method: "GET",
         headers: {'Content-Type': 'application/x-www-form-urlencoded',
                   'Access-Control-Allow-Origin': '*',
                    'authorization': access_token}
       }).success(function (data) {
-        console.log(data);
+        localStorageService.add('creditCard', data);
+        deferred.resolve(data);
       }).error(function (data) {
         console.log(data)
       })
+      return deferred.promise
     }
+
+    this.postCartItem = function (cartItem, merchId) {
+      var deferred = $q.defer();
+      var transform = function(data){
+        return $.param(data);
+      }
+      var access_token = _this.getAPIAccessTokenFromLocalStorage();
+      var url = 'http://cors-anywhere.herokuapp.com/sandbox.delivery.com/customer/cart/' + merchId;
+      var data = {
+        order_type: "delivery",
+//        "instructions": "Some instructions",
+        item: {
+          item_id: cartItem.menuItemId,
+          item_qty: 1
+        },
+        client_id: clientIdStaging
+      };
+      var headers = {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Access-Control-Allow-Origin': '*',
+        'authorization': access_token
+      };
+      $http({
+        method: "post",
+        url: url,
+        data: data,
+        headers: headers,
+        transformRequest: transform
+      }).success(function (data) {
+          deferred.resolve(data)
+        })
+      return deferred.promise
+    };
+
+    this.getLocationDataFromLocalStorage = function () {
+      return localStorageService.get('locationData')
+    }
+
+
+    this.deleteCart = function (merchId) {
+      var deferred = $q.defer();
+      var accessToken = _this.getAPIAccessTokenFromLocalStorage();
+      var headers = {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Access-Control-Allow-Origin': '*',
+        'authorization': accessToken
+      };
+      $http({
+        method: "DELETE",
+        url: 'http://cors-anywhere.herokuapp.com/sandbox.delivery.com/customer/cart/' + merchId,
+        headers: headers
+      }).success(function (data) {
+          deferred.resolve(data)
+        })
+      return deferred.promise
+    }
+
+    this.getCart = function (merchId) {
+      var deferred = $q.defer();
+      var accessToken = _this.getAPIAccessTokenFromLocalStorage();
+      var locationData = _this.getLocationDataFromLocalStorage();
+      var headers = {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Access-Control-Allow-Origin': '*',
+        'authorization': accessToken
+      };
+      $http({
+        method: "GET",
+        url: 'http://cors-anywhere.herokuapp.com/sandbox.delivery.com/customer/cart/' + merchId,
+        params: {
+          zip: locationData.zip_code,
+          city: locationData.city,
+          state: locationData.state,
+          latitude: locationData.latitude,
+          longitude: locationData.longitude
+        },
+        headers: headers
+      }).success(function (data) {
+          deferred.resolve(data)
+      }).error(function (data) {
+          deferred.reject(data)
+        })
+      return deferred.promise
+    }
+
+
 
     function formatMerchantTypeParam(searchMerchantType){
       var merchantTypeParam = "";

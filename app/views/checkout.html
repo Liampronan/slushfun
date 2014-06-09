@@ -27,11 +27,23 @@
       </tr>
       <tr class="cart-bottom">
         <td></td>
-        <td class="cart-bottom text-right"><b>Total</b></td>
-        <td class="text-center cart-bottom">${{cartTotal}}</td>
+        <td class="text-right cart-bottom"><b>Tip (optional but encouraged)</b></td>
+        <td class="text-center cart-bottom"><input ng-change="getSubTotal()" min="0"
+                                                   ng-model="tip" class="col-sm-4 col-sm-offset-5" type="number"></td>
       </tr>
+      <tr class="cart-bottom">
+        <td></td>
+        <td class="cart-bottom text-right"><b>Approx Total (before Taxes)</b></td>
+        <td class="text-center cart-bottom">${{ subTotal }}</td>
+      </tr>
+
       </tbody>
     </table>
+  </div>
+  <div class="col-sm-4 col-sm-offset-4 notes">
+    <div class="text-center notes"><input type="checkbox" ng-model="showNoteInput"/>Add Note to Order?</div>
+    <p class="text-center" ng-show="showNoteInput">Notes to Merchant (100 character Max):</p>
+    <textarea class="col-sm-12" ng-show="showNoteInput" maxlength="100">{{notes}}</textarea>
   </div>
   <div class="col-sm-8 col-sm-offset-2 text-center">
     <div class="row checkout">
@@ -51,6 +63,11 @@
       <a class="btn btn-success">Pay Cash</a>
 
     </div>
+    <div class="row">
+      <a ng-click="submitCart()" class="btn btn-success">Prepare and Review Order</a>
+    </div>
+
+    <button class="btn" ng-click="deleteCart()"></button>
 
   </div>
 </div>

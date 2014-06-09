@@ -80,8 +80,9 @@ angular.module('SlushFunApp')
       $scope.addToCart = function (menuItemId, storeName, menuItemName, menuItemPrice, storeId, minOrderAmount,
                                    deliveryFee)
       {
-          shoppingCartService.addToCart(menuItemId, storeName, menuItemName, menuItemPrice, storeId, minOrderAmount,
-                                        deliveryFee);
+
+        shoppingCartService.addToCart(menuItemId, storeName, menuItemName, menuItemPrice, storeId, undefined,
+                                      minOrderAmount, deliveryFee);
           $scope.updateCart();
       }
 

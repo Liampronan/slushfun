@@ -1,6 +1,6 @@
 angular.module('SlushFunApp')
-  .controller('DeliveryCtrl', ['$scope', 'deliveryDataService', '$state',
-    function($scope, $deliveryDataService, $state){
+  .controller('DeliveryCtrl', ['$scope', 'deliveryDataService', '$state', 'shoppingCartService',
+    function($scope, $deliveryDataService, $state, shoppingCartService){
       //testing so auto-populating these vars TODO: change b4 live
       $scope.searchAddress ="1 west";
       $scope.searchZip = "10004";
@@ -24,6 +24,7 @@ angular.module('SlushFunApp')
           .then(function(result){
             $scope.searchResults = result.data.merchants;
             console.log($scope.searchResults);
+            shoppingCartService.saveLocationLocalStorage(result.data.search_address);
             console.log("api results", result.data);
             $state.go("index.deliveries.nearMe");
           }, function(error){

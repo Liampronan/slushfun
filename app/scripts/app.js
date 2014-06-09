@@ -7,12 +7,12 @@
       'ngSanitize',
       'ui.router',
       'firebase',
-      'LocalStorageModule',
-      'oauth'
+      'LocalStorageModule'
      ])
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
       $urlRouterProvider.otherwise('/');
-      $locationProvider.html5Mode(true).hashPrefix('!');
+      $locationProvider.html5Mode(true).hashPrefix('!'); //not enabled due to firebase server - when move onto own
+// server, it can be enabled
       $stateProvider
         .state('index', {
           url: '/',
@@ -64,6 +64,11 @@
         .state('index.checkout', {
           url: 'checkout',
           templateUrl: '/views/checkout.html',
+          controller: 'GroupCartCtrl'
+        })
+        .state('index.review', {
+          url: 'review',
+          templateUrl: '/views/checkout.review.html',
           controller: 'GroupCartCtrl'
         })
 

@@ -1,6 +1,8 @@
 <div class="container">
-  <div class="hero-unit store-details text-center" ng-hide="groupCart">
+  <div class="hero-unit store-details text-center">
     <h3> {{cart.groupName}}'s Cart for <a ui-sref="index.store({ storeId: cart.storeId})">{{cart.storeName}}</a></h3>
+    <h6> Link to Share: <a href="{{groupCartURL}}" class="underline">{{groupCartURL}}</a></h6>
+
   </div>
 
   <div class="col-sm-8 col-sm-offset-2">
@@ -27,14 +29,14 @@
       </tr>
       <tr class="cart-bottom">
         <td></td>
-        <td class="cart-bottom text-right"><b>Total</b></td>
+        <td class="cart-bottom text-right"><b>Approx Total (before Taxes)</b></td>
         <td class="text-center cart-bottom">${{cartTotal}}</td>
       </tr>
       </tbody>
     </table>
   </div>
   <div class="col-sm-8 col-sm-offset-2 text-center">
-    <a ui-sref="index.checkout" class="btn btn-success">Checkout</a>
+    <a ui-sref="index.checkout" class="btn btn-success">Begin Checkout</a>
   </div>
 
 

@@ -27,7 +27,7 @@
         <td class="text-center cart-bottom">${{cart.deliveryFee}}</td>
       </tr>
       <tr class="cart-bottom">
-        <td class="cart-bottom text-right"><b>Total</b></td>
+        <td class="cart-bottom text-right"><b>Approx Total (before Taxes)</b></td>
         <td class="text-center cart-bottom">${{cartTotal}}</td>
       </tr>
       </tbody>
@@ -55,7 +55,7 @@
                                                    ng-class="{'error': groupNameExistsFirebase}"
                                                    placeholder="e.g., Monday Fun Pizza"/>
             </div>
-            <div class="col-sm-3 col-sm-offset-1 group-created alert-success" ng-show="groupCartCreated">✔ Created!</div>
+            <div class="col-sm-2 col-sm-offset-1 group-created alert-success" ng-show="groupCartCreated">✔ Created!</div>
           </div>
           <div class="row">
             <div class="text-center error" ng-show="groupNameExistsFirebase">
@@ -67,7 +67,7 @@
               Your group cart is now available at:
             </div>
             <div class="text-center">
-              <a href="{{groupCartURL}}">{{groupCartURL}}</a>
+              <a href="{{groupCartURL}}" class="text-success underline">{{groupCartURL}}</a>
             </div>
           </div>
 

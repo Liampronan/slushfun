@@ -14,9 +14,15 @@ angular.module('SlushFunApp')
         }
         return deferred.promise
       }
+
+      this.saveLocationLocalStorage = function (locationData) {
+        localStorageService.add('locationData', locationData);
+      }
+
       this.addToCart = function (menuItemId, storeName, menuItemName, menuItemPrice, storeId, scopeCart, minOrderAmount,
                                  deliveryFee) {
         var currentCart = localStorageService.get('cart');
+        var locationData = localStorageService.get('locationData');
         var updatedCart;
         if (scopeCart){
           if (scopeCart.groupName) {
@@ -38,6 +44,7 @@ angular.module('SlushFunApp')
           updatedCart.storeName = storeName;
           updatedCart.minOrderAmount = minOrderAmount;
           updatedCart.deliveryFee = deliveryFee;
+          updatedCart.locationData = locationData;
           updatedCart.items.push({
             menuItemId: menuItemId,
             menuItemName: menuItemName,
