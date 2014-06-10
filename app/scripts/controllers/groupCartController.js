@@ -98,9 +98,10 @@ angular.module('SlushFunApp')
             $scope.checkoutStepTwo = true;
             if (!deliveryDataService.getAPIAccessTokenFromLocalStorage()){
               deliveryDataService.storeAPIUserCode($location.$$search.code);
-              $scope.APIToken = deliveryDataService.getAPIToken($location.$$search.code)
+              deliveryDataService.getAPIToken($location.$$search.code)
                 .then(function (token) {
-                  console.log($scope.APIToken)
+                  $scope.APIToken = token;
+                  console.log($scope.APIToken);
                   deliveryDataService.storeAPIAccessToken(token);
                 });
             }
