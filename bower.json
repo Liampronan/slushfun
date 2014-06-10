@@ -11,7 +11,6 @@
     "angular-resource": "latest",
     "angular-sanitize": "latest",
     "angular-ui-router": "*",
-    "angular-cookies": "latest",
     "oauth-ng": "~0.2.0-beta.2"
   },
   "devDependencies": {
