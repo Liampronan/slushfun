@@ -1,7 +1,7 @@
 <div ng-show="inSearchResults">
   <h3 class="text-center near-me">{{searchMerchantType}} Results Near {{searchZip}}</h3>
   <div class="row search-filters">
-    <div class="col-sm-2 col-sm-offset-3">
+    <div class="col-sm-2 col-sm-offset-2">
         <p class="filter col-sm-9">Max Delivery Fee ($):</p><input ng-model="deliveryMax" class="col-sm-3">
     </div>
     <div class="col-sm-2 col-sm-offset-1">
@@ -9,7 +9,7 @@
     </div>
     <div class="col-sm-2 col-sm-offset-1">
       <div class="row">
-        <p class="filter col-sm-9">Max Minimum Order ($):</p><input ng-model="minOrderMax" class="col-sm-3">
+        <input type="checkbox" checked ng-model="showOpen"/>
       </div>
     </div>
   </div>

@@ -42,6 +42,10 @@ angular.module('SlushFunApp')
         return merchant.ordering.minimum <= $scope.minOrderMax
       };
 
+      $scope.showClosed = function(){
+
+      }
+
       $scope.isOpen = function(merchant) {
         return merchant.ordering.is_open
       };

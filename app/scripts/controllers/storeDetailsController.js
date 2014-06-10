@@ -13,7 +13,7 @@ angular.module('SlushFunApp')
       var prevStoreDetails = {};
       $scope.itemsPerPage = 5;
       $scope.currentPage = 0;
-      $scope.$parent.storeDetails.then(function(result){console.log(result)});
+//      $scope.$parent.storeDetails.then(function(result){console.log(result)});
       //TODO add in fix for jumping too quickly thru results (fix: make api call if nextStoreDetails not yet loaded..)
       // potential fix: disable next button while loading...
 
