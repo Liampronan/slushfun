@@ -105,7 +105,7 @@ angular.module('SlushFunApp')
     function fireFactory($firebase) {
       return {
         firebaseRef: function(path) {
-          var baseUrl = 'https://slushfun.firebaseio.com/';
+          var baseUrl = 'https://giventakeout.firebaseio.com/';
           path = (path !== '') ?  baseUrl + '/' + path : baseUrl;
           var ref = new Firebase(path);
           return $firebase(ref)
