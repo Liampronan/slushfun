@@ -59,7 +59,7 @@
 </div>
 <div class=" menu-item ">
   <span ng-repeat="menuCategory in storeMenu.menu">
-  <div class="col-sm-2" ng-class="menuCategory.name"
+  <div class="col-sm-2 well well-mod" ng-class="menuCategory.name"
       ng-show="selectedCategory === menuCategory.name || selectedCategory === undefined">
     <a href="" ng-click="setSelected(menuCategory.name)">
       <h4 class="text-center underline" ng-click="setSelectedCategory(menuCategory.name); getMenuItems(menuCategory)">

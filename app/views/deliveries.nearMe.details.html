@@ -101,7 +101,7 @@
   <h3 class="text-center"><b class="underline ">Menu Categories</b></h3>
   <div class="row menu-item text-center">
     <span ng-repeat="menuCategory in storeDetails.menu">
-    <div class="col-sm-3 " ng-class="menuCategory.name"
+    <div class="col-sm-2 well-mod well" ng-class="menuCategory.name"
         ng-show="selectedCategory === menuCategory.name || selectedCategory === undefined">
       <a href="" ng-click="setSelected(menuCategory.name)">
         <h4 class="text-center" ng-click="setSelectedCategory(menuCategory.name); getMenuItems(menuCategory)">
