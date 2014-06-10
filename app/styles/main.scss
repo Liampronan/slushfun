@@ -2,12 +2,11 @@ $iconSpritePath: "../images/glyphicons-halflings.png";
 $iconWhiteSpritePath: "../images/glyphicons-halflings-white.png";
 
 //@import "../bower_components/sass-bootstrap/lib/bootstrap";
+@import "//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css";
 @import "bootsrap.css";
-//@font-face {
-//  font-family: "lobster";
-//  src: url(sansation_light.woff);
-//}
-//$background-color: #2b3e50;
+
+
+
 $orange: #eea236;
 
 html, body {
@@ -303,4 +302,8 @@ nav li.inline {
 
 label.text-center{
   font-size: 13px;
+}
+
+.glyphicon-comment:hover{
+  cursor: pointer;
 }

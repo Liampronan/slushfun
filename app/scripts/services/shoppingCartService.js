@@ -33,7 +33,7 @@ angular.module('SlushFunApp')
               menuItemName: menuItemName,
               menuItemPrice: menuItemPrice,
               ordererName: ordererName,
-              ordererNotes: ordererNotes,
+              ordererNotes: [{name: ordererName, notes: ordererNotes}],
               votes: []
             });
             return

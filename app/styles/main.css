@@ -1,3 +1,4 @@
+@import "//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css";
 @import url(bootsrap.css);
 @import url(http://fonts.googleapis.com/css?family=Lobster);
 html, body {
@@ -216,3 +217,6 @@ nav li.inline {
 
 label.text-center {
   font-size: 13px; }
+
+.glyphicon-comment:hover {
+  cursor: pointer; }

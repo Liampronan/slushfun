@@ -145,6 +145,21 @@ angular.module('SlushFunApp')
         $scope.sumCartTotalTip();
       });
 
+      $scope.$watch('cart', function(newValue, old) {
+        if (newValue === old) return;
+        angular.forEach($scope.cart.items, function(item) {
+          if (item.votes){item.score = item.votes.length}
+          else {item.score = 0}
+        })
+      });
+
+      $scope.updateScore = function () {
+        angular.forEach($scope.cart.items, function(item) {
+          if (item.votes){item.score = item.votes.length}
+          else {item.score = 0}
+        })
+      }
+
       $scope.getCartTotal = function(cartItems) {
         var sum = 0;
         angular.forEach(cartItems, function(cartItem) {sum += (cartItem.price)});
@@ -165,11 +180,25 @@ angular.module('SlushFunApp')
         $scope.voteItem = cartItemHashKey;
       }
 
+      $scope.setCommentModalItem = function(hashKey){
+        console.log(hashKey);
+        angular.forEach($scope.cart.items, function(item){
+          if (item.$$hashKey === hashKey){
+            $scope.modalItem = item;
+            console.log($scope.modalItem)
+          }
+        })
+      }
+
+      $scope.beginLoadBar = function () {
+        cfpLoadingBar.start();
+      }
+
       $scope.vote = function(){
         angular.forEach($scope.cart.items, function(item){
           if (item.$$hashKey === $scope.voteItem){
-            var prevNotes = item.ordererNotes || "";
-            item.ordererNotes = "; " +  prevNotes + " " + $scope.voterNotes + "-" + $scope.voterName;
+            if (!item.ordererNotes) {item.ordererNotes = []}
+            item.ordererNotes.push({name: $scope.voterName, notes: $scope.voterNotes})
             if (!item.votes) {item.votes = []}
             item.votes.push($scope.voterName);
           }

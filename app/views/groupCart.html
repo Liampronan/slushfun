@@ -1,4 +1,4 @@
-<div class="container">
+<!--<div class="container">-->
   <script>
     $('div').removeClass('modal-backdrop');
   </script>
@@ -20,25 +20,30 @@
       <thead>
       <th class="text-center">Item</th>
       <th class="text-center">Ordered by</th>
-      <th class="text-center">Notes</th>
+      <th class="text-center">View Comments</th>
       <th class="text-center">Price</th>
-      <th class="text-center">Delete</th>
-      <th class="text-center">Vote</th>
       <th class="text-center">Score</th>
+      <th class="text-center">Vote</th>
+      <th class="text-center">Delete</th>
       </thead>
       <tbody>
-      <tr ng-repeat="item in cart.items">
+      <tr ng-repeat="item in cart.items | orderBy: ['-score']">
         <td>{{item.menuItemName}}</td>
         <td>{{item.ordererName || "Order Creator"}}</td>
-        <td>{{item.ordererNotes}}</td>
+        <td><i class="glyphicon glyphicon-comment" data-toggle="modal" ng-click="setCommentModalItem(item.$$hashKey)"
+               data-target="#commentModal"></i></td>
         <td>${{item.menuItemPrice}}</td>
-        <td><button class="btn btn-primary btn-xs radius" ng-click="removeFromCart($index)">✗</button></td>
-        <td><button class="btn btn-success btn-xs radius" data-toggle="modal" data-target="#addName"
-                    ng-click="prepareVote(item.$$hashKey)">♥</button></td>
         <td><button class="btn btn-default btn-xs radius" data-toggle="tooltip" data-placement="right"
                     title="Votes from: {{item.votes.join() || 'no one yet'}}">
           {{item.votes.length || 0}}
+
         </button></td>
+        <td><button class="btn btn-success btn-xs radius" data-toggle="modal" data-target="#addName"
+                    ng-click="prepareVote(item.$$hashKey)">♥</button></td>
+
+        <td><button class="btn btn-primary btn-xs radius" ng-click="removeFromCart($index)">✗</button></td>
+
+
       </tr>
       </tbody>
       <tbody>
@@ -63,15 +68,24 @@
         <!--<td class="text-right cart-bottom"><b>Delivery Fee</b></td>-->
         <!--<td class="text-center cart-bottom">${{cart.deliveryFee}}</td>-->
       <!--</tr>-->
-      <tr class="cart-bottom">
+      <!--<tr >-->
+        <!--<td></td>-->
+        <!--<td></td>-->
+        <!--<td></td>-->
+        <!--<td></td>-->
+        <!--<td></td>-->
+        <!--<td></td>-->
+        <!--<td></td>-->
+      <!--</tr>-->
+      <!--<tr class="cart-bottom">-->
         <td></td>
-        <td></td>
-        <td class="cart-bottom text-right"><b>Approx Total (before Taxes/Fees)</b></td>
+        <td><b>Approx Total</b></td>
+        <td class="cart-bottom text-right"><b>(before Taxes/Fees)</b></td>
         <td class="text-center cart-bottom">${{cartTotal}}</td>
         <td></td>
         <td></td>
         <td></td>
-      </tr>
+      <!--</tr>-->
       </tbody>
     </table>
   </div>
@@ -80,6 +94,37 @@
        ng-class="{disabled: getCartTotalNonAPI(cart.items) < cart.minOrderAmount}">
       Begin Checkout</a>
   </div>
+  <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true"
+    >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title no-lobster">Comments on {{modalItem.menuItemName}} </h4>
+        </div>
+        <div class="modal-body">
+          <table class="table">
+            <thead>
+            <th class="text-center">Name</th>
+            <th class="text-center">Comments</th>
+            </thead>
+            <tbody>
+            <tr ng-repeat="note in modalItem.ordererNotes">
+              <td class="text-center">{{note.name}}</td>
+              <td class="text-center">{{note.notes}}</td>
+            </tr>
+            </tbody>
+
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+    </div>
+
 
   <div class="modal fade" id="addName" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
        aria-hidden="true"
@@ -97,7 +142,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-warning" data-dismiss="modal"
-                  ng-click="vote()">Vote</button>
+                  ng-click="vote();updateScore()">Vote</button>
         </div>
       </div>
     </div>
@@ -106,4 +151,4 @@
 
 
 
-</div>
+<!--</div>-->

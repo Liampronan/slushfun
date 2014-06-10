@@ -1,6 +1,7 @@
 <div class="container">
   <div class="hero-unit store-details text-center" ng-hide="groupCart">
-    <h3> {{cart.groupName}}'s Cart for <a ui-sref="index.store({ storeId: cart.storeId})">{{cart.storeName}}</a></h3>
+    <h3 class="no-lobster"> {{cart.groupName}}'s Cart for
+      <a ui-sref="index.store({ storeId: cart.storeId})">{{cart.storeName}}</a></h3>
   </div>
 
   <div class="col-sm-8 col-sm-offset-2 notes">
@@ -21,7 +22,7 @@
         <td>{{item.menuItemName}}</td>
         <td>{{item.ordererName || "Order Creator"}}</td>
         <td>${{item.menuItemPrice}}</td>
-        <td><button class="btn btn-danger btn-xs radius" ng-click="removeFromCart($index)">✗</button></td>
+        <td><button class="btn btn-primary btn-xs radius" ng-click="removeFromCart($index)">✗</button></td>
       </tr>
       </tbody>
       <tbody>
@@ -34,12 +35,14 @@
         <td></td>
         <td class="text-right cart-bottom"><b>Tip (optional but encouraged)</b></td>
         <td class="text-center cart-bottom"><input ng-change="getSubTotal(); storeTip(tip)" min="0"
-                                                    class="col-sm-4 col-sm-offset-5" ng-model="tip" type="number"></td>
+                                                    class="col-sm-5 col-sm-offset-4" ng-model="tip" type="number"></td>
+        <td></td>
       </tr>
       <tr class="cart-bottom">
         <td></td>
         <td class="cart-bottom text-right"><b>Approx Total (before Taxes/Fees)</b></td>
         <td class="text-center cart-bottom">${{ subTotal }}</td>
+        <td></td>
       </tr>
 
       </tbody>
@@ -58,7 +61,7 @@
       <!--<a href="https://api.delivery.com/third_party/authorize?client_id=NWUxNmJiNGIyMWMxNDE1YjRhMjY4OWM3OGUwNGZmOGYw&-->
       <!--redirect_uri=http://localhost:8000/signIn&response_type=code&scope=global">Log In/Create Account</a>-->
       <!--sandbox-->
-      <a class="btn btn-success" ng-class="{disabled: !checkoutStepOne}"
+      <a class="btn btn-success" ng-class="{disabled: !checkoutStepOne}" ng-click="beginLoadBar()"
          href="http://sandbox.delivery.com/third_party/authorize?client_id=ZmNlMDQ0NWFiZGQ5ZDVmZWE4Y2RhMTA1YzgxOWNmNDhi&
       redirect_uri=http://localhost:8000/checkout&response_type=code&scope=global&state=">
         1) Log In/Create Delivery.com  Account</a>

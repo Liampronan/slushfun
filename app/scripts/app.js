@@ -8,7 +8,8 @@
       'ui.router',
       'firebase',
       'LocalStorageModule',
-      'fundoo.services' //modal service
+      'fundoo.services', //modal service
+      'angular-loading-bar'
      ])
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
       $urlRouterProvider.otherwise('/');
