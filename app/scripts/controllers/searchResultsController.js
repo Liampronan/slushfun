@@ -12,6 +12,8 @@ angular.module('SlushFunApp')
           }
         });
 
+      if (!$scope.searchResults) {$state.go('index.deliveries');}
+
       $scope.$on('$stateChangeStart',
         function(evt, toState, toParams, fromState, fromParams) {
           if (toState.name === "index.deliveries.nearMe.details" &&

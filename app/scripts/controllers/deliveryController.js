@@ -6,6 +6,8 @@ angular.module('SlushFunApp')
       $scope.searchZip = "10004";
       $scope.inDelivery = true;
 
+
+
       // show/hide delivery parent state when entering/leaving parent state
       $scope.$on('$stateChangeStart',
         function(evt, toState, toParams, fromState, fromParams) {
@@ -19,7 +21,7 @@ angular.module('SlushFunApp')
 
       $scope.searchDeliveries = function(){
         var searchAddressZip = formatSearchAddressZip($scope.searchAddress, $scope.searchZip);
-        var searchMerchantType = formatMerchantType($scope.searchMerchantType);
+        var searchMerchantType = 'R';
         getNearbyDeliveries(searchAddressZip, searchMerchantType)
           .then(function(result){
             $scope.searchResults = result.data.merchants;
@@ -41,15 +43,15 @@ angular.module('SlushFunApp')
         return searchAddress.replace(/\s+/g, '') + searchZip.trim();
       }
 
-      function formatMerchantType(searchMerchantType){
-        if (searchMerchantType === 'Food') {
-          return 'R';
-        } else if (searchMerchantType === 'Booze') {
-          return 'W';
-        }
-        //food and booze
-        return ['R', 'W'];
-      }
+//      function formatMerchantType(searchMerchantType){
+//        if (searchMerchantType === 'Food') {
+//          return 'R';
+//        } else if (searchMerchantType === 'Booze') {
+//          return 'W';
+//        }
+//        //food and booze
+//        return ['R', 'W'];
+//      }
     }
   ])
 

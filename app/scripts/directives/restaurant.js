@@ -1,6 +1,6 @@
 
 angular.module('SlushFunApp')
-  .directive('boozeStore', function($compile) {
+  .directive('restaurant', function($compile) {
 
     var ratingLabelClass = function(searchResultRating){
       return {'label-success' : searchResultRating > 80,
@@ -14,7 +14,7 @@ angular.module('SlushFunApp')
       },
       restrict: 'A',
       replace: 'true',
-      templateUrl: '/views/deliveries.storeSearchResult.html',
+      templateUrl: '/views/deliveries.storeSearchResult.html'
 
     };
   });
