@@ -1,0 +1,13 @@
+{
+  "name": "express",
+  "homepage": "https://github.com/peigong/poet",
+  "_release": "86fd51b8e1",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "86fd51b8e1b6d0b25d08c8c52c7c2558c713e537"
+  },
+  "_source": "git://github.com/peigong/poet.git",
+  "_target": "*",
+  "_originalSource": "express"
+}
