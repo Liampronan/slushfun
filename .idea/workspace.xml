@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b5af4ba-8261-4f44-9f04-2948d56523cb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/deliveries.html" afterPath="$PROJECT_DIR$/app/views/deliveries.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/deliveries.nearMe.details.html" afterPath="$PROJECT_DIR$/app/views/deliveries.nearMe.details.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/deliveries.nearMe.html" afterPath="$PROJECT_DIR$/app/views/deliveries.nearMe.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/deliveries.storeSearchResult.html" afterPath="$PROJECT_DIR$/app/views/deliveries.storeSearchResult.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/styles/main.css" afterPath="$PROJECT_DIR$/app/styles/main.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/main.html" afterPath="$PROJECT_DIR$/app/views/main.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/styles/main.scss" afterPath="$PROJECT_DIR$/app/styles/main.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SlushFund.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,10 +36,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="main.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/main.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="63" selection-start="352" selection-end="352" vertical-scroll-proportion="1.3333334" vertical-offset="162" max-vertical-offset="1242">
+            <state line="46" column="78" selection-start="2435" selection-end="2435" vertical-scroll-proportion="0.5923345" vertical-offset="488" max-vertical-offset="1602">
               <folding />
             </state>
           </provider>
@@ -86,10 +81,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.scss" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="main.scss" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/styles/main.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="272" column="13" selection-start="3692" selection-end="3692" vertical-scroll-proportion="0.65505224" vertical-offset="4520" max-vertical-offset="5112">
+            <state line="275" column="6" selection-start="3702" selection-end="3702" vertical-scroll-proportion="-15.925926" vertical-offset="4520" max-vertical-offset="5112">
               <folding />
             </state>
           </provider>
@@ -154,8 +149,8 @@
         <option value="$PROJECT_DIR$/app/views/deliveries.html" />
         <option value="$PROJECT_DIR$/app/views/deliveries.nearMe.html" />
         <option value="$PROJECT_DIR$/app/views/deliveries.nearMe.details.html" />
-        <option value="$PROJECT_DIR$/app/views/main.html" />
         <option value="$PROJECT_DIR$/app/styles/main.scss" />
+        <option value="$PROJECT_DIR$/app/views/main.html" />
       </list>
     </option>
   </component>
@@ -473,16 +468,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/main.html">
+    <entry file="file://$PROJECT_DIR$/app/styles/main.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="63" selection-start="352" selection-end="352" vertical-scroll-proportion="1.3333334" vertical-offset="162" max-vertical-offset="1242">
+        <state line="275" column="6" selection-start="3702" selection-end="3702" vertical-scroll-proportion="-15.925926" vertical-offset="4520" max-vertical-offset="5112">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/styles/main.scss">
+    <entry file="file://$PROJECT_DIR$/app/views/main.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="272" column="13" selection-start="3692" selection-end="3692" vertical-scroll-proportion="0.65505224" vertical-offset="4520" max-vertical-offset="5112">
+        <state line="46" column="78" selection-start="2435" selection-end="2435" vertical-scroll-proportion="0.5923345" vertical-offset="488" max-vertical-offset="1602">
           <folding />
         </state>
       </provider>

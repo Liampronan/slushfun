@@ -5,7 +5,7 @@
       <div class="navbar-header">
 
         <button type="button" class="navbar-toggle cart" data-toggle="collapse" data-target="#navbar-collapse-1">
-          <span class="badge">{{cart.items.length || 0}}</span>
+          <span class="badge nav">{{cart.items.length || 0}}</span>
           <span class="sr-only">Toggle navigation</span>
         </button>
 
@@ -16,17 +16,16 @@
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li><a ng-show="user.isLoggedIn">Hello {{user.userName}}!</a></li>
-          <li><a ui-sref="index.deliveries">Find Deliveries</a></li>
-          <li class="dropdown md-visible">
-            <a href="" class="dropdown-toggle" data-toggle="dropdown" onclick="return false">
+          <li><a ui-sref="index.deliveries" class="hidden-xs">Find Deliveries</a></li>
+          <li class="dropdown hidden-xs ">
+            <a href="" class="dropdown-toggle " data-toggle="dropdown" onclick="return false">
               Cart <span class="badge">{{cart.items.length || 0}}</span> <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
               <!--TODO confirm empty cart..-->
-              <li><a ui-sref="index.store({ storeId: cart.storeId})">
+              <a ui-sref="index.store({ storeId: cart.storeId})">
                 {{cart.storeName}}
               </a>
-              </li>
               <li><a ui-sref="index.cart" ng-show="cart && !isGroupCart">View Cart/Create Group Order</a></li>
               <li><a ui-sref="index.groupCart({ groupId: formattedGroupName})"
                      ng-show="cart && isGroupCart">
@@ -37,6 +36,27 @@
                      ng-show="cart && isGroupCart">Create New Order</a></li>
               <li><a href="" ng-click="emptyCart(cart)" ng-show="cart">Empty Cart</a></li>
               <li><a href="" ng-click="" ng-hide="cart">No items in Cart</a></li>
+            </ul>
+          </li>
+          <li class="dropdown visible-xs">
+            <!--<a href="" class="dropdown-toggle " data-toggle="dropdown" onclick="return false">-->
+              <!--Cart <span class="badge">{{cart.items.length || 0}}</span> <b class="caret"></b>-->
+            <!--</a>-->
+            <!--<ul class="dropdown-menu">-->
+              <!--TODO confirm empty cart..-->
+              <a ui-sref="index.store({ storeId: cart.storeId})" ng-show="cart">
+                {{cart.storeName}}
+              </a>
+
+              <a ui-sref="index.cart" ng-show="cart && !isGroupCart">View Cart/Create Group Order</a>
+              <a ui-sref="index.groupCart({ groupId: formattedGroupName})"
+                     ng-show="cart && isGroupCart">
+                View Group Order
+              </a>
+              <a href="" ng-click="removeGroupCartFromLocalStorage()"
+                     ng-show="cart && isGroupCart">Create New Order</a>
+              <a href="" ng-click="emptyCart(cart)" ng-show="cart">Empty Cart</a>
+              <a href="" ng-click="" ng-hide="cart">No items in Cart</a>
             </ul>
           </li>
           <li ng-show="user.isLoggedIn"><a href="" ng-click="logOut()">Logout</a></li>
