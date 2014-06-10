@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b5af4ba-8261-4f44-9f04-2948d56523cb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/controllers/main.js" afterPath="$PROJECT_DIR$/app/scripts/controllers/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/deliveries.html" afterPath="$PROJECT_DIR$/app/views/deliveries.html" />
     </list>
     <ignored path="SlushFund.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,15 +34,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="groupCart.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/groupCart.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="14" selection-start="1331" selection-end="1366" vertical-scroll-proportion="-12.666667" vertical-offset="162" max-vertical-offset="1404">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="directStoreDetails.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/directStoreDetails.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -61,10 +52,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/scripts/controllers/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="107" column="45" selection-start="4195" selection-end="4195" vertical-scroll-proportion="0.640599" vertical-offset="1541" max-vertical-offset="2142">
+            <state line="107" column="45" selection-start="4195" selection-end="4195" vertical-scroll-proportion="0.0" vertical-offset="1541" max-vertical-offset="2142">
               <folding />
             </state>
           </provider>
@@ -74,6 +65,15 @@
         <entry file="file://$PROJECT_DIR$/app/views/cart.html">
           <provider selected="true" editor-type-id="text-editor">
             <state line="61" column="77" selection-start="2741" selection-end="2741" vertical-scroll-proportion="-12.592592" vertical-offset="758" max-vertical-offset="1764">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="deliveries.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/deliveries.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="39" column="32" selection-start="1657" selection-end="1657" vertical-scroll-proportion="0.87456447" vertical-offset="200" max-vertical-offset="1098">
               <folding />
             </state>
           </provider>
@@ -139,7 +139,6 @@
         <option value="$PROJECT_DIR$/app/scripts/controllers/searchResultsController.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/app/views/deliveries.storeSearchResult.html" />
-        <option value="$PROJECT_DIR$/app/views/deliveries.html" />
         <option value="$PROJECT_DIR$/app/views/deliveries.nearMe.html" />
         <option value="$PROJECT_DIR$/app/views/groupCart.html" />
         <option value="$PROJECT_DIR$/app/views/main.html" />
@@ -149,6 +148,7 @@
         <option value="$PROJECT_DIR$/app/views/deliveries.nearMe.details.html" />
         <option value="$PROJECT_DIR$/app/views/directStoreDetails.html" />
         <option value="$PROJECT_DIR$/app/scripts/controllers/main.js" />
+        <option value="$PROJECT_DIR$/app/views/deliveries.html" />
       </list>
     </option>
   </component>
@@ -396,13 +396,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/deliveries.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="55" selection-start="1090" selection-end="1090" vertical-scroll-proportion="-12.0" vertical-offset="162" max-vertical-offset="1098">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/deliveries.nearMe.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="110" selection-start="816" selection-end="816" vertical-scroll-proportion="-6.0" vertical-offset="0" max-vertical-offset="1008">
@@ -475,7 +468,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/controllers/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="107" column="45" selection-start="4195" selection-end="4195" vertical-scroll-proportion="0.640599" vertical-offset="1541" max-vertical-offset="2142">
+        <state line="107" column="45" selection-start="4195" selection-end="4195" vertical-scroll-proportion="0.0" vertical-offset="1541" max-vertical-offset="2142">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/deliveries.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="32" selection-start="1657" selection-end="1657" vertical-scroll-proportion="0.87456447" vertical-offset="200" max-vertical-offset="1098">
           <folding />
         </state>
       </provider>
