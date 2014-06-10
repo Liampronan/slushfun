@@ -169,3 +169,32 @@ nav li.inline {
 
 .lobster {
   font-family: 'Lobster', cursive; }
+
+.radius-large {
+  border-radius: 10px; }
+
+.bottom-details {
+  margin-top: 100px; }
+
+.bottom-details-mobile {
+  margin-top: 75px; }
+
+.top-margin-md {
+  margin-top: 75px; }
+
+.nope {
+  display: none !important; }
+
+.cart {
+  background-image: url("../images/cart.png");
+  background-size: contain;
+  width: 60px;
+  height: 35px;
+  background-repeat: no-repeat;
+  left: -20px;
+  padding-top: 4px;
+  margin-top: 4px;
+  left: 10px; }
+
+.badge {
+  margin-left: 23px; }

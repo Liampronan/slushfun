@@ -52,6 +52,52 @@
     </div>
 
   </div>
+  <div class="visible-xs store-details">
+    <h3 class="text-center "> {{searchResults[$parent.searchResultIndex].summary.name}}</h3>
+    <h6 class="text-center smaller-head-text">{{searchResults[$parent.searchResultIndex].location.landmark}}</h6>
+    <div class="text-center">
+      <h6 class="text-center bold label"
+          ng-class="{true:'label-success', false:'label-danger'}
+          [searchResults[$parent.searchResultIndex].ordering.is_open]">
+        {{searchResults[$parent.searchResultIndex].ordering.is_open ? "Open" : "Closed"}}
+      </h6></div>
+    <div class="text-center">
+      <span class="label" ng-class="{'label-success':searchResults[$parent.searchResultIndex].summary.overall_rating >= 80,
+                                     'label-warning' : searchResults[$parent.searchResultIndex].summary.overall_rating > 60
+                                      && searchResults[$parent.searchResultIndex].summary.overall_rating < 80,
+                                     'label-danger' : searchResults[$parent.searchResultIndex].summary.overall_rating < 60}"
+            ng-show="searchResults[$parent.searchResultIndex].summary.overall_rating">
+      {{searchResults[$parent.searchResultIndex].summary.overall_rating}}/100
+      </span>
+      <span class="label label-info" ng-show="searchResults[$parent.searchResultIndex].summary.overall_rating===0">
+                  No Reviews
+      </span>
+      <span class="label label-success"
+            ng-show="{{searchResults[$parent.searchResultIndex].ordering.delivery_charge===0 &&
+            searchResults[$parent.searchResultIndex].ordering.delivery_percent===0}}">
+        No Delivery Fee
+      </span>
+      <span class="label label-warning"
+            ng-show="{{searchResults[$parent.searchResultIndex].ordering.delivery_charge!=0}}">
+        Delivery Fee: ${{searchResults[$parent.searchResultIndex].ordering.delivery_charge}}
+      </span>
+      <span class="label label-warning"
+            ng-show="{{searchResults[$parent.searchResultIndex].ordering.delivery_percent!=0}}">
+        Delivery Fee: {{searchResults[$parent.searchResultIndex].ordering.percent}}%
+      </span>
+      <br/>
+      <span class="label label-success"
+            ng-show="{{searchResults[$parent.searchResultIndex].ordering.minimum===0}}">
+        No Minimum
+      </span>
+      <span class="label label-warning"
+            ng-show="{{searchResults[$parent.searchResultIndex].ordering.minimum!==0}}">
+        Minimum: ${{searchResults[$parent.searchResultIndex].ordering.minimum}}
+      </span>
+      <br/>
+    </div>
+
+  </div>
 
   <div class="row menu-item">
     <span ng-repeat="menuCategory in storeDetails.menu">

@@ -4,11 +4,9 @@
 
       <div class="navbar-header">
 
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+        <button type="button" class="navbar-toggle cart" data-toggle="collapse" data-target="#navbar-collapse-1">
+          <span class="badge">{{cart.items.length || 0}}</span>
           <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
         </button>
 
         <a ui-sref="index" class="navbar-brand lobster">give 'N takeout</a>

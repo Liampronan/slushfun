@@ -1,7 +1,7 @@
 <div class="container">
   <div class="hero-unit hidden-xs" ng-show="inDelivery">
     <h1 class="text-center lobster">give 'N takeout</h1>
-    <h3 class="text-center">Feed Others While Feeding Yourself</h3>
+    <h6 class="text-center"></h6>
     <div class="row form-group">
 
       <div class="col-sm-6">
@@ -16,13 +16,17 @@
                placeholder="90210"/>
       </div>
 
+
     </div>
     <div class="text-center">
       <button class="text-center btn btn-warning" ng-click="searchDeliveries()">Search</button>
     </div>
+    <h5 class="text-center bottom-details">25% of your order is donated to a hunger-relief charity</h5>
+    <h5 class="text-center">Every $1 provides 9 meals</h5>
   </div>
-  <div class="visible-xs">
-    <h1 class="text-center lobster">give 'N takeout</h1>
+
+  <div class="visible-xs" id="hide-fix" ng-class="{nope: !inDelivery}">
+    <h1 class="text-center lobster top-margin-md">give 'N takeout</h1>
     <h3 class="text-center">Feed Others While Feeding Yourself</h3>
     <div class="row form-group">
 
@@ -42,7 +46,10 @@
     <div class="text-center">
       <button class="text-center btn btn-warning" ng-click="searchDeliveries()">Search</button>
     </div>
+    <h5 class="text-center bottom-details-mobile">25% of your order is donated to a hunger-relief charity</h5>
+    <h5 class="text-center">Every $1 provides 9 meals</h5>
   </div>
 </div>
+
 <div ui-view></div>
 
