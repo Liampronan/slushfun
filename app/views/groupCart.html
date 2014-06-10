@@ -6,6 +6,9 @@
     <h3 class="no-lobster"> {{cart.groupName}}'s Cart for <a ui-sref="index.store({ storeId: cart.storeId})">{{cart.storeName}}</a></h3>
     <h6 class="no-lobster"> Link to Share: <a href="{{groupCartURL}}" class="underline">{{groupCartURL}}</a></h6>
     <a ui-sref="index.store({ storeId: cart.storeId})" class="btn btn-warning">{{cart.storeName}}'s Menu</a>
+      <a ui-sref="index.checkout" class="btn btn-success"
+         ng-class="{disabled: getCartTotalNonAPI(cart.items) < cart.minOrderAmount}">
+        Begin Checkout</a>
   </div>
   <!--<div class="visible-xs text-center store-details">-->
     <!--<h3 class="no-lobster"> {{cart.groupName}}'s Cart for <a ui-sref="index.store({ storeId: cart.storeId})">{{cart.storeName}}</a></h3>-->
@@ -89,11 +92,7 @@
       </tbody>
     </table>
   </div>
-  <div class="col-sm-8 col-sm-offset-2 text-center">
-    <a ui-sref="index.checkout" class="btn btn-success"
-       ng-class="{disabled: getCartTotalNonAPI(cart.items) < cart.minOrderAmount}">
-      Begin Checkout</a>
-  </div>
+
   <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true"
     >
