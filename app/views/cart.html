@@ -3,14 +3,14 @@
     <h3 class="no-lobster">My Cart for <a ui-sref="index.store({ storeId: cart.storeId})">{{cart.storeName}}</a></h3>
     <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#create-group-order"
             ng-hide="groupCartCreated">
-      Create Group Order
+      Create Group Order/Checkout
     </button>
   </div>
   <div class="visible-xs store-details small-hero text-center" ng-hide="groupCart">
     <h3>My Cart for <a ui-sref="index.store({ storeId: cart.storeId})">{{cart.storeName}}</a></h3>
     <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#create-group-order"
             ng-hide="groupCartCreated">
-      Create Group Order
+      Create Group Order/Checkout
     </button>
   </div>
   <div class="col-sm-8 col-sm-offset-2">
@@ -52,6 +52,7 @@
         </div>
         <div class="modal-body text-center">
           This creates a link for your friends so that they can add their orders to your cart.
+          You can also use it to go straight to checkout if you don't want to share your cart.
         </div>
         <div class="modal-body text-center">
 
