@@ -42,7 +42,7 @@ angular.module('SlushFunApp')
       };
 
       $scope.orderMax = function(merchant) {
-        if ($scope.minOrderMax === undefined || $scope.minOrderMax.trim() === "")
+        if ($scope.minOrderMax === undefined || $scope.minOrderMax === "")
           return true;
         return merchant.ordering.minimum <= $scope.minOrderMax
       };
