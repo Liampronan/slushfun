@@ -195,7 +195,8 @@ nav li.inline {
   left: -20px;
   padding-top: 4px;
   margin-top: 4px;
-  left: 10px; }
+  left: 10px;
+  border: none; }
 
 .badge.nav {
   margin-left: 23px; }
