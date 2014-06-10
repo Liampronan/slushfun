@@ -2,13 +2,21 @@
   <script>
     $('div').removeClass('modal-backdrop');
   </script>
-  <div class="hero-unit store-details text-center">
+  <div class="hero-unit store-details text-center hidden-xs">
     <h3 class="no-lobster"> {{cart.groupName}}'s Cart for <a ui-sref="index.store({ storeId: cart.storeId})">{{cart.storeName}}</a></h3>
     <h6 class="no-lobster"> Link to Share: <a href="{{groupCartURL}}" class="underline">{{groupCartURL}}</a></h6>
     <a ui-sref="index.store({ storeId: cart.storeId})" class="btn btn-warning">{{cart.storeName}}'s Menu</a>
       <a ui-sref="index.checkout" class="btn btn-success"
          ng-class="{disabled: getCartTotalNonAPI(cart.items) < cart.minOrderAmount}">
         Begin Checkout</a>
+  </div>
+  <div class="hero-unit store-details visible-xs">
+    <h3 class="no-lobster"> {{cart.groupName}}'s Cart for <a ui-sref="index.store({ storeId: cart.storeId})">{{cart.storeName}}</a></h3>
+    <h6 class="no-lobster"> Link to Share: <a href="{{groupCartURL}}" class="underline">{{groupCartURL}}</a></h6>
+    <a ui-sref="index.store({ storeId: cart.storeId})" class="btn btn-warning">{{cart.storeName}}'s Menu</a>
+    <a ui-sref="index.checkout" class="btn btn-success"
+       ng-class="{disabled: getCartTotalNonAPI(cart.items) < cart.minOrderAmount}">
+      Begin Checkout</a>
   </div>
   <!--<div class="visible-xs text-center store-details">-->
     <!--<h3 class="no-lobster"> {{cart.groupName}}'s Cart for <a ui-sref="index.store({ storeId: cart.storeId})">{{cart.storeName}}</a></h3>-->
