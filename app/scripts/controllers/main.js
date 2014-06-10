@@ -2,7 +2,8 @@
 
 //noinspection JSUnusedGlobalSymbols
 angular.module('SlushFunApp')
-  .controller('MainCtrl', function ($scope, $rootScope, $state, shoppingCartService, $q) {
+  .controller('MainCtrl', function ($scope, $rootScope, $state, shoppingCartService, $q, fireFactory,
+                                    deliveryDataService, localStorageService) {
     //TODO: REFA so not returning a promise or a cart...
     $scope.updateCart = function (groupNameFirebase) {
       var deferred = $q.defer();
@@ -37,7 +38,11 @@ angular.module('SlushFunApp')
         //see if we need to get the prev store's details (just like above -> for quick browsing)
         if (toState.name === 'index.groupCart') shoppingCartService.addGroupCartToLocalStorage(toParams.groupId);
         if (toState.name !== "index") $scope.inIndex = false;
-        if (toState.name === "index") $scope.inIndex = true;
+        if (toState.name === "deliveries.nearMe") $scope.inIndex = false;
+        if (toState.name === "index") {
+          $scope.inIndex = true;
+//          $state.go('index.deliveries');
+        }
         if (($scope.cart || groupNameFirebase) && toState.name !== 'index.group_cart' &&
           toState.name !== 'index.group_cart.store'){
           $scope.updateCart();
@@ -45,15 +50,37 @@ angular.module('SlushFunApp')
       });
 
     $scope.emptyCart = function () {
+      var groupNameFirebase = shoppingCartService.getGroupNameFirebaseFromLocalStorage();
+      if (groupNameFirebase){
+//        var unbind = localStorageService.get('unbind');
+        shoppingCartService.emptyCart();
+        $rootScope.unbind();
+//        $scope.updateCart();
+//        var ref = fireFactory.firebaseRef('groupCarts').$child(groupNameFirebase);
+//        shoppingCartService.emptyCart();
+//        ref.$bind($scope,'cart').then(function(unbind){
+//          unbind();
+//          $scope.updateCart();
+//        });
+      } else {shoppingCartService.emptyCart();}
+      $scope.updateCart();
+    }
+    //
+    $scope.removeGroupCartFromLocalStorage = function(){
+//      var groupNameFirebase = shoppingCartService.getGroupNameFirebaseFromLocalStorage();
+//      var ref = fireFactory.firebaseRef('groupCarts').$child(groupNameFirebase);
+//      ref.$bind($scope,'cart').then(function(unbind){
+//        unbind();
+//
+//      });
+//      var unbind = localStorageService.get('unbind');
+      $rootScope.unbind();
       shoppingCartService.emptyCart();
       $scope.updateCart();
     }
 
-    $scope.removeGroupCartFromLocalStorage = function(){
-      shoppingCartService.removeGroupCartFromLocalStorage();
-    }
-
     function getCartTotal(cartItems) {
+      if (!cartItems) return;
       var sum = 0;
       angular.forEach(cartItems, function(cartItem) {sum += (cartItem.menuItemPrice)});
       return parseFloat(sum).toFixed(2);
@@ -61,11 +88,15 @@ angular.module('SlushFunApp')
 
     function setScopeGroupCart(result) {
       $scope.cart = result.cart;
+      console.log(result);
+//      deliveryDataService.addLocationDataToLocalStorage($scope.cart.locationData);
       $scope.isGroupCart = result.isGroupCart;
       $scope.formattedGroupName = result.formattedGroupName;
       $scope.cartTotal = getCartTotal($scope.cart.items);
       $scope.groupFirebaseRef = result.groupFirebaseRef;
-      $scope.groupFirebaseRef.$bind($scope, "cart");
+      $scope.groupFirebaseRef.$bind($scope, "cart").then(function (unbind) {
+        $rootScope.unbind = unbind;
+      });
     }
   })
 

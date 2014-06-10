@@ -1,7 +1,7 @@
 <div class="container">
-  <button class="btn btn-primary left-arrow hidden-sm hidden-xs" ng-show="$parent.searchResultIndex > 0"
+  <button class="btn btn-primary left-arrow  hidden-xs" ng-show="$parent.searchResultIndex > 0"
     ng-click="prevMerchant($parent.searchResultIndex)">❰ Previous Merchant </button>
-  <button class="btn btn-primary right-arrow hidden-sm hidden-xs" ng-show="$parent.searchResultIndex < searchResults.length"
+  <button class="btn btn-primary right-arrow hidden-xs" ng-show="$parent.searchResultIndex < searchResults.length"
       ng-click="nextMerchant($parent.searchResultIndex)">
     Next Merchant ❱
   </button>
@@ -100,7 +100,7 @@
                          ng-click="addToCart(menuItem.id, searchResults[$parent.searchResultIndex].summary.name,
                          menuItem.name, menuItem.price, searchResults[$parent.searchResultIndex].id,
                          searchResults[$parent.searchResultIndex].ordering.minimum,
-                         searchResults[$parent.searchResultIndex].ordering.delivery_charge)">
+                         searchResults[$parent.searchResultIndex].ordering.time_needed)">
                    Add
                  </button>
                </td>
@@ -124,4 +124,6 @@
         <input type="text" placeholder="filters and such"/>
       </div>
     </div>
-  </div>
+
+
+</div>

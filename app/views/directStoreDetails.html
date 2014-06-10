@@ -73,12 +73,15 @@
              <td>
                <!--menuItem.name.replace('amp;', ''), menuItem.price, storeDetails.id,-->
                <!--searchResults[$parent.searchResultIndex].ordering.minimum"-->
-               <button class="btn btn-success btn-xs"
-                       ng-click="addToCart(menuItem.id, storeDetails.summary.name, menuItem.name.replace('amp;', ''),
-                       menuItem.price, storeDetails.id, cart)">
+
+               <button class="btn btn-success btn-xs" data-index="{{$index}}" ng-class="{noName: !ordererName}"
+                        data-toggle="modal" data-target="#addName"
+                        ng-click="prepareToAdd(menuItem.id, storeDetails.summary.name, menuItem.name,
+               menuItem.price, storeDetails.id)">
                  Add
                </button>
              </td>
+
            </tr>
          </tbody>
        </table>
@@ -98,4 +101,26 @@
     <div class="col-sm-3" ng-show="selectedCategory === menuCategory.name">
       <input type="text" placeholder="filters and such"/>
     </div>
+    <div class="modal fade" id="addName" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true"
+        >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Who's Ordering this Item?</h4>
+          </div>
+          <div class="modal-body">
+            Enter Name of Orderer: <input type="text" ng-model="$parent.ordererName"/>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal"
+                    ng-click="addToCart()">Save changes</button>
+          </div>
+        </div>
+      </div>
     </div>
+
+</div>
+

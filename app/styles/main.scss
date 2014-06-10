@@ -186,6 +186,13 @@ input.error{
   border: 1px solid #F20539;
 }
 
+td.error{
+  color: #F20539;
+  &:hover{
+    cursor: pointer;
+  }
+}
+
 .group-created{
   font-size: 12.5px;
   border-radius: 5px;
@@ -204,4 +211,18 @@ div.notes{
   margin-bottom: 10px;
 }
 
+nav li.inline {
+  display: inline-block;
+
+  & a{
+    margin-top: 7px;
+    display: inline-block;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+}
+
+.dropdown-backdrop{
+  position: static;
+}
 

@@ -6,10 +6,15 @@ angular.module('SlushFunApp')
       $scope.formattedGroupName = "";
       $scope.groupNameExistsFirebase = false;
       $scope.groupCartCreated = false;
+      $scope.hideModal = false;
       $scope.updateCart().then(function () {
         $scope.cartTotal = getCartTotal($scope.cart.items);
       });
 
+
+      $scope.$on('$stateChangeStart', function(evt, toState, toParams, fromState, fromParams) {
+        if (fromState === 'index.cart') {$scope.hideModal = true;}
+      });
 
 
       $scope.createGroupCartFirebase = function(groupName){

@@ -1,7 +1,7 @@
 angular.module('SlushFunApp')
   .controller('DirectStoreDetailsCtrl', ['$scope', 'deliveryDataService', '$state', 'shoppingCartService',
-    '$stateParams',
-    function ($scope, deliveryDataService, $state, shoppingCartService, $stateParams) {
+    '$stateParams', '$rootScope',
+    function ($scope, deliveryDataService, $state, shoppingCartService, $stateParams, $rootScope) {
       $scope.storeId = $stateParams.storeId;
       $scope.itemsPerPage = 5;
       $scope.currentPage = 0;
@@ -60,8 +60,9 @@ angular.module('SlushFunApp')
       };
 
 
-      $scope.addToCart = function (menuItemId, storeName,menuItemName, menuItemPrice, storeId, minOrderAmount) {
-        shoppingCartService.addToCart(menuItemId, storeName, menuItemName, menuItemPrice, storeId,  minOrderAmount);
+      $scope.addToCart = function () {
+        shoppingCartService.addToCart($scope.menuItemId, $scope.storeName, $scope.itemName, $scope.itemPrice,
+          $scope.storeId, $scope.cart, $scope.ordererName);
         $scope.updateCart();
       }
 
@@ -101,6 +102,14 @@ angular.module('SlushFunApp')
         $scope.currentPage = 0;
       }
 
+      $scope.prepareToAdd = function (menuItemId, storeName, itemName, itemPrice, storeId, minOrderAmount) {
+        $scope.menuItemId = menuItemId;
+        $scope.storeName = storeName;
+        $scope.itemName = itemName;
+        $scope.itemPrice = itemPrice;
+        $scope.storeId = storeId;
+        $scope.minOrderAmount = minOrderAmount;
+      }
 
       //api returns myriad different categories; hence this ugly switch statement..
       $scope.formatMenuCategory = function (menuCategory) {

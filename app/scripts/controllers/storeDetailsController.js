@@ -13,7 +13,7 @@ angular.module('SlushFunApp')
       var prevStoreDetails = {};
       $scope.itemsPerPage = 5;
       $scope.currentPage = 0;
-      console.log("store", $scope.$parent.storeDetails);
+      $scope.$parent.storeDetails.then(function(result){console.log(result)});
       //TODO add in fix for jumping too quickly thru results (fix: make api call if nextStoreDetails not yet loaded..)
       // potential fix: disable next button while loading...
 
@@ -78,11 +78,11 @@ angular.module('SlushFunApp')
 
       
       $scope.addToCart = function (menuItemId, storeName, menuItemName, menuItemPrice, storeId, minOrderAmount,
-                                   deliveryFee)
+                                   deliveryFee, timeNeeded)
       {
 
-        shoppingCartService.addToCart(menuItemId, storeName, menuItemName, menuItemPrice, storeId, undefined,
-                                      minOrderAmount, deliveryFee);
+        shoppingCartService.addToCart(menuItemId, storeName, menuItemName, menuItemPrice, storeId, minOrderAmount,
+                                      deliveryFee, timeNeeded);
           $scope.updateCart();
       }
 

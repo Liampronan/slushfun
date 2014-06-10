@@ -26,7 +26,7 @@
         <tr class="cart-bottom">
           <td></td>
           <td class="text-right cart-bottom"><b>Delivery Fee</b></td>
-          <td class="text-center cart-bottom">${{deliveryAPICart.deliveryFee.fees[0] || 0}}</td>
+          <td class="text-center cart-bottom">${{deliveryAPICart.fees[0].value || 0}}</td>
         </tr>
         <tr class="cart-bottom">
           <td></td>
@@ -41,7 +41,7 @@
         <tr class="cart-bottom">
           <td></td>
           <td class="cart-bottom text-right"><b>Total</b></td>
-          <td class="text-center cart-bottom">${{deliveryAPICart.total}}</td>
+          <td class="text-center cart-bottom">${{finalTotal}}</td>
         </tr>
       </tbody>
     </table>
@@ -52,19 +52,28 @@
       {{locationData.city}}, {{locationData.state}} {{locationData.zip_code}}
     </div>
 
-    <div class="checkout col-sm-5 col-sm-offset-1"  ng-show="paymentMethod === 'creditCard'">
+    <div class="checkout col-sm-5 col-sm-offset-1"  ng-show="paymentType === 'creditCard'">
       Your Credit Card: {{creditCards[0].type}} <br>
       Last Four Digits: {{creditCards[0].last_four}}
     </div>
   </div>
 
   <div class="col-sm-8 col-sm-offset-2 text-center">
-    <div class="row checkout" ng-show="!paymentMethod === 'creditCard'">
-      Your Payment method: {{paymentMethod}}
+    <div class="row checkout" ng-show="!paymentType === 'creditCard'">
+      Your Payment method: {{paymentType}}
     </div>
   </div>
 
-  {{notes}}
+  <div class="col-sm-8 col-sm-offset-2 text-center">
+    <div class="row checkout" >
+      <button class="btn btn-success"
+              ng-click="checkOut()">
+        Confirm Order and Pay
+      </button>
+    </div>
+  </div>
+
+
 
 </div>
 

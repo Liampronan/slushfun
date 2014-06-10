@@ -1,10 +1,15 @@
 <div class="container">
+  <script>
+    $('div').removeClass('modal-backdrop');
+  </script>
   <div class="hero-unit store-details text-center">
     <h3> {{cart.groupName}}'s Cart for <a ui-sref="index.store({ storeId: cart.storeId})">{{cart.storeName}}</a></h3>
     <h6> Link to Share: <a href="{{groupCartURL}}" class="underline">{{groupCartURL}}</a></h6>
+    <a ui-sref="index.store({ storeId: cart.storeId})" class="btn btn-primary">{{cart.storeName}}'s Menu</a>
+  </div>
+  <div ng-show="isGroupOrder">
 
   </div>
-
   <div class="col-sm-8 col-sm-offset-2">
     <table class="table table-striped table-hover text-center cart-main">
       <thead>
@@ -16,28 +21,47 @@
       <tbody>
       <tr ng-repeat="item in cart.items">
         <td>{{item.menuItemName}}</td>
-        <td>Test 2</td>
+        <td>{{item.ordererName || "Order Creator"}}</td>
         <td>${{item.menuItemPrice}}</td>
         <td><button class="btn btn-danger btn-xs radius" ng-click="removeFromCart($index)">✗</button></td>
       </tr>
       </tbody>
       <tbody>
-      <tr class="cart-bottom">
+      <tr class="cart-bottom" ng-show="getCartTotalNonAPI(cart.items) < cart.minOrderAmount">
         <td></td>
-        <td class="text-right cart-bottom"><b>Delivery Fee</b></td>
-        <td class="text-center cart-bottom">${{cart.deliveryFee}}</td>
+        <td class="text-right cart-bottom"><b>SubTotal</b></td>
+        <td class="text-center cart-bottom" data-toggle="tooltip" data-placement="right"
+            title="Subtotal is less than merchant's minimum order amount - please add items or change merchant"
+            ng-class="{error: getCartTotalNonAPI(cart.items) < cart.minOrderAmount}">
+          ${{getCartTotalNonAPI(cart.items)}}
+        </td>
       </tr>
+      <tr class="cart-bottom" ng-show="getCartTotalNonAPI(cart.items) > cart.minOrderAmount">
+        <td></td>
+        <td class="text-right cart-bottom"><b>SubTotal</b></td>
+        <td class="text-center cart-bottom">
+          ${{getCartTotalNonAPI(cart.items)}}
+        </td>
+      </tr>
+      <!--<tr class="cart-bottom">-->
+        <!--<td></td>-->
+        <!--<td class="text-right cart-bottom"><b>Delivery Fee</b></td>-->
+        <!--<td class="text-center cart-bottom">${{cart.deliveryFee}}</td>-->
+      <!--</tr>-->
       <tr class="cart-bottom">
         <td></td>
-        <td class="cart-bottom text-right"><b>Approx Total (before Taxes)</b></td>
+        <td class="cart-bottom text-right"><b>Approx Total (before Taxes/Fees)</b></td>
         <td class="text-center cart-bottom">${{cartTotal}}</td>
       </tr>
       </tbody>
     </table>
   </div>
   <div class="col-sm-8 col-sm-offset-2 text-center">
-    <a ui-sref="index.checkout" class="btn btn-success">Begin Checkout</a>
+    <a ui-sref="index.checkout" class="btn btn-success"
+       ng-class="{disabled: getCartTotalNonAPI(cart.items) < cart.minOrderAmount}">
+      Begin Checkout</a>
   </div>
+
 
 
 </div>

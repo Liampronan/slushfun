@@ -1,7 +1,7 @@
 // https://api.delivery.com/merchant/search/delivery?client_id=NWUxNmJiNGIyMWMxNDE1YjRhMjY4OWM3OGUwNGZmOGYw&address=199 Water St 10038
 angular.module('SlushFunApp')
-  .service('deliveryDataService', ['$http', '$stateParams', 'localStorageService', '$q',
-    function ($http, $stateParams, localStorageService, $q) {
+  .service('deliveryDataService', ['$http', '$stateParams', 'localStorageService', '$q', 'shoppingCartService',
+    function ($http, $stateParams, localStorageService, $q, shoppingCartService) {
     //using cors-anywhere as an api proxy to get around CORS issues with
     //app calls from client.. TODO: setup own, quicker proxy b4 live
     var baseUrl = "http://cors-anywhere.herokuapp.com/api.delivery.com/merchant/";
@@ -55,6 +55,16 @@ angular.module('SlushFunApp')
       return localStorageService.get('APICart');
     }
 
+    this.storeDeliveryAPICCLocalStorage = function (cards) {
+      localStorageService.add('APICards', cards);
+    }
+
+    this.getDeliveryAPICCLocalStorage = function(){
+      return localStorageService.get('APICards');
+    }
+
+
+
     this.getAPIToken = function (APIUserCode) {
       var deferred = $q.defer();
 
@@ -76,6 +86,28 @@ angular.module('SlushFunApp')
       return localStorageService.get('APIUsercode')
     }
 
+//    this.addLocationDataToLocalStorage = function(locationData){
+//        localStorageService.add('locationData', locationData)
+//      }
+
+    this.getLocations = function () {
+      var deferred = $q.defer();
+      var access_token = _this.getAPIAccessTokenFromLocalStorage();
+      $http({
+        url: 'http://cors-anywhere.herokuapp.com/sandbox.delivery.com/customer/location/',
+        method: "GET",
+        headers: {'Content-Type': 'application/x-www-form-urlencoded',
+          'Access-Control-Allow-Origin': '*',
+          'authorization': access_token}
+      }).success(function (data) {
+          localStorageService.add('APIlocations', data);
+          deferred.resolve(data);
+        }).error(function (data) {
+          console.log(data)
+        })
+      return deferred.promise
+    }
+
     this.getCreditCardsAPI = function () {
       var deferred = $q.defer();
       var access_token = _this.getAPIAccessTokenFromLocalStorage();
@@ -93,6 +125,40 @@ angular.module('SlushFunApp')
       })
       return deferred.promise
     }
+
+      this.postLocation = function () {
+        var deferred = $q.defer();
+        var transform = function(data){
+          return $.param(data);
+        }
+        var access_token = _this.getAPIAccessTokenFromLocalStorage();
+        var locationData = _this.getLocationDataFromLocalStorage();
+        var phoneNumber = shoppingCartService.getPhoneNumber();
+        var url = 'http://cors-anywhere.herokuapp.com/sandbox.delivery.com/customer/location';
+        var data = {
+          street: locationData.street,
+          city: locationData.city,
+          zip_code: locationData.zip_code,
+          state: locationData.state,
+          phone: phoneNumber
+        };
+        var headers = {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Access-Control-Allow-Origin': '*',
+          'authorization': access_token
+        };
+        $http({
+          method: "post",
+          url: url,
+          data: data,
+          headers: headers,
+          transformRequest: transform
+        }).success(function (data) {
+            console.log(data);
+            deferred.resolve(data)
+          })
+        return deferred.promise
+      };
 
     this.postCartItem = function (cartItem, merchId) {
       var deferred = $q.defer();
@@ -126,6 +192,44 @@ angular.module('SlushFunApp')
         })
       return deferred.promise
     };
+
+    this.checkOut = function (merchId, paymentType, paymentId, instructions, tip) {
+
+      var deferred = $q.defer();
+      var transform = function(data){
+        return $.param(data);
+      }
+      var access_token = _this.getAPIAccessTokenFromLocalStorage();
+      var locationId = shoppingCartService.getLocationId();
+      var url = 'http://cors-anywhere.herokuapp.com/sandbox.delivery.com/customer/cart/' + merchId + '/checkout' ;
+      var data = {
+        order_type: "delivery",
+        payments: [
+          {
+            type: paymentType === 'creditCard' ? 'credit_card' : paymentType,
+            id: paymentId
+          }
+        ],
+        instructions: instructions,
+        tip: tip,
+        location_id: locationId
+      };
+      var headers = {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Access-Control-Allow-Origin': '*',
+        'authorization': access_token
+      };
+      $http({
+        method: "post",
+        url: url,
+        data: data,
+        headers: headers,
+        transformRequest: transform
+      }).success(function (data) {
+          deferred.resolve(data)
+        })
+      return deferred.promise
+    }
 
     this.getLocationDataFromLocalStorage = function () {
       return localStorageService.get('locationData')
