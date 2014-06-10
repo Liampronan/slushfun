@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b5af4ba-8261-4f44-9f04-2948d56523cb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/styles/main.css" afterPath="$PROJECT_DIR$/app/styles/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/styles/main.scss" afterPath="$PROJECT_DIR$/app/styles/main.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/directStoreDetails.html" afterPath="$PROJECT_DIR$/app/views/directStoreDetails.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SlushFund.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,7 +29,7 @@
       <file leaf-file-name="main.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/main.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="23" selection-start="1329" selection-end="1329" vertical-scroll-proportion="8.074074" vertical-offset="704" max-vertical-offset="1602">
+            <state line="27" column="23" selection-start="1329" selection-end="1329" vertical-scroll-proportion="-7.9259257" vertical-offset="272" max-vertical-offset="1602">
               <folding />
             </state>
           </provider>
@@ -44,10 +44,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="directStoreDetails.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="directStoreDetails.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/directStoreDetails.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="69" column="36" selection-start="3334" selection-end="3341" vertical-scroll-proportion="-3.3703704" vertical-offset="1060" max-vertical-offset="2916">
+            <state line="64" column="38" selection-start="3117" selection-end="3117" vertical-scroll-proportion="0.66179156" vertical-offset="790" max-vertical-offset="2916">
               <folding />
             </state>
           </provider>
@@ -89,10 +89,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.scss" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="main.scss" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/styles/main.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="253" column="16" selection-start="3396" selection-end="3396" vertical-scroll-proportion="0.49825785" vertical-offset="4268" max-vertical-offset="5274">
+            <state line="286" column="0" selection-start="3802" selection-end="3802" vertical-scroll-proportion="-16.592592" vertical-offset="4700" max-vertical-offset="5274">
               <folding />
             </state>
           </provider>
@@ -146,10 +146,10 @@
         <option value="$PROJECT_DIR$/app/views/groupCart.html" />
         <option value="$PROJECT_DIR$/app/views/deliveries.nearMe.details.html" />
         <option value="$PROJECT_DIR$/app/views/main.html" />
-        <option value="$PROJECT_DIR$/app/views/directStoreDetails.html" />
         <option value="$PROJECT_DIR$/app/views/checkout.html" />
         <option value="$PROJECT_DIR$/app/scripts/controllers/main.js" />
         <option value="$PROJECT_DIR$/app/styles/main.scss" />
+        <option value="$PROJECT_DIR$/app/views/directStoreDetails.html" />
       </list>
     </option>
   </component>
@@ -425,13 +425,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/directStoreDetails.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="36" selection-start="3334" selection-end="3341" vertical-scroll-proportion="-3.3703704" vertical-offset="1060" max-vertical-offset="2916">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/groupCart.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="28" column="14" selection-start="1331" selection-end="1366" vertical-scroll-proportion="-12.666667" vertical-offset="162" max-vertical-offset="1404">
@@ -469,14 +462,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/main.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="23" selection-start="1329" selection-end="1329" vertical-scroll-proportion="8.074074" vertical-offset="704" max-vertical-offset="1602">
+        <state line="27" column="23" selection-start="1329" selection-end="1329" vertical-scroll-proportion="-7.9259257" vertical-offset="272" max-vertical-offset="1602">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/styles/main.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="253" column="16" selection-start="3396" selection-end="3396" vertical-scroll-proportion="0.49825785" vertical-offset="4268" max-vertical-offset="5274">
+        <state line="286" column="0" selection-start="3802" selection-end="3802" vertical-scroll-proportion="-16.592592" vertical-offset="4700" max-vertical-offset="5274">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/directStoreDetails.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="64" column="38" selection-start="3117" selection-end="3117" vertical-scroll-proportion="0.66179156" vertical-offset="790" max-vertical-offset="2916">
           <folding />
         </state>
       </provider>

@@ -62,7 +62,7 @@
   <div class="col-sm-2" ng-class="menuCategory.name"
       ng-show="selectedCategory === menuCategory.name || selectedCategory === undefined">
     <a href="" ng-click="setSelected(menuCategory.name)">
-      <h4 class="text-center" ng-click="setSelectedCategory(menuCategory.name); getMenuItems(menuCategory)">
+      <h4 class="text-center underline" ng-click="setSelectedCategory(menuCategory.name); getMenuItems(menuCategory)">
         {{menuCategory.name.replace('amp;', '').replace('&','')}}
       </h4>
     </a>
