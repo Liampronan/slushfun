@@ -101,10 +101,12 @@ a:hover {
   height: 200px; }
 
 .right-arrow {
-  float: right; }
+  float: right;
+  margin-top: 10px; }
 
 .left-arrow {
-  float: left; }
+  float: left;
+  margin-top: 10px; }
 
 button.menu-subcategory {
   margin: 5px;

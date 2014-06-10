@@ -1,9 +1,9 @@
 <div class="store-search-result">
   <a ui-sref="index.deliveries.nearMe.details({ storeId: searchResult.id})"
      ng-click="$parent.setStoreSearchResultIndex($parent.getFilteredStoreIndex(searchResult.id))">
-    <h5 class="list-group-item-heading text-center bold">
+    <h5 class="list-group-item-heading no-lobster text-center bold">
       {{searchResult.summary.name}}</h5></a>
-  <h6 class="text-center smaller-head-text">{{searchResult.location.landmark}}</h6>
+  <h6 class="text-center no-lobster smaller-head-text">{{searchResult.location.landmark}}</h6>
   <div class="text-center">
     <span class="label label-success" ng-show="searchResult.ordering.is_open">Open</span>
     <span class="label label-danger" ng-show="!searchResult.ordering.is_open">Closed</span>

@@ -1,14 +1,14 @@
 <div class="container">
 <div class="hidden-xs store-details">
-  <h3 class="text-center" ng-show="storeDetails"> {{storeDetails.summary.name}}</h3>
-  <h6 class="text-center smaller-head-text">{{storeDetails.location.landmark}}</h6>
+  <h3 class="text-center no-lobster" ng-show="storeDetails"> {{storeDetails.summary.name}}</h3>
+  <h6 class="text-center no-lobster smaller-head-text">{{storeDetails.location.landmark}}</h6>
   <div class="text-center">
-    <h6 class="text-center bold label btn label-success"
+    <h6 class="text-center no-lobster bold label btn label-success"
         ng-show="isOpenForDelivery" data-toggle="tooltip" data-placement="right"
         title="Last Delivery: {{lastDeliveryTime | date: 'shortTime'}}">
         Open for Delivery
     </h6>
-   <h6 class="text-center bold label btn label-danger"
+   <h6 class="text-center no-lobster bold label btn label-danger"
         ng-show="!isOpenForDelivery" data-toggle="tooltip" data-placement="right"
         title="Next Delivery: {{nextDeliveryTime | date: 'shortTime'}}">
       Closed for Delivery
@@ -29,15 +29,15 @@
 
 </div>
 <div class="visible-xs store-details">
-  <h3 class="text-center" ng-show="storeDetails"> {{storeDetails.summary.name}}</h3>
-  <h6 class="text-center smaller-head-text">{{storeDetails.location.landmark}}</h6>
+  <h3 class="text-center no-lobster"  ng-show="storeDetails"> {{storeDetails.summary.name}}</h3>
+  <h6 class="text-center no-lobster smaller-head-text">{{storeDetails.location.landmark}}</h6>
   <div class="text-center">
-    <h6 class="text-center bold label btn label-success"
+    <h6 class="text-center no-lobster bold label btn label-success"
         ng-show="isOpenForDelivery" data-toggle="tooltip" data-placement="right"
         title="Last Delivery: {{lastDeliveryTime | date: 'shortTime'}}">
       Open for Delivery
     </h6>
-    <h6 class="text-center bold label btn label-danger"
+    <h6 class="text-center bold no-lobster label btn label-danger"
         ng-show="!isOpenForDelivery" data-toggle="tooltip" data-placement="right"
         title="Next Delivery: {{nextDeliveryTime | date: 'shortTime'}}">
       Closed for Delivery
@@ -62,7 +62,8 @@
   <div class="col-sm-2 well well-mod" ng-class="menuCategory.name"
       ng-show="selectedCategory === menuCategory.name || selectedCategory === undefined">
     <a href="" ng-click="setSelected(menuCategory.name)">
-      <h4 class="text-center underline" ng-click="setSelectedCategory(menuCategory.name); getMenuItems(menuCategory)">
+      <h4 class="text-center no-lobster underline"
+          ng-click="setSelectedCategory(menuCategory.name); getMenuItems(menuCategory)">
         {{menuCategory.name.replace('amp;', '').replace('&','')}}
       </h4>
     </a>
@@ -82,7 +83,7 @@
       </button>
     </div>
      <div class="col-sm-6 text-center" ng-show="selectedCategory === menuCategory.name">
-       <h5 class="underline bold text-center" >{{menuCategory.name.replace('amp;', '')}}</h5>
+       <h5 class="underline no-lobster bold text-center" >{{menuCategory.name.replace('amp;', '')}}</h5>
        <table class="table table-striped">
          <thead>
          <!--TODO: add sorting arrows (or hat) here-->

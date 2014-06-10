@@ -1,5 +1,5 @@
 <div ng-show="inSearchResults">
-  <h3 class="text-center near-me">{{searchMerchantType}} Results Near {{searchZip}}</h3>
+  <h3 class="text-center near-me no-lobster">{{searchMerchantType}} Results Near {{searchZip}}</h3>
   <div class="row search-filters">
     <div class="text-center input-group col-sm-8 col-sm-offset-2">
         <label for="deliveryMax">Max Delivery Fee ($): <input id="deliveryMax" type="number"
@@ -10,16 +10,10 @@
                                                                    class="text-center col-xs-6 col-xs-offset-3">
         </label>
       <div>
-        <label for="open">Only Show Open Restaurants
+        <label for="open">Only Show Open Merchants
         <input type="checkbox" id='open' ng-change="showClosed()" ng-model="onlyShowOpen" checked/></label>
       </div>
-      <div class="col-sm-6 col-sm-offset-3">
-        <label for="cuisineType">Select Cuisine Type
-          <select id="cuisineType" ng-model="cuisineType" class="black-text" ng-hide="onlyShowOpen"
-                  ng-options="t as t for t in cuisineTypes"/></select></label>
-        <select id="cuisineType" ng-model="cuisineType" class="black-text" ng-show="onlyShowOpen"
-                ng-options="t as t for t in filteredCuisineTypes  "/></select></label>
-      </div>
+
 
     </div>
   </div>
@@ -27,21 +21,20 @@
 
   <div class="row">
     <div class="" ng-show="searchResult"
-         ng-repeat="searchResult in searchResults | filter: deliveryCharge | filter: orderMax | filter: isOpen
-         | filter: cuisineTypeFilter">
+         ng-repeat="searchResult in searchResults | filter: deliveryCharge | filter: orderMax | filter: isOpen">
          <span ng-switch on="$index % 3">
            <span ng-switch-when="0">
                <div class="col-sm-1"></div>
                <div class="well col-sm-2 col-sm-offset-1" ng-show="searchResult"
-                    restaurant search-result="searchResult"></div>
+                    booze-store search-result="searchResult"></div>
            </span>
            <span ng-switch-when="1">
                <div class="well col-sm-2 col-sm-offset-1" ng-show="searchResult"
-                    restaurant search-result="searchResult"></div>
+                    booze-store search-result="searchResult"></div>
            </span>
            <span ng-switch-when="2">
                <div class="well col-sm-2 col-sm-offset-1" ng-show="searchResult"
-                    restaurant search-result="searchResult"></div>
+                    booze-store search-result="searchResult"></div>
                <div class="col-sm-2"></div>
              <div class="row"></div>
           </span>
