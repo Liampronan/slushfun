@@ -21,7 +21,7 @@ angular.module('SlushFunApp')
       }
 
       this.addToCart = function (menuItemId, storeName, menuItemName, menuItemPrice, storeId, scopeCart, ordererName,
-                                 minOrderAmount, deliveryFee, timeToDeliver) {
+                                 ordererNotes, minOrderAmount, deliveryFee, timeToDeliver) {
         var currentCart = localStorageService.get('cart');
         var locationData = localStorageService.get('locationData');
         var updatedCart;
@@ -32,7 +32,9 @@ angular.module('SlushFunApp')
               menuItemId: menuItemId,
               menuItemName: menuItemName,
               menuItemPrice: menuItemPrice,
-              ordererName: ordererName
+              ordererName: ordererName,
+              ordererNotes: ordererNotes,
+              votes: []
             });
             return
           }

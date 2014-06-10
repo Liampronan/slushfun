@@ -161,6 +161,22 @@ angular.module('SlushFunApp')
 //        console.log((toFixed(tip) + toFixed(cartTotal)).toFixed(2))
         $scope.finalTotal = $scope.deliveryAPICart.total + getTip();
       }
+      $scope.prepareVote = function(cartItemHashKey){
+        $scope.voteItem = cartItemHashKey;
+      }
+
+      $scope.vote = function(){
+        angular.forEach($scope.cart.items, function(item){
+          if (item.$$hashKey === $scope.voteItem){
+            var prevNotes = item.ordererNotes || "";
+            item.ordererNotes = "; " +  prevNotes + " " + $scope.voterNotes + "-" + $scope.voterName;
+            if (!item.votes) {item.votes = []}
+            item.votes.push($scope.voterName);
+          }
+        });
+        console.log($scope.voteItem, $scope.voterName, $scope.voterNotes)
+        console.log($scope.cart.items);
+      }
 
       $scope.checkOut = function () {
         var cards = deliveryDataService.getDeliveryAPICCLocalStorage();

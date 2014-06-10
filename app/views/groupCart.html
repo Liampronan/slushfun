@@ -3,13 +3,13 @@
     $('div').removeClass('modal-backdrop');
   </script>
   <div class="hero-unit store-details text-center hidden-xs">
-    <h3> {{cart.groupName}}'s Cart for <a ui-sref="index.store({ storeId: cart.storeId})">{{cart.storeName}}</a></h3>
-    <h6> Link to Share: <a href="{{groupCartURL}}" class="underline">{{groupCartURL}}</a></h6>
+    <h3 class="no-lobster"> {{cart.groupName}}'s Cart for <a ui-sref="index.store({ storeId: cart.storeId})">{{cart.storeName}}</a></h3>
+    <h6 class="no-lobster"> Link to Share: <a href="{{groupCartURL}}" class="underline">{{groupCartURL}}</a></h6>
     <a ui-sref="index.store({ storeId: cart.storeId})" class="btn btn-warning">{{cart.storeName}}'s Menu</a>
   </div>
   <div class="visible-xs text-center store-details">
-    <h3> {{cart.groupName}}'s Cart for <a ui-sref="index.store({ storeId: cart.storeId})">{{cart.storeName}}</a></h3>
-    <h6> Link to Share: <a href="{{groupCartURL}}" class="underline">{{groupCartURL}}</a></h6>
+    <h3 class="no-lobster"> {{cart.groupName}}'s Cart for <a ui-sref="index.store({ storeId: cart.storeId})">{{cart.storeName}}</a></h3>
+    <h6 class="no-lobster"> Link to Share: <a href="{{groupCartURL}}" class="underline">{{groupCartURL}}</a></h6>
     <a ui-sref="index.store({ storeId: cart.storeId})" class="btn btn-warning">{{cart.storeName}}'s Menu</a>
   </div>
   <div ng-show="isGroupOrder">
@@ -20,15 +20,25 @@
       <thead>
       <th class="text-center">Item</th>
       <th class="text-center">Ordered by</th>
+      <th class="text-center">Notes</th>
       <th class="text-center">Price</th>
       <th class="text-center">Delete</th>
+      <th class="text-center">Vote</th>
+      <th class="text-center">Score</th>
       </thead>
       <tbody>
       <tr ng-repeat="item in cart.items">
         <td>{{item.menuItemName}}</td>
         <td>{{item.ordererName || "Order Creator"}}</td>
+        <td>{{item.ordererNotes}}</td>
         <td>${{item.menuItemPrice}}</td>
-        <td><button class="btn btn-danger btn-xs radius" ng-click="removeFromCart($index)">✗</button></td>
+        <td><button class="btn btn-primary btn-xs radius" ng-click="removeFromCart($index)">✗</button></td>
+        <td><button class="btn btn-success btn-xs radius" data-toggle="modal" data-target="#addName"
+                    ng-click="prepareVote(item.$$hashKey)">♥</button></td>
+        <td><button class="btn btn-default btn-xs radius" data-toggle="tooltip" data-placement="right"
+                    title="Votes from: {{item.votes.join() || 'no one yet'}}">
+          {{item.votes.length || 0}}
+        </button></td>
       </tr>
       </tbody>
       <tbody>
@@ -55,8 +65,12 @@
       <!--</tr>-->
       <tr class="cart-bottom">
         <td></td>
+        <td></td>
         <td class="cart-bottom text-right"><b>Approx Total (before Taxes/Fees)</b></td>
         <td class="text-center cart-bottom">${{cartTotal}}</td>
+        <td></td>
+        <td></td>
+        <td></td>
       </tr>
       </tbody>
     </table>
@@ -66,6 +80,29 @@
        ng-class="{disabled: getCartTotalNonAPI(cart.items) < cart.minOrderAmount}">
       Begin Checkout</a>
   </div>
+
+  <div class="modal fade" id="addName" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+       aria-hidden="true"
+      >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title no-lobster" id="myModalLabel">Who's Voting for this Item?</h4>
+        </div>
+        <div class="modal-body">
+          Your Name: <input type="text" ng-model="$parent.voterName"/>
+          Notes: <input type="text" ng-model="$parent.voterNotes"/>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-warning" data-dismiss="modal"
+                  ng-click="vote()">Vote</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 
 

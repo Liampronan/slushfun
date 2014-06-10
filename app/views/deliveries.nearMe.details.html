@@ -100,15 +100,15 @@
     </div>
 
   </div>
-  <h3 class="text-center no-lobster"><b class="underline no-lobster" ng-show="!selectedCategory">Menu Categories</b></h3>
-  <div class="row menu-item text-center">
+  <!--<h3 class="text-center no-lobster"><b class="underline no-lobster" ng-show="!selectedCategory">Menu Categories</b></h3>-->
+  <div class="row menu-item text-center hidden-xs">
     <span ng-repeat="menuCategory in storeDetails.menu">
     <div>
       <div class="col-sm-3 well-mod well" ng-class="menuCategory.name"
            ng-show="selectedCategory === menuCategory.name || selectedCategory === undefined">
 
         <a href="" ng-click="setSelected(menuCategory.name)">
-          <h4 class="text-center" ng-click="setSelectedCategory(menuCategory.name); getMenuItems(menuCategory)">
+          <h4 class="text-center no-lobster" ng-click="setSelectedCategory(menuCategory.name); getMenuItems(menuCategory)">
             {{menuCategory.name.replace('amp;', '').replace('&','')}}
           </h4>
         </a>
@@ -133,8 +133,8 @@
 
 
 
-       <div class="col-sm-6 text-center" ng-show="selectedCategory === menuCategory.name">
-         <h5 class="underline bold text-center" >{{menuCategory.name.replace('amp;', '')}}</h5>
+       <div class="col-sm-6 text-center " ng-show="selectedCategory === menuCategory.name">
+         <h5 class="underline bold no-lobster text-center" >{{menuCategory.name.replace('amp;', '')}}</h5>
          <table class="table table-striped">
            <thead>
            <!--TODO: add sorting arrows (or hat) here-->
@@ -183,6 +183,87 @@
       <!--</div>-->
 
     </div>
+
+  <div class="row menu-item text-center visible-xs">
+    <span ng-repeat="menuCategory in storeDetails.menu">
+    <div>
+      <div class="" ng-class="menuCategory.name"
+           ng-show="selectedCategory === menuCategory.name || selectedCategory === undefined">
+
+        <a href="" ng-click="setSelected(menuCategory.name)">
+          <h4 class="text-center no-lobster" ng-click="setSelectedCategory(menuCategory.name); getMenuItems(menuCategory)">
+            {{menuCategory.name.replace('amp;', '').replace('&','')}}
+          </h4>
+        </a>
+
+        <div class="delivery-menu-photo text-center"
+             ng-show="selectedCategory === menuCategory.name || selectedCategory === undefined">
+          <a href="" ng-click="setSelectedCategory(menuCategory.name); getMenuItems(menuCategory)">
+            <img ng-src="/images/{{formatMenuCategory(menuCategory.name.toLowerCase())}}_stock.jpg" alt=""/>
+          </a>
+        </div>
+        <br/>
+        <div class="text-center">
+          <button class="btn btn-warning" ng-click="unsetSelectedCategory()"
+                  ng-show="selectedCategory === menuCategory.name" >
+            ← Back to Categories
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+
+   <div class="col-sm-6 text-center" ng-show="selectedCategory === menuCategory.name">
+         <h5 class="underline bold no-lobster text-center" >{{menuCategory.name.replace('amp;', '')}}</h5>
+         <table class="table table-striped">
+           <thead>
+           <!--TODO: add sorting arrows (or hat) here-->
+           <th class="text-center">Name</th>
+           <th class="text-center">Price</th>
+           <th class="text-center">Cart</th>
+           </thead>
+           <tbody>
+           <tr ng-repeat="menuItem in menuItems  | offset: currentPage*itemsPerPage | limitTo: itemsPerPage
+             | orderBy: 'name' " class="menu-item">
+             <td>
+               <!--TODO: REFA this to remove this on results themselves or create filter..-->
+               {{menuItem.name.replace('amp;', '')}}
+             </td>
+             <td>
+               ${{menuItem.price}}
+             </td>
+             <td>
+               <button class="btn btn-success btn-xs"
+                       ng-click="addToCart(menuItem.id, searchResults[$parent.searchResultIndex].summary.name,
+                         menuItem.name, menuItem.price, searchResults[$parent.searchResultIndex].id,
+                         searchResults[$parent.searchResultIndex].ordering.minimum,
+                         searchResults[$parent.searchResultIndex].ordering.time_needed)">
+                 Add
+               </button>
+             </td>
+           </tr>
+           </tbody>
+         </table>
+         <div class="row">
+           <div class="col-xs-6 text-left">
+             <button class="btn btn-warning btn-xs" ng-if="currentPage > 0" ng-click="prevPage()">
+               Prev 5
+             </button>
+           </div>
+           <div class="col-xs-6 text-right">
+             <button class="btn btn-warning btn-xs" ng-if="currentPage < menuItems.length / itemsPerPage - 1"
+                     ng-click="nextPage()">Next 5</button>
+           </div>
+         </div>
+         <br/>
+
+       </div>
+      <!--<div class="col-sm-3" ng-show="selectedCategory === menuCategory.name">-->
+        <!--<input type="text" placeholder="filters and such"/>-->
+      <!--</div>-->
+
+  </div>
 
 
 </div>

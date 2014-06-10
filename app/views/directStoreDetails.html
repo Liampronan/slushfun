@@ -59,7 +59,7 @@
 </div>
 <div class=" menu-item ">
   <span ng-repeat="menuCategory in storeMenu.menu">
-  <div class="col-sm-2 well well-mod" ng-class="menuCategory.name"
+  <div class="col-sm-3 well well-mod" ng-class="menuCategory.name"
       ng-show="selectedCategory === menuCategory.name || selectedCategory === undefined">
     <a href="" ng-click="setSelected(menuCategory.name)">
       <h4 class="text-center no-lobster underline"
@@ -68,20 +68,21 @@
       </h4>
     </a>
 
-    <!--<div class="delivery-menu-photo text-center"-->
-         <!--ng-show="selectedCategory === menuCategory.name || selectedCategory === undefined">-->
-      <!--<a href="" ng-click="setSelectedCategory(menuCategory.name); getMenuItems(menuCategory)">-->
-        <!--<img ng-src="/images/{{formatMenuCategory(menuCategory.name.toLowerCase())}}_stock.jpg" alt=""/>-->
-      <!--</a>-->
-    <!--</div>-->
+    <div class="delivery-menu-photo text-center"
+         ng-show="selectedCategory === menuCategory.name || selectedCategory === undefined">
+      <a href="" ng-click="setSelectedCategory(menuCategory.name); getMenuItems(menuCategory)">
+        <img ng-src="/images/{{formatMenuCategory(menuCategory.name.toLowerCase())}}_stock.jpg" alt=""/>
+      </a>
+    </div>
     <br/>
-  </div>
     <div class="text-center">
       <button class="btn btn-warning" ng-click="unsetSelectedCategory()"
               ng-show="selectedCategory === menuCategory.name" >
         ← Back to Categories
       </button>
     </div>
+  </div>
+
      <div class="col-sm-6 text-center" ng-show="selectedCategory === menuCategory.name">
        <h5 class="underline no-lobster bold text-center" >{{menuCategory.name.replace('amp;', '')}}</h5>
        <table class="table table-striped">
@@ -139,10 +140,11 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="myModalLabel">Who's Ordering this Item?</h4>
+            <h4 class="modal-title" id="myModalLabel">Who's Suggesting this Item?</h4>
           </div>
           <div class="modal-body">
-            Enter Name of Orderer: <input type="text" ng-model="$parent.ordererName"/>
+            Your Name: <input type="text" ng-model="$parent.ordererName"/>
+            Notes: <input type="text" ng-model="$parent.ordererNotes"/>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

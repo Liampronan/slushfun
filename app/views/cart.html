@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="hero-unit store-details hidden-xs text-center" ng-hide="groupCart">
-    <h3>My Cart for <a ui-sref="index.store({ storeId: cart.storeId})">{{cart.storeName}}</a></h3>
+  <div class="hero-unit store-details  hidden-xs text-center" ng-hide="groupCart">
+    <h3 class="no-lobster">My Cart for <a ui-sref="index.store({ storeId: cart.storeId})">{{cart.storeName}}</a></h3>
     <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#create-group-order"
             ng-hide="groupCartCreated">
       Create Group Order
@@ -48,7 +48,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title text-center" id="myModalLabel">Create Group Order</h4>
+          <h4 class="modal-title no-lobster text-center" id="myModalLabel">Create Group Order</h4>
         </div>
         <div class="modal-body text-center">
           This creates a link for your friends so that they can add their orders to your cart.
@@ -80,8 +80,8 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal" ng-show="!groupCartCreated"s>Close</button>
-          <button type="button" class="btn btn-success" ng-show="groupCartCreated"
-                  ui-sref="index.group_cart({groupId: formattedGroupName})">Go to group cart </button>
+          <a type="button" class="btn btn-success" ng-show="groupCartCreated"
+                  href="{{groupCartURL}}">Go to group cart </a>
           <button type="button" class="btn btn-primary" ng-click='createGroupCartFirebase(groupName)'
                   ng-show="!groupCartCreated">
             Create Group
