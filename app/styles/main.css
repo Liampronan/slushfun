@@ -180,7 +180,10 @@ nav li.inline {
   margin-top: 50px; }
 
 .top-margin-md {
-  margin-top: 75px; }
+  margin-top: 50px; }
+
+.sub-header {
+  margin-bottom: 30px; }
 
 .nope {
   display: none !important; }
