@@ -220,3 +220,10 @@ label.text-center {
 
 .glyphicon-comment:hover {
   cursor: pointer; }
+
+.carousel-inner img {
+  margin-left: 250px;
+  width: 50%; }
+
+.carousel-caption {
+  bottom: -20px; }

@@ -79,6 +79,11 @@
           templateUrl: '/views/successfulDelivery.html',
           controller: 'GroupCartCtrl'
         })
+        .state('index.howItWorks', {
+          url: 'how_it_works',
+          templateUrl: '/views/howItWorks.html',
+          controller: 'WorksCtrl'
+        })
 
     })
     .constant('FBURL', 'https://slushfun.firebaseio.com/');
