@@ -2,9 +2,10 @@
   <h3 class="text-center near-me">{{searchMerchantType}} Results Near {{searchZip}}</h3>
   <div class="row search-filters">
     <div class="col-sm-2 col-sm-offset-3">
-      <div class="row">
         <p class="filter col-sm-9">Max Delivery Fee ($):</p><input ng-model="deliveryMax" class="col-sm-3">
-      </div>
+    </div>
+    <div class="col-sm-2 col-sm-offset-1">
+        <p class="filter col-sm-9">Max Minimum Order ($):</p><input ng-model="minOrderMax" class="col-sm-3">
     </div>
     <div class="col-sm-2 col-sm-offset-1">
       <div class="row">
@@ -16,7 +17,7 @@
 
   <div class="row">
     <div class="" ng-show="searchResult"
-         ng-repeat="searchResult in searchResults | filter: deliveryCharge | filter: orderMax">
+         ng-repeat="searchResult in searchResults | filter: deliveryCharge | filter: orderMax | filter: showOpen">
          <span ng-switch on="$index % 3">
            <span ng-switch-when="0">
                <div class="col-sm-1"></div>
