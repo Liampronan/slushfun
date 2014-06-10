@@ -1,22 +1,47 @@
-<div class="hero-unit " ng-show="inDelivery">
-  <h3 class="text-center">Find Delivery Spots Near You </h3>
-  <div class="row form-group">
+<div class="container">
+  <div class="hero-unit hidden-xs" ng-show="inDelivery">
+    <h1 class="text-center lobster">give 'N takeout</h1>
+    <h3 class="text-center">Feed Others While Feeding Yourself</h3>
+    <div class="row form-group">
 
-    <div class="col-sm-6">
-      <label for="searchAddress" class="text-center">Address:</label>
-      <input type="text" id="searchAddress" ng-model="searchAddress" class="text-center form-control"
-             placeholder="123 Fake St"/>
+      <div class="col-sm-6">
+        <label for="searchAddress" class="text-center">Address:</label>
+        <input type="text" id="searchAddress" ng-model="searchAddress" class="text-center form-control"
+               placeholder="123 Fake St"/>
+      </div>
+
+      <div class="col-sm-6">
+        <label for="searchZip" class="text-center">Zip Code:</label>
+        <input type="text" id="searchZip" ng-model="searchZip" class="text-center form-control"
+               placeholder="90210"/>
+      </div>
+
     </div>
-
-    <div class="col-sm-6">
-      <label for="searchZip" class="text-center">Zip Code:</label>
-      <input type="text" id="searchZip" ng-model="searchZip" class="text-center form-control"
-             placeholder="90210"/>
+    <div class="text-center">
+      <button class="text-center btn btn-warning" ng-click="searchDeliveries()">Search</button>
     </div>
-
   </div>
-  <div class="text-center">
-    <button class="text-center btn btn-warning" ng-click="searchDeliveries()">Search</button>
+  <div class="visible-xs">
+    <h1 class="text-center lobster">give 'N takeout</h1>
+    <h3 class="text-center">Feed Others While Feeding Yourself</h3>
+    <div class="row form-group">
+
+      <div class="col-sm-6">
+        <label for="searchAddress" class="text-center">Address:</label>
+        <input type="text" id="searchAddress" ng-model="searchAddress" class="text-center form-control"
+               placeholder="123 Fake St"/>
+      </div>
+
+      <div class="col-sm-6">
+        <label for="searchZip" class="text-center">Zip Code:</label>
+        <input type="text" id="searchZip" ng-model="searchZip" class="text-center form-control"
+               placeholder="90210"/>
+      </div>
+
+    </div>
+    <div class="text-center">
+      <button class="text-center btn btn-warning" ng-click="searchDeliveries()">Search</button>
+    </div>
   </div>
 </div>
 <div ui-view></div>

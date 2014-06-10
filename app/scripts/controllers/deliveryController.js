@@ -25,7 +25,9 @@ angular.module('SlushFunApp')
         getNearbyDeliveries(searchAddressZip, searchMerchantType)
           .then(function(result){
             $scope.searchResults = result.data.merchants;
-            console.log($scope.searchResults);
+            $scope.cuisineTypes = result.data.cuisines;
+            $scope.cuisineTypes.unshift('All');
+            $scope.cuisineType = 'All';
             shoppingCartService.saveLocationLocalStorage(result.data.search_address);
             console.log("api results", result.data);
             $state.go("index.deliveries.nearMe");

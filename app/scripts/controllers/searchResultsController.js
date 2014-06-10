@@ -3,7 +3,6 @@ angular.module('SlushFunApp')
     function($scope, deliveryDataService, $state, localStorageService){
       $scope.inSearchResults = true;
       $scope.onlyShowOpen = true;
-
       $scope.storeDetails = {};
       $scope.$on('$stateChangeStart',
         function(evt, toState, toParams, fromState, fromParams) {
@@ -13,6 +12,10 @@ angular.module('SlushFunApp')
             $scope.inSearchResults = false;
           }
         });
+
+      $scope.$watch('searchResults', function(newV, oldV){
+        if (newV) setFilteredCusineType();
+      })
 
       if (!$scope.searchResults) {$state.go('index.deliveries');}
 
@@ -54,8 +57,32 @@ angular.module('SlushFunApp')
           }
       }
 
+      $scope.getFilteredStoreIndex = function (id){
+        var result = null;
+        $scope.searchResults.filter(function(obj, key){
+          if (obj.id===id) result = key
+        });
+        return result;
+      }
+
+      function setFilteredCusineType(){
+        var results = $scope.searchResults.filter(function(obj){return obj.ordering.is_open});
+        var cuisines = ['All'];
+        angular.forEach(results, function(obj){
+          angular.forEach(obj.summary.cuisines, function(cuisine){
+            if (cuisines.indexOf(cuisine) === -1){cuisines.push(cuisine)}
+          })
+        })
+        $scope.filteredCuisineTypes = cuisines;
+      }
+
       $scope.isOpen = function(merchant) {
         return merchant.ordering.is_open
+      }
+
+      $scope.cuisineTypeFilter = function(merchant) {
+        if ($scope.cuisineType === 'All') return true
+        return merchant.summary.cuisines.indexOf($scope.cuisineType) !== -1
       }
 
 

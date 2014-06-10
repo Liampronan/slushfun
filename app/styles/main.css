@@ -1,4 +1,5 @@
 @import url(bootsrap.css);
+@import url(http://fonts.googleapis.com/css?family=Lobster);
 html, body {
   margin: 20px;
   background-color: #2b3e50; }
@@ -8,11 +9,12 @@ body {
   background-color: #2b3e50; }
 
 .drink {
-  background-image: url("../images/glyphicons_000_glass.png");
+  background-image: url("../images/pizza.png");
+  background-size: cover;
   height: 23px;
   width: 25px;
   margin-top: 6px;
-  color: white; }
+  margin-left: -5px !important; }
 
 .navbar-brand {
   padding-right: 10px; }
@@ -148,6 +150,9 @@ div.checkout {
 div.notes {
   margin-bottom: 10px; }
 
+.inline-block {
+  display: inline-block; }
+
 nav li.inline {
   display: inline-block; }
   nav li.inline a {
@@ -158,3 +163,9 @@ nav li.inline {
 
 .dropdown-backdrop {
   position: static; }
+
+.black-text {
+  color: black; }
+
+.lobster {
+  font-family: 'Lobster', cursive; }
