@@ -7,12 +7,12 @@ $iconWhiteSpritePath: "../images/glyphicons-halflings-white.png";
 //  font-family: "lobster";
 //  src: url(sansation_light.woff);
 //}
-$background-color: #2b3e50;
+//$background-color: #2b3e50;
 $orange: #eea236;
 
 html, body {
   margin: 20px;
-  background-color: $background-color;
+  //background-color: $background-color;
 
 }
 
@@ -20,15 +20,16 @@ body {
     //background: #fafafa;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     //color: #333;
-    background-color: $background-color;
+    //background-color: $background-color;
 }
 
 .drink{
-  background-image: url('../images/pizza.png');
+  background-image: url('../images/glyphicons_000_glass.png');
   background-size: contain;
+  background-repeat: no-repeat;
   height: 25px;
   width: 25px;
-  margin-top: 8px;
+  margin-top: 10px;
   margin-left: -5px !important;
 }
 
@@ -42,7 +43,7 @@ body {
     font-size: 18px;
     font-weight: 200;
     line-height: 30px;
-    background-color: $background-color;
+    //background-color: $background-color;
     border-radius: 6px;
     padding: 60px;
 }
@@ -179,7 +180,7 @@ table{
   }
 
   & tr.cart-bottom td {
-    background-color: $background-color !important;
+    //background-color: $background-color !important;
   }
 }
 
@@ -293,3 +294,10 @@ nav li.inline {
   padding: 0px 5px 0px 5px;
 }
 
+.no-lobster {
+  font-family: "Cabin", Arial, sans-serif;
+}
+
+label.text-center{
+  font-size: 13px;
+}

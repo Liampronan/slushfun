@@ -9,11 +9,11 @@
           <span class="sr-only">Toggle navigation</span>
         </button>
 
-        <a ui-sref="index" class="navbar-brand lobster">give 'N takeout</a>
+        <a ui-sref="index" class="navbar-brand lobster">SlushFun</a>
         <span class="glyphicon drink navbar-brand"></span>
       </div>
 
-        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+      <div class="collapse navbar-collapse" id="navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li><a ng-show="user.isLoggedIn">Hello {{user.userName}}!</a></li>
           <li><a ui-sref="index.deliveries" class="hidden-xs">Find Deliveries</a></li>
@@ -40,29 +40,29 @@
           </li>
           <li class="dropdown visible-xs">
             <!--<a href="" class="dropdown-toggle " data-toggle="dropdown" onclick="return false">-->
-              <!--Cart <span class="badge">{{cart.items.length || 0}}</span> <b class="caret"></b>-->
+            <!--Cart <span class="badge">{{cart.items.length || 0}}</span> <b class="caret"></b>-->
             <!--</a>-->
             <!--<ul class="dropdown-menu">-->
-              <!--TODO confirm empty cart..-->
-              <a ui-sref="index.store({ storeId: cart.storeId})" ng-show="cart">
-                {{cart.storeName}}
-              </a>
+            <!--TODO confirm empty cart..-->
+            <a ui-sref="index.store({ storeId: cart.storeId})" ng-show="cart">
+              {{cart.storeName}}
+            </a>
 
-              <a ui-sref="index.cart" ng-show="cart && !isGroupCart">View Cart/Create Group Order</a>
-              <a ui-sref="index.groupCart({ groupId: formattedGroupName})"
-                     ng-show="cart && isGroupCart">
-                View Group Order
-              </a>
-              <a href="" ng-click="removeGroupCartFromLocalStorage()"
-                     ng-show="cart && isGroupCart">Create New Order</a>
-              <a href="" ng-click="emptyCart(cart)" ng-show="cart">Empty Cart</a>
-              <a href="" ng-click="" ng-hide="cart">No items in Cart</a>
-            </ul>
-          </li>
-          <li ng-show="user.isLoggedIn"><a href="" ng-click="logOut()">Logout</a></li>
+            <a ui-sref="index.cart" ng-show="cart && !isGroupCart">View Cart/Create Group Order</a>
+            <a ui-sref="index.groupCart({ groupId: formattedGroupName})"
+               ng-show="cart && isGroupCart">
+              View Group Order
+            </a>
+            <a href="" ng-click="removeGroupCartFromLocalStorage()"
+               ng-show="cart && isGroupCart">Create New Order</a>
+            <a href="" ng-click="emptyCart(cart)" ng-show="cart">Empty Cart</a>
+            <a href="" ng-click="" ng-hide="cart">No items in Cart</a>
         </ul>
+        </li>
+        <li ng-show="user.isLoggedIn"><a href="" ng-click="logOut()">Logout</a></li>
+        </ul>
+      </div>
     </div>
-  </div>
 </nav>
 
 <div class="hero-unit" ng-show="inIndex">

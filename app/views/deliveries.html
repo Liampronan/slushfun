@@ -1,7 +1,7 @@
 <div class="container">
   <div class="hero-unit hidden-xs" ng-show="inDelivery">
-    <h1 class="text-center lobster">give 'N takeout</h1>
-    <h6 class="text-center"></h6>
+    <h1 class="text-center lobster">SlushFun</h1>
+    <h3 class="text-center no-lobster">Plan and Order Your Party's Drinks with Friends</h3>
     <div class="row form-group">
 
       <div class="col-sm-6 ">
@@ -21,13 +21,12 @@
     <div class="text-center">
       <button class="text-center btn btn-warning" ng-click="searchDeliveries()">Search</button>
     </div>
-    <h5 class="text-center bottom-details">25% of your order is donated to a hunger-relief charity</h5>
-    <h5 class="text-center">Every $1 provides 9 meals</h5>
+
   </div>
 
   <div class="visible-xs" id="hide-fix" ng-class="{nope: !inDelivery}">
-    <h1 class="text-center lobster top-margin-md">give 'N takeout</h1>
-    <h3 class="text-center sub-header">Feed Others While Feeding Yourself</h3>
+    <h1 class="text-center top-margin-md">SlushFun</h1>
+    <h4 class="text-center no-lobster ">Plan and Order Your Party's Drinks with Friends</h4>
     <div class="row form-group">
 
       <div class="col-sm-6 text-center">
@@ -46,10 +45,8 @@
     <div class="text-center">
       <button class="text-center btn btn-warning" ng-click="searchDeliveries()">Search</button>
     </div>
-    <h5 class="text-center bottom-details-mobile">25% of your order is donated to a hunger-relief charity</h5>
-    <h5 class="text-center">Every $1 provides 9 meals</h5>
   </div>
 </div>
-
+<h5 ng-show="inDelivery" class=" text-center no-lobster">Currently only available in NYC, Chicago, and Hoboken</h5>
 <div ui-view></div>
 

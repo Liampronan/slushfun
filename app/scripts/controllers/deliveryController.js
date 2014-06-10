@@ -21,7 +21,7 @@ angular.module('SlushFunApp')
 
       $scope.searchDeliveries = function(){
         var searchAddressZip = formatSearchAddressZip($scope.searchAddress, $scope.searchZip);
-        var searchMerchantType = 'R';
+        var searchMerchantType = 'W';
         getNearbyDeliveries(searchAddressZip, searchMerchantType)
           .then(function(result){
             $scope.searchResults = result.data.merchants;

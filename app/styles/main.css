@@ -1,19 +1,18 @@
 @import url(bootsrap.css);
 @import url(http://fonts.googleapis.com/css?family=Lobster);
 html, body {
-  margin: 20px;
-  background-color: #2b3e50; }
+  margin: 20px; }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #2b3e50; }
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
 .drink {
-  background-image: url("../images/pizza.png");
+  background-image: url("../images/glyphicons_000_glass.png");
   background-size: contain;
+  background-repeat: no-repeat;
   height: 25px;
   width: 25px;
-  margin-top: 8px;
+  margin-top: 10px;
   margin-left: -5px !important; }
 
 .navbar-brand {
@@ -25,7 +24,6 @@ body {
   font-size: 18px;
   font-weight: 200;
   line-height: 30px;
-  background-color: #2b3e50;
   border-radius: 6px;
   padding: 60px; }
 
@@ -122,8 +120,6 @@ button.menu-subcategory {
 table cart-main {
   border-bottom: 1px solid #ebebeb;
   margin-bottom: 0px; }
-table tr.cart-bottom td {
-  background-color: #2b3e50 !important; }
 
 div.error {
   color: #F20539; }
@@ -211,3 +207,9 @@ nav li.inline {
 .well-mod {
   margin: 20px 45px;
   padding: 0px 5px 0px 5px; }
+
+.no-lobster {
+  font-family: "Cabin", Arial, sans-serif; }
+
+label.text-center {
+  font-size: 13px; }
