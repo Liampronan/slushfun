@@ -1,7 +1,7 @@
 <div class="container">
-  <button class="btn btn-primary left-arrow  hidden-xs" ng-show="$parent.searchResultIndex > 0"
+  <button class="btn btn-warning left-arrow  hidden-xs" ng-show="$parent.searchResultIndex > 0"
     ng-click="prevMerchant($parent.searchResultIndex)">❰ Previous Merchant </button>
-  <button class="btn btn-primary right-arrow hidden-xs" ng-show="$parent.searchResultIndex < searchResults.length"
+  <button class="btn btn-warning right-arrow hidden-xs" ng-show="$parent.searchResultIndex < searchResults.length"
       ng-click="nextMerchant($parent.searchResultIndex)">
     Next Merchant ❱
   </button>
@@ -17,7 +17,7 @@
     </h6></div>
     <div class="text-center">
       <span class="label" ng-class="{'label-success':searchResults[$parent.searchResultIndex].summary.overall_rating >= 80,
-                                     'label-warning' : searchResults[$parent.searchResultIndex].summary.overall_rating > 60
+                                     'label-primary' : searchResults[$parent.searchResultIndex].summary.overall_rating > 60
                                       && searchResults[$parent.searchResultIndex].summary.overall_rating < 80,
                                      'label-danger' : searchResults[$parent.searchResultIndex].summary.overall_rating < 60}"
             ng-show="searchResults[$parent.searchResultIndex].summary.overall_rating">
@@ -31,11 +31,11 @@
             searchResults[$parent.searchResultIndex].ordering.delivery_percent===0}}">
         No Delivery Fee
       </span>
-      <span class="label label-warning"
+      <span class="label label-primary"
             ng-show="{{searchResults[$parent.searchResultIndex].ordering.delivery_charge!=0}}">
         Delivery Fee: ${{searchResults[$parent.searchResultIndex].ordering.delivery_charge}}
       </span>
-      <span class="label label-warning"
+      <span class="label label-primary"
             ng-show="{{searchResults[$parent.searchResultIndex].ordering.delivery_percent!=0}}">
         Delivery Fee: {{searchResults[$parent.searchResultIndex].ordering.percent}}%
       </span>
@@ -44,7 +44,7 @@
             ng-show="{{searchResults[$parent.searchResultIndex].ordering.minimum===0}}">
         No Minimum
       </span>
-      <span class="label label-warning"
+      <span class="label label-primary"
             ng-show="{{searchResults[$parent.searchResultIndex].ordering.minimum!==0}}">
         Minimum: ${{searchResults[$parent.searchResultIndex].ordering.minimum}}
       </span>
@@ -63,7 +63,7 @@
       </h6></div>
     <div class="text-center">
       <span class="label" ng-class="{'label-success':searchResults[$parent.searchResultIndex].summary.overall_rating >= 80,
-                                     'label-warning' : searchResults[$parent.searchResultIndex].summary.overall_rating > 60
+                                     'label-primary' : searchResults[$parent.searchResultIndex].summary.overall_rating > 60
                                       && searchResults[$parent.searchResultIndex].summary.overall_rating < 80,
                                      'label-danger' : searchResults[$parent.searchResultIndex].summary.overall_rating < 60}"
             ng-show="searchResults[$parent.searchResultIndex].summary.overall_rating">
@@ -77,11 +77,11 @@
             searchResults[$parent.searchResultIndex].ordering.delivery_percent===0}}">
         No Delivery Fee
       </span>
-      <span class="label label-warning"
+      <span class="label label-primary"
             ng-show="{{searchResults[$parent.searchResultIndex].ordering.delivery_charge!=0}}">
         Delivery Fee: ${{searchResults[$parent.searchResultIndex].ordering.delivery_charge}}
       </span>
-      <span class="label label-warning"
+      <span class="label label-primary"
             ng-show="{{searchResults[$parent.searchResultIndex].ordering.delivery_percent!=0}}">
         Delivery Fee: {{searchResults[$parent.searchResultIndex].ordering.percent}}%
       </span>
@@ -90,7 +90,7 @@
             ng-show="{{searchResults[$parent.searchResultIndex].ordering.minimum===0}}">
         No Minimum
       </span>
-      <span class="label label-warning"
+      <span class="label label-primary"
             ng-show="{{searchResults[$parent.searchResultIndex].ordering.minimum!==0}}">
         Minimum: ${{searchResults[$parent.searchResultIndex].ordering.minimum}}
       </span>
@@ -98,31 +98,32 @@
     </div>
 
   </div>
-
-  <div class="row menu-item">
+  <h3 class="text-center"><b class="underline ">Menu Categories</b></h3>
+  <div class="row menu-item text-center">
     <span ng-repeat="menuCategory in storeDetails.menu">
-    <div class="col-sm-3 col-sm-offset-1" ng-class="menuCategory.name"
+    <div class="col-sm-3 " ng-class="menuCategory.name"
         ng-show="selectedCategory === menuCategory.name || selectedCategory === undefined">
       <a href="" ng-click="setSelected(menuCategory.name)">
-        <h4 class="text-center" ng-click="setSelected(menuCategory.name)">
+        <h4 class="text-center" ng-click="setSelectedCategory(menuCategory.name); getMenuItems(menuCategory)">
           {{menuCategory.name.replace('amp;', '').replace('&','')}}
         </h4>
       </a>
-      <div class="delivery-menu-photo text-center"
-           ng-show="selectedCategory === menuCategory.name || selectedCategory === undefined">
-        <a href="" ng-click="setSelectedCategory(menuCategory.name); getMenuItems(menuCategory)">
-          <img ng-src="/images/{{formatMenuCategory(menuCategory.name.toLowerCase())}}_stock.jpg" alt=""/>
-        </a>
-      </div>
-      <br/>
       <div class="text-center">
-        <button class="btn btn-primary" ng-click="unsetSelectedCategory()"
+        <button class="btn btn-warning" ng-click="unsetSelectedCategory()"
                 ng-show="selectedCategory === menuCategory.name" >
           ← Back to Categories
         </button>
       </div>
+      <!--<div class="delivery-menu-photo text-center"-->
+           <!--ng-show="selectedCategory === menuCategory.name || selectedCategory === undefined">-->
+        <!--<a href="" ng-click="setSelectedCategory(menuCategory.name); getMenuItems(menuCategory)">-->
+          <!--<img ng-src="/images/{{formatMenuCategory(menuCategory.name.toLowerCase())}}_stock.jpg" alt=""/>-->
+        <!--</a>-->
+      <!--</div>-->
+      <!--<br/>-->
+
     </div>
-       <div class="col-sm-5 text-center" ng-show="selectedCategory === menuCategory.name">
+       <div class="col-sm-6 text-center" ng-show="selectedCategory === menuCategory.name">
          <h5 class="underline bold text-center" >{{menuCategory.name.replace('amp;', '')}}</h5>
          <table class="table table-striped">
            <thead>
@@ -133,7 +134,7 @@
            </thead>
            <tbody>
              <tr ng-repeat="menuItem in menuItems  | offset: currentPage*itemsPerPage | limitTo: itemsPerPage
-             | orderBy: 'name' ">
+             | orderBy: 'name' " class="menu-item">
                <td>
                  <!--TODO: REFA this to remove this on results themselves or create filter..-->
                  {{menuItem.name.replace('amp;', '')}}
@@ -155,20 +156,22 @@
          </table>
          <div class="row">
            <div class="col-xs-6 text-left">
-             <button class="btn btn-primary btn-xs" ng-if="currentPage > 0" ng-click="prevPage()">
+             <button class="btn btn-warning btn-xs" ng-if="currentPage > 0" ng-click="prevPage()">
                Prev 5
              </button>
            </div>
            <div class="col-xs-6 text-right">
-             <button class="btn btn-primary btn-xs" ng-if="currentPage < menuItems.length / itemsPerPage - 1"
+             <button class="btn btn-warning btn-xs" ng-if="currentPage < menuItems.length / itemsPerPage - 1"
                      ng-click="nextPage()">Next 5</button>
            </div>
          </div>
          <br/>
+
        </div>
-      <div class="col-sm-3" ng-show="selectedCategory === menuCategory.name">
-        <input type="text" placeholder="filters and such"/>
-      </div>
+      <!--<div class="col-sm-3" ng-show="selectedCategory === menuCategory.name">-->
+        <!--<input type="text" placeholder="filters and such"/>-->
+      <!--</div>-->
+
     </div>
 
 

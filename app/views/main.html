@@ -23,9 +23,9 @@
             </a>
             <ul class="dropdown-menu">
               <!--TODO confirm empty cart..-->
-              <a ui-sref="index.store({ storeId: cart.storeId})">
+              <li><a ui-sref="index.store({ storeId: cart.storeId})">
                 {{cart.storeName}}
-              </a>
+              </a></li>
               <li><a ui-sref="index.cart" ng-show="cart && !isGroupCart">View Cart/Create Group Order</a></li>
               <li><a ui-sref="index.groupCart({ groupId: formattedGroupName})"
                      ng-show="cart && isGroupCart">

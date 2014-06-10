@@ -19,7 +19,7 @@
       <tbody>
       <tr ng-repeat="item in cart.items">
         <td>{{item.menuItemName}}</td>
-        <td>Test 2</td>
+        <td>{{item.ordererName || "Order Creator"}}</td>
         <td>${{item.menuItemPrice}}</td>
         <td><button class="btn btn-danger btn-xs radius" ng-click="removeFromCart($index)">✗</button></td>
       </tr>
@@ -68,7 +68,7 @@
         2) Add Credit Card to Account
       </a>
       -or-
-      <a class="btn btn-success" ng-class="{disabled: !checkoutStepTwo}">Pay Cash</a>
+      <a class="btn btn-success disabled" ng-class="{disabled: !checkoutStepTwo}">Pay Cash</a>
     <a ng-click="submitCart()" class="btn btn-success" ng-class="{disabled: !checkoutStepThree}">3) Prepare and Review Order</a>
     </div>
 
@@ -76,7 +76,7 @@
 
     </div>
 
-    <button class="btn" ng-click="deleteCart()"></button>
+    <!--<button class="btn" ng-click="deleteCart()"></button>-->
 
   </div>
 </div>

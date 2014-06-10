@@ -1,4 +1,5 @@
-<div class="hero-unit store-details">
+<div class="container">
+<div class="hidden-xs store-details">
   <h3 class="text-center" ng-show="storeDetails"> {{storeDetails.summary.name}}</h3>
   <h6 class="text-center smaller-head-text">{{storeDetails.location.landmark}}</h6>
   <div class="text-center">
@@ -15,7 +16,7 @@
   </div>
   <div class="text-center">
     <span class="label" ng-class="{'label-success':storeDetails.summary.overall_rating >= 80,
-                                   'label-warning' : storeDetails.summary.overall_rating > 60
+                                   'label-primary' : storeDetails.summary.overall_rating > 60
                                     && storeDetails.summary.overall_rating < 80,
                                    'label-danger' : storeDetails.summary.overall_rating < 60}"
           ng-show="storeDetails.summary.overall_rating">
@@ -27,31 +28,59 @@
   </div>
 
 </div>
+<div class="visible-xs store-details">
+  <h3 class="text-center" ng-show="storeDetails"> {{storeDetails.summary.name}}</h3>
+  <h6 class="text-center smaller-head-text">{{storeDetails.location.landmark}}</h6>
+  <div class="text-center">
+    <h6 class="text-center bold label btn label-success"
+        ng-show="isOpenForDelivery" data-toggle="tooltip" data-placement="right"
+        title="Last Delivery: {{lastDeliveryTime | date: 'shortTime'}}">
+      Open for Delivery
+    </h6>
+    <h6 class="text-center bold label btn label-danger"
+        ng-show="!isOpenForDelivery" data-toggle="tooltip" data-placement="right"
+        title="Next Delivery: {{nextDeliveryTime | date: 'shortTime'}}">
+      Closed for Delivery
+    </h6>
+  </div>
+  <div class="text-center">
+    <span class="label" ng-class="{'label-success':storeDetails.summary.overall_rating >= 80,
+                                   'label-primary' : storeDetails.summary.overall_rating > 60
+                                    && storeDetails.summary.overall_rating < 80,
+                                   'label-danger' : storeDetails.summary.overall_rating < 60}"
+          ng-show="storeDetails.summary.overall_rating">
+    {{storeDetails.summary.overall_rating}}/100
+    </span>
+    <span class="label label-info" ng-show="storeDetails.summary.overall_rating===0">
+                No Reviews
+    </span>
+  </div>
 
-<div class="row menu-item">
+</div>
+<div class=" menu-item ">
   <span ng-repeat="menuCategory in storeMenu.menu">
-  <div class="col-sm-3 col-sm-offset-1" ng-class="menuCategory.name"
+  <div class="col-sm-2" ng-class="menuCategory.name"
       ng-show="selectedCategory === menuCategory.name || selectedCategory === undefined">
     <a href="" ng-click="setSelected(menuCategory.name)">
-      <h4 class="text-center" ng-click="setSelected(menuCategory.name)">
+      <h4 class="text-center" ng-click="setSelectedCategory(menuCategory.name); getMenuItems(menuCategory)">
         {{menuCategory.name.replace('amp;', '').replace('&','')}}
       </h4>
     </a>
-    <div class="delivery-menu-photo text-center"
-         ng-show="selectedCategory === menuCategory.name || selectedCategory === undefined">
-      <a href="" ng-click="setSelectedCategory(menuCategory.name); getMenuItems(menuCategory)">
-        <img ng-src="/images/{{formatMenuCategory(menuCategory.name.toLowerCase())}}_stock.jpg" alt=""/>
-      </a>
-    </div>
-    <br/>
     <div class="text-center">
-      <button class="btn btn-primary" ng-click="unsetSelectedCategory()"
+      <button class="btn btn-warning" ng-click="unsetSelectedCategory()"
               ng-show="selectedCategory === menuCategory.name" >
         ← Back to Categories
       </button>
     </div>
+    <!--<div class="delivery-menu-photo text-center"-->
+         <!--ng-show="selectedCategory === menuCategory.name || selectedCategory === undefined">-->
+      <!--<a href="" ng-click="setSelectedCategory(menuCategory.name); getMenuItems(menuCategory)">-->
+        <!--<img ng-src="/images/{{formatMenuCategory(menuCategory.name.toLowerCase())}}_stock.jpg" alt=""/>-->
+      <!--</a>-->
+    <!--</div>-->
+    <br/>
   </div>
-     <div class="col-sm-5 text-center" ng-show="selectedCategory === menuCategory.name">
+     <div class="col-sm-6 text-center" ng-show="selectedCategory === menuCategory.name">
        <h5 class="underline bold text-center" >{{menuCategory.name.replace('amp;', '')}}</h5>
        <table class="table table-striped">
          <thead>
@@ -86,21 +115,21 @@
          </tbody>
        </table>
        <div class="row">
-         <div class="col-sm-6 text-left">
-           <button class="btn btn-primary btn-xs" ng-if="currentPage > 0" ng-click="prevPage()">
+         <div class="col-xs-6 text-left">
+             <button class="btn btn-warning btn-xs" ng-if="currentPage > 0" ng-click="prevPage()">
              Prev 5
            </button>
          </div>
-         <div class="col-sm-6 text-right">
-           <button class="btn btn-primary btn-xs" ng-if="currentPage < menuItems.length / itemsPerPage - 1"
+         <div class="col-xs-6 text-right">
+           <button class="btn btn-warning btn-xs" ng-if="currentPage < menuItems.length / itemsPerPage - 1"
                    ng-click="nextPage()">Next 5</button>
          </div>
        </div>
        <br/>
      </div>
-    <div class="col-sm-3" ng-show="selectedCategory === menuCategory.name">
-      <input type="text" placeholder="filters and such"/>
-    </div>
+    <!--<div class="col-sm-3" ng-show="selectedCategory === menuCategory.name">-->
+      <!--<input type="text" placeholder="filters and such"/>-->
+    <!--</div>-->
     <div class="modal fade" id="addName" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true"
         >
@@ -115,12 +144,13 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal"
+            <button type="button" class="btn btn-warning" data-dismiss="modal"
                     ng-click="addToCart()">Save changes</button>
           </div>
         </div>
       </div>
     </div>
 
+</div>
 </div>
 

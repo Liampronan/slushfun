@@ -1,11 +1,17 @@
 <div class="container">
-  <div class="hero-unit store-details text-center" ng-hide="groupCart">
+  <div class="hero-unit store-details hidden-xs text-center" ng-hide="groupCart">
     <h3>My Cart for <a ui-sref="index.store({ storeId: cart.storeId})">{{cart.storeName}}</a></h3>
     <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#create-group-order"
             ng-hide="groupCartCreated">
       Create Group Order
     </button>
-
+  </div>
+  <div class="visible-xs store-details small-hero text-center" ng-hide="groupCart">
+    <h3>My Cart for <a ui-sref="index.store({ storeId: cart.storeId})">{{cart.storeName}}</a></h3>
+    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#create-group-order"
+            ng-hide="groupCartCreated">
+      Create Group Order
+    </button>
   </div>
   <div class="col-sm-8 col-sm-offset-2">
     <table class="table table-striped table-hover text-center cart-main">
@@ -22,12 +28,12 @@
         </tr>
       </tbody>
       <tbody>
+      <!--<tr class="cart-bottom">-->
+        <!--<td class="text-right cart-bottom"><b>Delivery Fee</b></td>-->
+        <!--<td class="text-center cart-bottom">${{cart.deliveryFee}}</td>-->
+      <!--</tr>-->
       <tr class="cart-bottom">
-        <td class="text-right cart-bottom"><b>Delivery Fee</b></td>
-        <td class="text-center cart-bottom">${{cart.deliveryFee}}</td>
-      </tr>
-      <tr class="cart-bottom">
-        <td class="cart-bottom text-right"><b>Approx Total (before Taxes)</b></td>
+        <td class="cart-bottom text-right"><b>Approx Total (before Taxes/Fees)</b></td>
         <td class="text-center cart-bottom">${{cartTotal}}</td>
       </tr>
       </tbody>
@@ -47,9 +53,9 @@
         <div class="modal-body text-center">
           This creates a link for your friends so that they can add their orders to your cart.
         </div>
-        <div class="modal-body">
+        <div class="modal-body text-center">
 
-            <div class="col-sm-4 col-sm-offset-4 text-right"><b>Group order name: </b></div>
+            <div><b>Group order name: </b></div>
           <div class="row">
             <div class="col-sm-4 col-sm-offset-4"><input  type="text" ng-model="groupName"
                                                    ng-class="{'error': groupNameExistsFirebase}"

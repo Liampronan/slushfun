@@ -10,10 +10,10 @@ body {
 
 .drink {
   background-image: url("../images/pizza.png");
-  background-size: cover;
-  height: 23px;
+  background-size: contain;
+  height: 25px;
   width: 25px;
-  margin-top: 6px;
+  margin-top: 8px;
   margin-left: -5px !important; }
 
 .navbar-brand {
@@ -198,3 +198,9 @@ nav li.inline {
 
 .badge.nav {
   margin-left: 23px; }
+
+.small-hero {
+  padding: 30px 10px; }
+
+.menu-item {
+  margin: 20px; }

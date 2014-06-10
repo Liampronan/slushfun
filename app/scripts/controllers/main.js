@@ -64,6 +64,7 @@ angular.module('SlushFunApp')
 //        });
       } else {shoppingCartService.emptyCart();}
       $scope.updateCart();
+      $state.go('index.deliveries');
     }
     //
     $scope.removeGroupCartFromLocalStorage = function(){
