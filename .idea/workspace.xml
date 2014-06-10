@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4b5af4ba-8261-4f44-9f04-2948d56523cb" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/deliveries.nearMe.details.html" afterPath="$PROJECT_DIR$/app/views/deliveries.nearMe.details.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/directStoreDetails.html" afterPath="$PROJECT_DIR$/app/views/directStoreDetails.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/styles/main.css" afterPath="$PROJECT_DIR$/app/styles/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/styles/main.scss" afterPath="$PROJECT_DIR$/app/styles/main.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SlushFund.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -92,10 +88,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.scss" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="main.scss" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/styles/main.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="289" column="11" selection-start="3846" selection-end="3846" vertical-scroll-proportion="0.8432056" vertical-offset="4718" max-vertical-offset="5364">
+            <state line="289" column="11" selection-start="3846" selection-end="3846" vertical-scroll-proportion="-17.925926" vertical-offset="4718" max-vertical-offset="5364">
               <folding />
             </state>
           </provider>
@@ -110,10 +106,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="deliveries.nearMe.details.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="deliveries.nearMe.details.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/deliveries.nearMe.details.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="103" column="38" selection-start="5798" selection-end="5798" vertical-scroll-proportion="-4.3333335" vertical-offset="1620" max-vertical-offset="3312">
+            <state line="125" column="12" selection-start="6871" selection-end="6871" vertical-scroll-proportion="0.93418646" vertical-offset="1739" max-vertical-offset="3330">
               <folding />
             </state>
           </provider>
@@ -151,8 +147,8 @@
         <option value="$PROJECT_DIR$/app/views/checkout.html" />
         <option value="$PROJECT_DIR$/app/scripts/controllers/main.js" />
         <option value="$PROJECT_DIR$/app/views/directStoreDetails.html" />
-        <option value="$PROJECT_DIR$/app/views/deliveries.nearMe.details.html" />
         <option value="$PROJECT_DIR$/app/styles/main.scss" />
+        <option value="$PROJECT_DIR$/app/views/deliveries.nearMe.details.html" />
       </list>
     </option>
   </component>
@@ -470,16 +466,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/deliveries.nearMe.details.html">
+    <entry file="file://$PROJECT_DIR$/app/styles/main.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="38" selection-start="5798" selection-end="5798" vertical-scroll-proportion="-4.3333335" vertical-offset="1620" max-vertical-offset="3312">
+        <state line="289" column="11" selection-start="3846" selection-end="3846" vertical-scroll-proportion="-17.925926" vertical-offset="4718" max-vertical-offset="5364">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/styles/main.scss">
+    <entry file="file://$PROJECT_DIR$/app/views/deliveries.nearMe.details.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="289" column="11" selection-start="3846" selection-end="3846" vertical-scroll-proportion="0.8432056" vertical-offset="4718" max-vertical-offset="5364">
+        <state line="125" column="12" selection-start="6871" selection-end="6871" vertical-scroll-proportion="0.93418646" vertical-offset="1739" max-vertical-offset="3330">
           <folding />
         </state>
       </provider>

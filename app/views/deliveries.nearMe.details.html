@@ -108,12 +108,7 @@
           {{menuCategory.name.replace('amp;', '').replace('&','')}}
         </h4>
       </a>
-      <div class="text-center">
-        <button class="btn btn-warning" ng-click="unsetSelectedCategory()"
-                ng-show="selectedCategory === menuCategory.name" >
-          ← Back to Categories
-        </button>
-      </div>
+
       <!--<div class="delivery-menu-photo text-center"-->
            <!--ng-show="selectedCategory === menuCategory.name || selectedCategory === undefined">-->
         <!--<a href="" ng-click="setSelectedCategory(menuCategory.name); getMenuItems(menuCategory)">-->
@@ -123,6 +118,12 @@
       <!--<br/>-->
 
     </div>
+      <div class="text-center">
+        <button class="btn btn-warning" ng-click="unsetSelectedCategory()"
+                ng-show="selectedCategory === menuCategory.name" >
+          ← Back to Categories
+        </button>
+      </div>
        <div class="col-sm-6 text-center" ng-show="selectedCategory === menuCategory.name">
          <h5 class="underline bold text-center" >{{menuCategory.name.replace('amp;', '')}}</h5>
          <table class="table table-striped">
