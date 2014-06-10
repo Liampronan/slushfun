@@ -96,7 +96,7 @@ angular.module('SlushFunApp')
 //          only request user code and access token if we don't already have access tokens
             $scope.checkoutStepOne = false;
             $scope.checkoutStepTwo = true;
-            if (!deliveryDataService.getAPIAccessTokenFromLocalStorage()){
+
               deliveryDataService.storeAPIUserCode($location.$$search.code);
               deliveryDataService.getAPIToken($location.$$search.code)
                 .then(function (token) {
@@ -104,7 +104,6 @@ angular.module('SlushFunApp')
                   console.log($scope.APIToken);
                   deliveryDataService.storeAPIAccessToken(token);
                 });
-            }
           }
           else if (toState.name === "index.checkout" && $location.$$search.state === "ccAdded"){
             $scope.checkoutStepOne = false;
