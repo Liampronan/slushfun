@@ -11,7 +11,7 @@ angular.module('SlushFunApp')
     var clientId = "NWUxNmJiNGIyMWMxNDE1YjRhMjY4OWM3OGUwNGZmOGYw";
     var clientIdStaging = "ZmNlMDQ0NWFiZGQ5ZDVmZWE4Y2RhMTA1YzgxOWNmNDhi";
     var clientSecretStaging = "zpIjrBMVL1aGjLYWBo7YXyUFsfHx1jeR0vnp23XZ";
-    var redirectUri = 'http://localhost:8000/checkout';
+    var redirectUri = 'http://slushfun.herokuapp.com/checkout';
     var deilveryBaseUrl = baseUrl + "search/delivery?client_id=" + clientId;
     var port = ":443";
     var _this = this;
