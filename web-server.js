@@ -12,7 +12,6 @@ app.use("/scripts", express.static(__dirname + "/app/scripts"));
 app.use("/views", express.static(__dirname + "/app/views"));
 app.use("/bower_components", express.static(__dirname + "/app/bower_components"));
 
-console.log(__dirname + "/app/bower_components");
 app.all('/*', function(req, res, next) {
   // Just send the index.html for other files to support HTML5Mode
   res.sendfile('/app/index.html', { root: __dirname });
