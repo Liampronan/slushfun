@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="hero-unit store-details  hidden-xs text-center">
+    <h3 class="no-lobster">How It Works</h3>
+
+  </div>
+
+  <div class="visible-xs store-details small-hero text-center">
+    <h3 class="no-lobster">How It Works</h3>
+  </div>
+  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" height="500">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+    </ol>
+    <script>
+      $(document).ready(function(){
+        var $carousel = $('#carousel-example-generic');
+        var index = 0;
+        $carousel.bind('slide.bs.carousel', function (e) {
+          var index = $('.active').attr('data-slide-to');
+          console.log(index);
+        });
+      })
+    </script>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item active text-center">
+        <img src="/images/add_to_cart.png"   >
+      </div>
+      <div class="item text-center">
+        <img src="/images/friend_add_to_cart.png"   >
+      </div>
+      <div class="item text-center">
+        <img src="/images/group_cart_in_action.png"   >
+      </div>
+      <div class="item text-center">
+        <img src="/images/group_cart_comments.png"   >
+      </div>
+      <div class="item text-center">
+        <img src="/images/checkout.png"   >
+      </div>
+    </div>
+
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+  </div>
+
+
+</div>
+<div class="carousel-caption" >
+  <h3 class="no-lobster">Order Your Party's Drinks with Your Friends</h3>
+  <ol>
+    <li>Find a delivery place and add items to your cart</li>
+    <li>Send your cart's group link to friends, allowing them to add items to the cart</li>
+    <li>You and your friends vote and comment on the items</li>
+    <li>Whoever's ordering can pick the top-voted (or any) items to purchase</li>
+  </ol>
+</div>
