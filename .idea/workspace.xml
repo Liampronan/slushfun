@@ -100,7 +100,7 @@
       <file leaf-file-name="package.json" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="24" selection-start="0" selection-end="1568" vertical-scroll-proportion="0.71777004" vertical-offset="470" max-vertical-offset="1044">
+            <state line="47" column="0" selection-start="1356" selection-end="1356" vertical-scroll-proportion="0.74912894" vertical-offset="416" max-vertical-offset="990">
               <folding />
             </state>
           </provider>
@@ -475,7 +475,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="24" selection-start="0" selection-end="1568" vertical-scroll-proportion="0.71777004" vertical-offset="470" max-vertical-offset="1044">
+        <state line="47" column="0" selection-start="1356" selection-end="1356" vertical-scroll-proportion="0.74912894" vertical-offset="416" max-vertical-offset="990">
           <folding />
         </state>
       </provider>
