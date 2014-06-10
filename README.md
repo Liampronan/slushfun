@@ -1,6 +1,6 @@
-slushfun
+giveNtakeout
 ========
 
-Angular App using Delivery.com API + firebase.
-Mobile using ionic framework
+Angular App using Delivery.com Food API + firebase.
+
 
