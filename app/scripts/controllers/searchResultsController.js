@@ -2,6 +2,8 @@ angular.module('SlushFunApp')
   .controller('SearchResultsCtrl', ['$scope', 'deliveryDataService', '$state', 'localStorageService',
     function($scope, deliveryDataService, $state, localStorageService){
       $scope.inSearchResults = true;
+      $scope.onlyShowOpen = true;
+
       $scope.storeDetails = {};
       $scope.$on('$stateChangeStart',
         function(evt, toState, toParams, fromState, fromParams) {
@@ -43,12 +45,19 @@ angular.module('SlushFunApp')
       };
 
       $scope.showClosed = function(){
-
+        if ($scope.isOpen === ''){
+          $scope.isOpen = function(merchant) {
+          return merchant.ordering.is_open
+          }
+        } else{
+            $scope.isOpen = '';
+          }
       }
 
       $scope.isOpen = function(merchant) {
         return merchant.ordering.is_open
-      };
+      }
+
 
       $scope.setStoreSearchResultIndex = function (index) {
         $scope.searchResultIndex = index;

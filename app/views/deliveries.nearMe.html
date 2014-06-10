@@ -9,7 +9,8 @@
     </div>
     <div class="col-sm-2 col-sm-offset-1">
       <div class="row">
-        <input type="checkbox" checked ng-model="showOpen"/>
+        <label for="open">Only Show Open Restaurants</label>
+        <input type="checkbox" id='open' ng-change="showClosed()" ng-model="onlyShowOpen" checked/>
       </div>
     </div>
   </div>
@@ -17,7 +18,7 @@
 
   <div class="row">
     <div class="" ng-show="searchResult"
-         ng-repeat="searchResult in searchResults | filter: deliveryCharge | filter: orderMax | filter: showOpen">
+         ng-repeat="searchResult in searchResults | filter: deliveryCharge | filter: orderMax | filter: isOpen">
          <span ng-switch on="$index % 3">
            <span ng-switch-when="0">
                <div class="col-sm-1"></div>
