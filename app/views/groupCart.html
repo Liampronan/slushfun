@@ -271,8 +271,8 @@
           <h4 class="modal-title no-lobster" id="myModalLabel">Who's Voting for this Item?</h4>
         </div>
         <div class="modal-body">
-          Your Name: <input type="text" ng-model="$parent.voterName"/>
-          Notes: <input type="text" ng-model="$parent.voterNotes"/>
+          <label for="name">Your Name: <input id='name' type="text" ng-model="$parent.voterName"/></label>
+          <div class="row"><label for="notes">Notes: <input type="text" ng-model="$parent.voterNotes" id="notes"/></label></div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
