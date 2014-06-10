@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b5af4ba-8261-4f44-9f04-2948d56523cb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bower.json" afterPath="$PROJECT_DIR$/bower.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
     </list>
     <ignored path="SlushFund.iws" />
@@ -101,7 +100,7 @@
       <file leaf-file-name="package.json" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="0" selection-start="1372" selection-end="1372" vertical-scroll-proportion="0.71777004" vertical-offset="452" max-vertical-offset="1026">
+            <state line="48" column="41" selection-start="1413" selection-end="1413" vertical-scroll-proportion="0.71777004" vertical-offset="452" max-vertical-offset="1026">
               <folding />
             </state>
           </provider>
@@ -476,7 +475,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="0" selection-start="1372" selection-end="1372" vertical-scroll-proportion="0.71777004" vertical-offset="452" max-vertical-offset="1026">
+        <state line="48" column="41" selection-start="1413" selection-end="1413" vertical-scroll-proportion="0.71777004" vertical-offset="452" max-vertical-offset="1026">
           <folding />
         </state>
       </provider>
