@@ -93,8 +93,8 @@
          <th class="text-center">Cart</th>
          </thead>
          <tbody>
-           <tr ng-repeat="menuItem in menuItems  | offset: currentPage*itemsPerPage | limitTo: itemsPerPage
-           | orderBy: 'name' ">
+           <tr ng-repeat="menuItem in menuItems  | orderBy: ['name'] | offset: currentPage*itemsPerPage |
+           limitTo: itemsPerPage">
              <td>
                <!--TODO REFA this to remove this on results themselves or create filter..-->
                {{menuItem.name.replace('amp;', '')}}
