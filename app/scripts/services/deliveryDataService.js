@@ -20,14 +20,7 @@ angular.module('SlushFunApp')
     this.getDeliveryPlaces = function(searchAddress, searchMerchantType){
       var merchantTypeParam = formatMerchantTypeParam(searchMerchantType);
       console.log(deilveryBaseUrl + merchantTypeParam+ '&address=' + searchAddress +  port);
-       //$http.get(deilveryBaseUrl + merchantTypeParam+ '&address=' + searchAddress +  port);
-      return $http({
-          url: "http://cors-anywhere.herokuapp.com/sandbox.delivery.com/customer/location/",
-          method: "GET",
-          headers: {'Content-Type': 'application/x-www-form-urlencoded',
-                    'Access-Control-Allow-Origin': '*'
-                    }
-        })
+      return $http.get(deilveryBaseUrl + merchantTypeParam+ '&address=' + searchAddress +  port);
     }
 
     this.getStoreMenu = function (storeId) {
