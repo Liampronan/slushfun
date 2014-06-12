@@ -84,9 +84,14 @@ angular.module('SlushFunApp')
         return deferred.promise
       }
 
-      $scope.removeFromCart = function(index){
-        $scope.cart.items.splice(index,1);
-        $scope.updateCart();
+      $scope.removeFromCart = function(cartItemHashKey){
+        angular.forEach($scope.cart.items, function(item){
+          if (item.$$hashKey === hashKey){
+            $scope.modalItem = item;
+            console.log($scope.modalItem)
+          }
+        })        
+        
       }
 
       $scope.$on('$stateChangeSuccess',
