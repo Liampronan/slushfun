@@ -1,5 +1,10 @@
 {
   "name": "slushfund",
   "version": "0.0.0",
-
+  "dependencies": {
+    
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  }
 }
