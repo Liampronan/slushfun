@@ -86,12 +86,11 @@ angular.module('SlushFunApp')
 
       $scope.removeFromCart = function(cartItemHashKey){
         angular.forEach($scope.cart.items, function(item){
-          if (item.$$hashKey === cartItemHashKey){
-            $scope.modalItem = item;
-            console.log($scope.modalItem)
+          if (item.$$hashKey === hashKey){
+            $scope.cart.items.splice(index,1);
+            $scope.updateCart();
           }
         })        
-        
       }
 
       $scope.$on('$stateChangeSuccess',
