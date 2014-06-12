@@ -1,7 +1,6 @@
 {
   "name": "slushfund",
   "version": "0.0.0",
-  "registry": "http://registry.npmjs.org/",
   "dependencies": {
     "express": "latest",
     "angular": "1.2.16",
@@ -44,6 +43,6 @@
     "grunt-karma": "^0.8.3"
   },
   "engines": {
-    "node": "0.8.0"
+    "node": ">=0.8.0"
   }
 }
