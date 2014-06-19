@@ -49,5 +49,28 @@
 </div>
 <h5 ng-show="inDelivery" class=" text-center no-lobster">Currently available in NYC, Chicago, and Hoboken.</h5>
 <div class="text-center"><a  class="btn btn-default " ui-sref="index.howItWorks" ng-show="inDelivery">How It Works</a></div>
-<div ui-view></div>
+<br/>
+<div class="text-center"><a  class="btn btn-default "  ng-show="inDelivery"  data-toggle="modal"
+                             data-target="#create-group-order">View Quick Demo</a></div>
 
+<div class="modal fade" id="create-group-order" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog" ng-hide="hideModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h4 class="modal-title no-lobster text-center" id="myModalLabel">Group Cart Demo</h4>
+    </div>
+    <div class="modal-body text-center">
+      <iframe width="560" height="315" src="//www.youtube.com/embed/Hd0GfskvX_Q" frameborder="0" allowfullscreen>
+
+      </iframe>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal" ng-show="!groupCartCreated"s>Close</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<div ui-view></div>
