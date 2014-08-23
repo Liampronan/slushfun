@@ -8,9 +8,9 @@ angular.module('SlushFunApp')
     //TODO: REFA baseURL so that it doesn't include merchant
     var guestTokenUrl = "http://cors-anywhere.herokuapp.com/api.delivery.com/customer/auth/guest?" +
       "client_id=NWUxNmJiNGIyMWMxNDE1YjRhMjY4OWM3OGUwNGZmOGYw";
-    var clientId = "NWUxNmJiNGIyMWMxNDE1YjRhMjY4OWM3OGUwNGZmOGYw";
-    var clientIdStaging = "ZmNlMDQ0NWFiZGQ5ZDVmZWE4Y2RhMTA1YzgxOWNmNDhi";
-    var clientSecretStaging = "zpIjrBMVL1aGjLYWBo7YXyUFsfHx1jeR0vnp23XZ";
+    var clientId = "ZmU5NjNmNmU4MzZmMjJjMmQ3Y2Y4MGRhMDJlMTBiNjg3";
+    var clientIdStaging = "ZmU5NjNmNmU4MzZmMjJjMmQ3Y2Y4MGRhMDJlMTBiNjg3";
+    var clientSecretStaging = "xs2mmFVLlzGSTVwOpcaK7poZ2asGw4mDfTOCRU2x";
     var redirectUri = 'http://slushfun.herokuapp.com/checkout';
     var deilveryBaseUrl = baseUrl + "search/delivery?client_id=" + clientId;
     var port = ":443";
