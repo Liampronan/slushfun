@@ -1,6 +1,6 @@
 giveNtakeout
 ========
 
-Angular App using Delivery.com Food API + firebase.
+one of my first apps: a social food ordering web app. 
 
 
